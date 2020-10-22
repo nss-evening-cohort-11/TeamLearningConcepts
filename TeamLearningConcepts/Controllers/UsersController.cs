@@ -28,5 +28,13 @@ namespace TeamLearningConcepts.Controllers
 
             return Ok(allUsers);
         }
+
+        [HttpGet("{id}")] 
+        public IActionResult GetSingleUser(int id)
+        {
+            var singleUser = _repo.GetUserById(id);
+
+            return Ok(singleUser);
+        }
     }
 }

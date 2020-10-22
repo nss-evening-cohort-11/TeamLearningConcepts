@@ -22,5 +22,20 @@ namespace TeamLearningConcepts.Data
 
             return users.ToList();
         }
+
+        internal User GetUserById(int userId)
+        {
+            using var db = new SqlConnection(_connectionString);
+
+            var query = @"select *
+                          from [user]
+                          where UserId = @uid";
+
+            var parameters = new { uid = userId };
+
+            var user = db.QueryFirstOrDefault<User>(query, parameters);
+
+            return user;
+        }
     }
 }
