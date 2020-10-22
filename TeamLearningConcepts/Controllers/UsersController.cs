@@ -36,5 +36,18 @@ namespace TeamLearningConcepts.Controllers
 
             return Ok(singleUser);
         }
+
+        [HttpDelete("{id}")]
+        public IActionResult DeleteUser(int id)
+        {
+            if (_repo.GetUserById(id) == null)
+            {
+                return NotFound();
+            }
+
+            _repo.Remove(id);
+
+            return Ok();
+        }
     }
 }

@@ -37,5 +37,16 @@ namespace TeamLearningConcepts.Data
 
             return user;
         }
+
+        internal void Remove(int userId)
+        {
+            using var db = new SqlConnection(_connectionString);
+
+            var sql = @"delete
+                          from [dbo].[User]
+                          where UserId = @id";
+
+            db.Execute(sql, new { id = userId });
+        }
     }
 }
