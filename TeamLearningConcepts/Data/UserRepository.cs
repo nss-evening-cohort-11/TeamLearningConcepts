@@ -18,7 +18,7 @@ namespace TeamLearningConcepts.Data
         {
             using var db = new SqlConnection(_connectionString);
 
-            var users = db.Query<User>("select * from [user]");
+            var users = db.Query<User>("SELECT * FROM [User]");
 
             return users.ToList();
         }
@@ -27,9 +27,9 @@ namespace TeamLearningConcepts.Data
         {
             using var db = new SqlConnection(_connectionString);
 
-            var query = @"select *
-                          from [user]
-                          where UserId = @uid";
+            var query = @"SELECT *
+                          FROM [User]
+                          WHERE UserId = @uid";
 
             var parameters = new { uid = userId };
 
@@ -38,13 +38,19 @@ namespace TeamLearningConcepts.Data
             return user;
         }
 
-        internal void Remove(int userId)
+        internal void Remove(int userId, User user)
         {
             using var db = new SqlConnection(_connectionString);
 
-            var sql = @"delete
-                          from [dbo].[User]
-                          where UserId = @id";
+            var sql = @"UPDATE [dbo].[User]
+                           SET [FirstName] = ''
+                              ,[LastName] = ''
+                              ,[Username] = ''
+                              ,[PhotoUrl] = ''
+                              ,[Email] = ''
+                          output inserted.*
+                          WHERE UserId = @id";
+
 
             db.Execute(sql, new { id = userId });
         }
