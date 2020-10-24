@@ -9,13 +9,10 @@ using TeamLearningConcepts.Models;
 
 namespace TeamLearningConcepts.Controllers
 {
-    [Route("api/invoice")]
+    [Route("api/invoices")]
     [ApiController]
     public class InvoiceController : ControllerBase
     {
-       // properties
-       public object Id { get; private set; }
-
         // fields
         InvoiceRepository _repo;
 

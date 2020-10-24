@@ -10,9 +10,6 @@ namespace TeamLearningConcepts.Data
 {
     public class InvoiceRepository
     {
-        // fields
-        static List<Invoice> _invoice = new List<Invoice>();
-
         const string _connectionString = "Server=localhost;Database=TLC;Trusted_Connection=True";
 
         // methods
