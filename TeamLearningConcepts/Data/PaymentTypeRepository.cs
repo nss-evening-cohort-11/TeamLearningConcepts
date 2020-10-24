@@ -16,8 +16,6 @@ namespace TeamLearningConcepts.Data
 {
     public class PaymentTypeRepository
     {
-        static List<PaymentType> _paymentTypes = new List<PaymentType>();
-
         const string _connectionString = "Server=localhost;Database=TLC;Trusted_Connection=True;";
 
 public List <PaymentType> GetAll()
