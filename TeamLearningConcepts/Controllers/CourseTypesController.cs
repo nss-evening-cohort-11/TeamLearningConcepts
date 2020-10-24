@@ -33,6 +33,11 @@ namespace TeamLearningConcepts.Controllers
         {
             var singleCourseType = _repo.GetCourseTypeById(id);
 
+            if (singleCourseType == null)
+            {
+                return NotFound("This course type was not found in the database.");
+            }
+
             return Ok(singleCourseType);
         }
 
