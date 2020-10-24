@@ -29,5 +29,22 @@ namespace TeamLearningConcepts.Data
 
             return courses.ToList();
         }
+
+
+
+        public Course GetById(int courseId)
+        {
+            using var db = new SqlConnection(_connectionString);
+
+            var query = @"SELECT *
+                        FROM Course
+                        WHERE CourseId = @cid";
+
+            var parameters = new { cid = courseId };
+
+            var course = db.QueryFirstOrDefault<Course>(query, parameters);
+
+            return course;
+        }
     }
 }

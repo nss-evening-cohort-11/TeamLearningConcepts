@@ -32,5 +32,16 @@ namespace TeamLearningConcepts.Controllers
 
             return Ok(allCourses);
         }
+
+
+        [HttpGet("{id}")]
+        public IActionResult GetCourseById(int id)
+        {
+            var course = _repo.GetById(id);
+
+            if (course == null) return NotFound("No course with that Id was found. Please Try again.");
+
+            return Ok(course);
+        }
     }
 }
