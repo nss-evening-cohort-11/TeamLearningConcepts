@@ -14,9 +14,6 @@ namespace TeamLearningConcepts.Data
     {
 
 
-        static List<Course> _courses = new List<Course>();
-
-
         const string _connectionString = "Server=localhost;Database=TLC;Trusted_Connection=True;";
 
 
