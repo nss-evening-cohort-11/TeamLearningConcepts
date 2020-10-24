@@ -35,5 +35,15 @@ namespace TeamLearningConcepts.Controllers
 
             return Ok(allInvoices);
         }
+
+        [HttpGet("{id}")]
+        public IActionResult GetInvoiceById(int id)
+        {
+            var invoice = _repo.GetById(id);
+
+            if (invoice == null) return NotFound("No invoice with that id found.");
+
+            return Ok(invoice);
+        }
     }
 }

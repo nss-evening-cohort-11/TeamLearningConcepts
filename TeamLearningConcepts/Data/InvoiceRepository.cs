@@ -16,7 +16,7 @@ namespace TeamLearningConcepts.Data
         const string _connectionString = "Server=localhost;Database=TLC;Trusted_Connection=True";
 
         // methods
-        // GET METHOD
+        // GET ALL METHOD
         public List<Invoice> GetAll()
         {
             using var db = new SqlConnection(_connectionString);
@@ -26,6 +26,22 @@ namespace TeamLearningConcepts.Data
             var invoice = db.Query<Invoice>(query);
 
             return invoice.ToList();
+        }
+
+        // GET SINGLE METHOD
+        public Invoice GetById(int invoiceId)
+        {
+            using var db = new SqlConnection(_connectionString);
+
+            var query = @"select *
+                          from Invoice
+                          where InvoiceId = @id";
+
+            var parameters = new { id = invoiceId };
+
+            var invoice = db.QueryFirstOrDefault<Invoice>(query, parameters);
+
+            return invoice;
         }
     }
 }
