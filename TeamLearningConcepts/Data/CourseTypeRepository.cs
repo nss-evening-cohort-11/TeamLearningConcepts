@@ -29,9 +29,9 @@ namespace TeamLearningConcepts.Data
 
             var query = @"SELECT *
                           FROM CourseType
-                          WHERE CourseTypeId = @uid";
+                          WHERE CourseTypeId = @ctid";
 
-            var parameters = new { uid = courseTypeId };
+            var parameters = new { ctid = courseTypeId };
 
             var courseType = db.QueryFirstOrDefault<CourseType>(query, parameters);
 
