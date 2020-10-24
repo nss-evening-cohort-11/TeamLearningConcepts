@@ -38,14 +38,14 @@ namespace TeamLearningConcepts.Controllers
         }
 
         [HttpDelete("{id}")]
-        public IActionResult DeleteUser(int id, User user)
+        public IActionResult DeleteUser(int id)
         {
             if (_repo.GetUserById(id) == null)
             {
                 return NotFound();
             }
 
-            _repo.Remove(id, user);
+            _repo.Remove(id);
 
             return Ok();
         }
