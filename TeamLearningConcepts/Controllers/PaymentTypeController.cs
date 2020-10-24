@@ -44,7 +44,7 @@ namespace TeamLearningConcepts.Controllers
             {
                 return NotFound();
             }
-            _repo.Delete(id);
+            _repo.Remove(id);
 
             return Ok();
 

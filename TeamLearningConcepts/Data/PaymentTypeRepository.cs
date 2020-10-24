@@ -36,7 +36,7 @@ public List <PaymentType> GetAll()
 
             var query = @"select *
                         from PaymentType
-                        where id = @pid";
+                        where PaymentTypeId = @pid";
             var parameters = new { pid = paymentTypeId };
 
             var paymentType = db.QueryFirstOrDefault<PaymentType>(query, parameters);
@@ -45,13 +45,16 @@ public List <PaymentType> GetAll()
 
         }
 
-        public void Delete(int paymentTypeId)
+        public void Remove(int paymentTypeId)
         {
-            var sql = @"DELETE
-FROM [dbo].[PaymentType]
-WHERE Id = @id";
-
             using var db = new SqlConnection(_connectionString);
+
+            var sql = @"UPDATE [dbo].[PaymentType]
+                        SET  [PaymentName] = ''
+                            ,[AccountNumber] = ''
+                             output inserted.*
+                        WHERE PaymentTypeId = @id";
+
 
             db.Execute(sql, new { id = paymentTypeId });
         }
