@@ -45,5 +45,20 @@ namespace TeamLearningConcepts.Data
         }
 
 
+
+        internal void Remove(int courseId)
+        {
+            using var db = new SqlConnection(_connectionString);
+
+            var sql = @"UPDATE [dbo].[Course]
+                            SET [Title] = ''
+                               ,[Price] = 0
+                               ,[PhotoUrl] = ''
+                               ,[Description] = ''
+                                output inserted.*
+                                WHERE courseId = @id";
+
+            db.Execute(sql, new { id = courseId });
+        }
     }
 }
