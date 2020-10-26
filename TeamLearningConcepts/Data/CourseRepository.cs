@@ -51,10 +51,7 @@ namespace TeamLearningConcepts.Data
             using var db = new SqlConnection(_connectionString);
 
             var sql = @"UPDATE [dbo].[Course]
-                            SET [Title] = ''
-                               ,[Price] = 0
-                               ,[PhotoUrl] = ''
-                               ,[Description] = ''
+                            SET [IsDeleted] = 1
                                 output inserted.*
                                 WHERE courseId = @id";
 
