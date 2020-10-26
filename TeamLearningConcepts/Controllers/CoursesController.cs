@@ -34,6 +34,7 @@ namespace TeamLearningConcepts.Controllers
         }
 
 
+
         [HttpGet("{id}")]
         public IActionResult GetCourseById(int id)
         {
@@ -42,6 +43,20 @@ namespace TeamLearningConcepts.Controllers
             if (course == null) return NotFound("No course with that Id was found. Please Try again.");
 
             return Ok(course);
+        }
+
+
+        [HttpDelete("{id}")]
+        public IActionResult DeleteCourse(int id)
+        {
+            if (_repo.GetById(id) == null)
+            {
+                return NotFound();
+            }
+
+            _repo.Remove(id);
+
+            return Ok();
         }
     }
 }
