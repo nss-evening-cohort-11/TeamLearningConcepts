@@ -13,5 +13,6 @@ namespace TeamLearningConcepts.Models
         public string PhotoUrl { get; set; }
         public string Description { get; set; }
         public int CourseTypeId { get; set; }
+        public bool IsDeleted { get; set; }
     }
 }
