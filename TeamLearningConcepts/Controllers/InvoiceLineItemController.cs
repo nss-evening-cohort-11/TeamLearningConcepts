@@ -33,7 +33,7 @@ namespace TeamLearningConcepts.Controllers
             return Ok(allInvoiceLineItems);
         }
 
-        // actually, I want this one to be different - get invoiceline by invoiceid
+        // Get InvoiceLineItem by InvoiceId
         [HttpGet("{id}")]
         public IActionResult GetInvoiceLineById(int id)
         {
