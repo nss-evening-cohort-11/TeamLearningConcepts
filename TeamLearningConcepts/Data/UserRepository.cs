@@ -43,11 +43,7 @@ namespace TeamLearningConcepts.Data
             using var db = new SqlConnection(_connectionString);
 
             var sql = @"UPDATE [dbo].[User]
-                           SET [FirstName] = ''
-                              ,[LastName] = ''
-                              ,[Username] = ''
-                              ,[PhotoUrl] = ''
-                              ,[Email] = ''
+                           SET [IsDeleted] = 1
                           output inserted.*
                           WHERE UserId = @id";
 
