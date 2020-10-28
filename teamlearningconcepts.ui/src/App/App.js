@@ -1,14 +1,11 @@
+import React from 'react';
 import './App.scss';
+import Users from '../components/pages/Users/Users';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-          <p>
-          Edit and save to reload.
-        </p>
-       
-      </header>
+      <Users />
     </div>
   );
 }
