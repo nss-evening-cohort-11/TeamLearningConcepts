@@ -48,9 +48,8 @@ public List <PaymentType> GetAll()
             using var db = new SqlConnection(_connectionString);
 
             var sql = @"UPDATE [dbo].[PaymentType]
-                        SET  [PaymentName] = ''
-                            ,[AccountNumber] = ''
-                             output inserted.*
+                      SET [IsDeleted] = 1
+                        output inserted.*
                         WHERE PaymentTypeId = @id";
 
 
