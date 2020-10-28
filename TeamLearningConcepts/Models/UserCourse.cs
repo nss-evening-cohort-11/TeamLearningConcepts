@@ -5,13 +5,16 @@ using System.Threading.Tasks;
 
 namespace TeamLearningConcepts.Models
 {
-    public class PaymentType
+    public class UserCourse
     {
-        public int PaymentTypeId { get; set; }
-        public string PaymentName { get; set; }
-        public int AccountNumber { get; set; }
+        public int UserCourseId { get; set; }
+        public int CourseId { get; set; }
+
         public int UserId { get; set; }
 
+        public bool IsComplete { get; set; }
+
         public bool IsDeleted { get; set; }
+
     }
 }
