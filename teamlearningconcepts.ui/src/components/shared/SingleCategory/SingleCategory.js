@@ -16,6 +16,8 @@ class SingleCategory extends React.Component {
   componentDidMount() {
     const {courseType} = this.props;
 
+    console.log(courseType.courseTypeId);
+
     courseData.getAllCoursesByCourseTypeId(courseType.courseTypeId)
       .then(courses => { this.setState({courses}) })
   }

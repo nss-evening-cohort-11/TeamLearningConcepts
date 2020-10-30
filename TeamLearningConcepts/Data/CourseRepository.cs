@@ -44,6 +44,21 @@ namespace TeamLearningConcepts.Data
             return course;
         }
 
+        public List<Course> GetAllByCourseTypeId(int courseTypeId)
+        {
+            using var db = new SqlConnection(_connectionString);
+
+            var query = @"SELECT * 
+                        FROM Course
+                        WHERE CourseTypeId = @ctid";
+
+            var parameters = new { ctid = courseTypeId };
+
+            var coursesByType = db.Query<Course>(query, parameters);
+
+            return coursesByType.ToList();
+        }
+
 
 
         internal void Remove(int courseId)

@@ -45,6 +45,16 @@ namespace TeamLearningConcepts.Controllers
             return Ok(course);
         }
 
+        [HttpGet("allByCourseTypeId/{id}")]
+        public IActionResult GetAllCoursesByCourseTypeId(int id)
+        {
+            var coursesByType = _repo.GetAllByCourseTypeId(id);
+
+            if (coursesByType == null) return NotFound("No courses with that courseTypeId ware found. Please Try again.");
+
+            return Ok(coursesByType);
+        }
+
 
         [HttpDelete("{id}")]
         public IActionResult DeleteCourse(int id)

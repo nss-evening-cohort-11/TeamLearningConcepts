@@ -12,7 +12,7 @@ class SingleCourseCard extends React.Component {
 
     return (
       <div className="SingleCourseCard">
-        <div className="card">
+        <div className="card m-3">
           <img className="card-img-top" src={course.photoUrl} alt="Course Card" />
           <div className="card-body">
             <h5 className="card-title">{course.title}</h5>
