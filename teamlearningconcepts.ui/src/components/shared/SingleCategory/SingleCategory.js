@@ -1,7 +1,8 @@
 import React from 'react';
 import SingleCourseCard from '../SingleCourseCard/SingleCourseCard';
-import courseTypeShape from 
+import courseTypeShape from '../../../helpers/propz/courseTypeShape';
 import './SingleCategory.scss';
+import courseData from '../../../helpers/data/courseData';
 
 class SingleCategory extends React.Component {
   state = {
@@ -12,12 +13,19 @@ class SingleCategory extends React.Component {
     courseType: courseTypeShape.courseShapeType
   }
 
+  componentDidMount() {
+    const {courseType} = this.props;
+
+    courseData.getAllCoursesByCourseTypeId(courseType.courseTypeId)
+      .then(courses => { this.setState({courses}) })
+  }
+
   render() {
     const {courseType} = this.props;
     const {courses} = this.state;
 
     const buildCourseCards = courses.map(course => (
-      <SingleCourseCard key={course.id} course={course} />
+      <SingleCourseCard key={course.courseId} course={course} />
     ));
 
     return (

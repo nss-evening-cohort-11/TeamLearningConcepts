@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 
 const courseShape = PropTypes.shape({
-  id: PropTypes.number.isRequired,
+  courseId: PropTypes.number.isRequired,
   title: PropTypes.string.isRequired,
   price: PropTypes.number.isRequired,
   photoUrl: PropTypes.string.isRequired,
