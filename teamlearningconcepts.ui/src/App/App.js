@@ -16,7 +16,7 @@ import {
 import Courses from '../components/pages/Courses/Courses';
 import MyNavbar from '../components/shared/MyNavbar/MyNavbar';
 import Users from '../components/pages/Users/Users';
-import SingleUser from '../components/pages/SingleUser/SingleUser';
+import SingleUser from '../components/shared/SingleUser/SingleUser';
 
 const PublicRoute = ({ component: Component, authed, ...rest }) => {
   const routeChecker = (props) => (authed === false

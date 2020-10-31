@@ -29,7 +29,6 @@ class MyNavbar extends React.Component {
             <div className="MyNavbar">
                 <Navbar color="dark" dark expand="md">
                     <NavbarBrand to="/home">Team Learning Concepts</NavbarBrand>
-
                     <NavbarToggler onClick={this.toggle} />
                     <Collapse isOpen={isOpen} navbar>
                     <Nav className="ml-auto" navbar>
@@ -37,7 +36,7 @@ class MyNavbar extends React.Component {
                         <NavLink to="/courses">Courses</NavLink>
                     </NavItem>
                     <NavItem>
-                        <NavLink to='/users'>Users</NavLink>
+                        <NavLink to="/users">Users</NavLink>
                     </NavItem>
                     <NavItem className="mt-2">
                         <SearchBar />
