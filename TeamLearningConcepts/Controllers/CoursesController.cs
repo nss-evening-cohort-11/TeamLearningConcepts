@@ -45,6 +45,36 @@ namespace TeamLearningConcepts.Controllers
             return Ok(course);
         }
 
+        [HttpGet("allByCourseTypeId/{id}")]
+        public IActionResult GetAllCoursesByCourseTypeId(int id)
+        {
+            var coursesByType = _repo.GetAllByCourseTypeId(id);
+
+            if (coursesByType == null) return NotFound("No courses with that courseTypeId were found. Please Try again.");
+
+            return Ok(coursesByType);
+        }
+
+        [HttpGet("firstThreeByCourseTypeId/{id}")]
+        public IActionResult GetFirstThreeCoursesByCourseTypeId(int id)
+        {
+            var threeCoursesByType = _repo.GetFirstThreeByCourseTypeId(id);
+
+            if (threeCoursesByType == null) return NotFound("No courses with that courseTypeId were found. Please Try again.");
+
+            return Ok(threeCoursesByType);
+        }
+
+        [HttpGet("numberByCourseTypeId/{id}")]
+        public IActionResult GetNumberOfCoursesByCourseTypeId(int id)
+        {
+            var numberOfCoursesByType = _repo.GetQuantityByCourseTypeId(id);
+
+            if (numberOfCoursesByType == 0) return NotFound("No courses with that courseTypeId were found. Please Try again.");
+
+            return Ok(numberOfCoursesByType);
+        }
+
 
         [HttpDelete("{id}")]
         public IActionResult DeleteCourse(int id)
