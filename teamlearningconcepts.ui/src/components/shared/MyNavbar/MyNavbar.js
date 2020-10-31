@@ -9,11 +9,14 @@ import {
     NavLink,
 } from 'reactstrap';
 
+import SearchBar from '../SearchBar/SearchBar';
+
 import './MyNavbar.scss';
 
 class MyNavbar extends React.Component {
     state = {
         isOpen: true,
+        searchValue: "",
     }
 
     toggle = () => {
@@ -28,13 +31,15 @@ class MyNavbar extends React.Component {
                     <NavbarBrand to="/home">Team Learning Concepts</NavbarBrand>
                     <NavbarToggler onClick={this.toggle} />
                     <Collapse isOpen={isOpen} navbar>
-                    <Nav  navbar>
+                    <Nav className="ml-auto" navbar>
                     <NavItem>
                         <NavLink to="/courses">Courses</NavLink>
                     </NavItem>
+                    <NavItem className="mt-2">
+                        <SearchBar />
+                    </NavItem>
                 </Nav>
                     </Collapse>
-
                 </Navbar>
             </div>
         )
