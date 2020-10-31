@@ -11,7 +11,7 @@ import {
 } from 'react-router-dom';
 
 
-import MyNavbar from '../components/pages/MyNavbar/MyNavbar';
+import MyNavbar from '../components/shared/MyNavbar/MyNavbar';
 import Users from '../components/pages/Users/Users';
 import SingleUser from '../components/pages/SingleUser/SingleUser';
 
@@ -53,14 +53,12 @@ class App extends React.Component {
       <div className="App">
         <BrowserRouter>
           <React.Fragment>
-            <MyNavbar authed={authed}/>
+            <MyNavbar/>
             <div className="container">
               <div className="row">
               <Switch>
-                
                 <PrivateRoute path='/users/:usersId' component={SingleUser} authed={authed} />
                 <PrivateRoute path='/users' component={Users} authed={authed} />
-         
                 <Redirect from= "*" to="/users"/>
               </Switch>
               </div>
