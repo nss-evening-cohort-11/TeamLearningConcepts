@@ -1,6 +1,6 @@
 import React from 'react';
+import  { Button }  from 'reactstrap';
 import PropTypes from 'prop-types';
-
 import './SearchBar.scss';
 
 class SearchBar extends React.Component {
@@ -14,8 +14,9 @@ class SearchBar extends React.Component {
         const { searchValue, searchFunction } = this.props;
         return(
             <div className="SearchBar">
-                <input type="text" id="search" value={searchValue} onChange={searchFunction} placeholder="  Search..." />
                 <label htmlFor="search" className="label">Search</label>
+                <input type="text" id="search" value={searchValue} onChange={searchFunction} placeholder="  Search..." />
+                <Button className="search-btn">Search</Button>
             </div>
         )
     }

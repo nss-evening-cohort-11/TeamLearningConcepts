@@ -16,7 +16,7 @@ import './MyNavbar.scss';
 class MyNavbar extends React.Component {
     state = {
         isOpen: true,
-        searchValue: "",
+        searchValue: '',
     }
 
     toggle = () => {
