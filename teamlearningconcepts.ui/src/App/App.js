@@ -12,7 +12,7 @@ import {
 } from 'react-router-dom';
 
 
-
+import Home from '../components/pages/Home/Home';
 import Courses from '../components/pages/Courses/Courses';
 import MyNavbar from '../components/shared/MyNavbar/MyNavbar';
 import Users from '../components/pages/Users/Users';
@@ -61,6 +61,7 @@ class App extends React.Component {
             <div className="container">
               <div className="row">
               <Switch>
+              <PrivateRoute path='/home' component={Home} authed={authed} />
                 <PrivateRoute path='/users/:usersId' component={SingleUser} authed={authed} />
                 <PrivateRoute path='/users' component={Users} authed={authed} />
                 <PrivateRoute path='/courses' component={Courses} authed={authed} />
