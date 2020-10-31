@@ -75,6 +75,13 @@ namespace TeamLearningConcepts.Controllers
             return Ok(numberOfCoursesByType);
         }
 
+        [HttpGet("latestCourses")]
+        public IActionResult GetLatestCourses()
+        {
+            var latestCourses = _repo.GetLatestCourses();
+
+            return Ok(latestCourses);
+        }
 
         [HttpDelete("{id}")]
         public IActionResult DeleteCourse(int id)
