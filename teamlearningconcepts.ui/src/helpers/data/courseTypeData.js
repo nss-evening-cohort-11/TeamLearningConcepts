@@ -1,10 +1,10 @@
 import axios from 'axios';
 import {baseUrl} from './constants.json';
 
-const getAllUsers = () => new Promise((resolve, reject) => {
-  axios.get(`${baseUrl}/Users`)
+const getAllCourseTypes = () => new Promise((resolve, reject) => {
+  axios.get(`${baseUrl}/CourseTypes`)
     .then(response => resolve(response.data))
     .catch(reject);
 });
 
-export default {getAllUsers};
+export default {getAllCourseTypes};
