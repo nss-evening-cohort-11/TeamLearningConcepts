@@ -75,6 +75,16 @@ namespace TeamLearningConcepts.Controllers
             return Ok(numberOfCoursesByType);
         }
 
+        [HttpGet("search/{searchValue}")]
+        public IActionResult SearchResults(string searchValue)
+        {
+            var searchResults = _repo.GetSearchResults(searchValue);
+
+            if (searchResults == null) return NotFound("No courses found!");
+
+            return Ok(searchResults);
+        }
+
 
         [HttpDelete("{id}")]
         public IActionResult DeleteCourse(int id)

@@ -22,4 +22,8 @@ const getNumberOfCoursesByCourseTypeId = (courseTypeId) => new Promise((resolve,
     .catch(reject);
 });
 
+const search = (searchValue) => {
+  axios.get(`${baseUrl}`/search)
+}
+
 export default {getAllCoursesByCourseTypeId, getFirstThreeCoursesByCourseTypeId, getNumberOfCoursesByCourseTypeId};

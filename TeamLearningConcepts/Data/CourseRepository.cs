@@ -89,6 +89,20 @@ namespace TeamLearningConcepts.Data
             return numberOfCoursesByType;
         }
 
+        public List<Course> GetSearchResults(string searchValue)
+        {
+            using var db = new SqlConnection(_connectionString);
+
+            var query = @"select *
+                          from Course
+                          Where Title Like '%' + @searchVal + '%'";
+            var parameters = new { searchVal = searchValue };
+
+            var filteredCourses = db.Query<Course>(query, parameters);
+
+            return filteredCourses.ToList();
+        }
+
 
         internal void Remove(int courseId)
         {
