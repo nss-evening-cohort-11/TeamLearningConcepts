@@ -17,8 +17,6 @@ class SingleCategoryCard extends React.Component {
   componentDidMount() {
     const {courseType} = this.props;
 
-    console.log(courseType.courseTypeId);
-
     courseData.getFirstThreeCoursesByCourseTypeId(courseType.courseTypeId)
       .then(courses => { this.setState({courses}) })
   
@@ -38,7 +36,8 @@ class SingleCategoryCard extends React.Component {
       <div className="SingleCategoryCard m-3">
         <div className="card">
           <div className="card-header">
-            <h4>{courseType.courseTypeName} ({numberOfCourses})</h4>
+            <h4 className="d-inline">{courseType.courseTypeName} ({numberOfCourses})</h4>
+            <button className="btn btn-primary btn-sm float-right d-inline">View All</button>
           </div>
           <div className="d-flex">
             {buildCourseCards}
