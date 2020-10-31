@@ -2,6 +2,7 @@ import React from 'react';
 
 import './App.scss';
 
+
 import {
  BrowserRouter,
   Route,
@@ -10,6 +11,7 @@ import {
 } from 'react-router-dom';
 
 
+import MyNavbar from '../components/pages/MyNavbar/MyNavbar';
 import Users from '../components/pages/Users/Users';
 import SingleUser from '../components/pages/SingleUser/SingleUser';
 
@@ -26,6 +28,7 @@ const PrivateRoute = ({ component: Component, authed, ...rest }) => {
     : (<Redirect to={{ pathname: '/auth', state: { from: props.location } }} />));
   return <Route {...rest} render={(props) => routeChecker(props)} />;
 };
+
 
 class App extends React.Component {
   state = {
@@ -50,14 +53,14 @@ class App extends React.Component {
       <div className="App">
         <BrowserRouter>
           <React.Fragment>
-            {/* <MyNavbar authed={authed}/> */}
+            <MyNavbar authed={authed}/>
             <div className="container">
               <div className="row">
               <Switch>
-                {/* <PrivateRoute path='/home' component={Home} authed={authed} /> */}
+                
                 <PrivateRoute path='/users/:usersId' component={SingleUser} authed={authed} />
                 <PrivateRoute path='/users' component={Users} authed={authed} />
-                {/* <PublicRoute path='/auth' component={Auth} authed={authed} /> */}
+         
                 <Redirect from= "*" to="/users"/>
               </Switch>
               </div>
