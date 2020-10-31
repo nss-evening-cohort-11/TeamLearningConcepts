@@ -57,5 +57,16 @@ namespace TeamLearningConcepts.Data
 
             db.Execute(sql, new { id = courseId });
         }
+
+
+
+        public List<Course> GetLatestCourses()
+        {
+            using var db = new SqlConnection(_connectionString);
+
+            var courses = db.Query<Course>("SELECT TOP 3 * FROM Course");
+
+            return courses.ToList();
+        }
     }
 }
