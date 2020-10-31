@@ -1,6 +1,6 @@
 import React from 'react';
-import customerData from '../../../helpers/data/userData';
-import SingleUser from '../SingleUser/SingleUser';
+import userData from '../../../helpers/data/userData';
+import SingleUser from '../../shared/SingleUser/SingleUser';
 import './Users.scss';
 
 
@@ -11,7 +11,7 @@ class Users extends React.Component {
   }
 
   componentDidMount() {
-    customerData.getAllUsers()
+    userData.getAllUsers()
       .then(users => { this.setState({users}) })
   }
 

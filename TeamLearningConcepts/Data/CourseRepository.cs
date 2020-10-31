@@ -44,6 +44,50 @@ namespace TeamLearningConcepts.Data
             return course;
         }
 
+        public List<Course> GetAllByCourseTypeId(int courseTypeId)
+        {
+            using var db = new SqlConnection(_connectionString);
+
+            var query = @"SELECT * 
+                        FROM Course
+                        WHERE CourseTypeId = @ctid";
+
+            var parameters = new { ctid = courseTypeId };
+
+            var coursesByType = db.Query<Course>(query, parameters);
+
+            return coursesByType.ToList();
+        }
+
+        public List<Course> GetFirstThreeByCourseTypeId(int courseTypeId)
+        {
+            using var db = new SqlConnection(_connectionString);
+
+            var query = @"SELECT TOP 3 * 
+                        FROM Course
+                        WHERE CourseTypeId = @ctid";
+
+            var parameters = new { ctid = courseTypeId };
+
+            var firstThreeCoursesByType = db.Query<Course>(query, parameters);
+
+            return firstThreeCoursesByType.ToList();
+        }
+
+        public int GetQuantityByCourseTypeId(int courseTypeId)
+        {
+            using var db = new SqlConnection(_connectionString);
+
+            var query = @"SELECT COUNT(*) 
+                        FROM Course
+                        WHERE CourseTypeId = @ctid";
+
+            var parameters = new { ctid = courseTypeId };
+
+            var numberOfCoursesByType = db.QuerySingle<int>(query, parameters);
+
+            return numberOfCoursesByType;
+        }
 
 
         internal void Remove(int courseId)
