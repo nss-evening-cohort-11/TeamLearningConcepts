@@ -23,8 +23,13 @@ class MyNavbar extends React.Component {
         this.setState({ isOpen: !this.state.isOpen });
     }
 
+    searchFunction = (e) => {
+        console.log('hi from onChange', e.target.value);
+        this.setState({ searchValue: e.target.value });
+    }
+
     render() {
-        const { isOpen } = this.state;
+        const { isOpen, searchValue } = this.state;
         return(
             <div className="MyNavbar">
                 <Navbar color="dark" dark expand="md">
@@ -36,7 +41,7 @@ class MyNavbar extends React.Component {
                         <NavLink to="/courses">Courses</NavLink>
                     </NavItem>
                     <NavItem className="mt-2">
-                        <SearchBar />
+                        <SearchBar searchFunction={this.searchFunction} searchValue={searchValue}/>
                     </NavItem>
                 </Nav>
                     </Collapse>
