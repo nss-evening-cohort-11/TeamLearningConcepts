@@ -50,9 +50,29 @@ namespace TeamLearningConcepts.Controllers
         {
             var coursesByType = _repo.GetAllByCourseTypeId(id);
 
-            if (coursesByType == null) return NotFound("No courses with that courseTypeId ware found. Please Try again.");
+            if (coursesByType == null) return NotFound("No courses with that courseTypeId were found. Please Try again.");
 
             return Ok(coursesByType);
+        }
+
+        [HttpGet("firstThreeByCourseTypeId/{id}")]
+        public IActionResult GetFirstThreeCoursesByCourseTypeId(int id)
+        {
+            var threeCoursesByType = _repo.GetFirstThreeByCourseTypeId(id);
+
+            if (threeCoursesByType == null) return NotFound("No courses with that courseTypeId were found. Please Try again.");
+
+            return Ok(threeCoursesByType);
+        }
+
+        [HttpGet("numberByCourseTypeId/{id}")]
+        public IActionResult GetNumberOfCoursesByCourseTypeId(int id)
+        {
+            var numberOfCoursesByType = _repo.GetQuantityByCourseTypeId(id);
+
+            if (numberOfCoursesByType == 0) return NotFound("No courses with that courseTypeId were found. Please Try again.");
+
+            return Ok(numberOfCoursesByType);
         }
 
 

@@ -1,12 +1,13 @@
 import React from 'react';
 import SingleCourseCard from '../SingleCourseCard/SingleCourseCard';
 import courseTypeShape from '../../../helpers/propz/courseTypeShape';
-import './SingleCategory.scss';
+import './SingleCategoryCard.scss';
 import courseData from '../../../helpers/data/courseData';
 
-class SingleCategory extends React.Component {
+class SingleCategoryCard extends React.Component {
   state = {
     courses: [],
+    numberOfCourses: 0,
   }
 
   static propTypes = {
@@ -18,27 +19,34 @@ class SingleCategory extends React.Component {
 
     console.log(courseType.courseTypeId);
 
-    courseData.getAllCoursesByCourseTypeId(courseType.courseTypeId)
+    courseData.getFirstThreeCoursesByCourseTypeId(courseType.courseTypeId)
       .then(courses => { this.setState({courses}) })
+  
+    courseData.getNumberOfCoursesByCourseTypeId(courseType.courseTypeId)
+      .then(numberOfCourses => { this.setState({numberOfCourses}) })  
   }
 
   render() {
     const {courseType} = this.props;
-    const {courses} = this.state;
+    const {courses, numberOfCourses} = this.state;
 
     const buildCourseCards = courses.map(course => (
       <SingleCourseCard key={course.courseId} course={course} />
     ));
 
     return (
-      <div className="SingleCategory">
-        <strong className="m-2">{courseType.courseTypeName}</strong>
-        <div className="d-flex">
-          {buildCourseCards}
+      <div className="SingleCategoryCard m-3">
+        <div className="card">
+          <div className="card-header">
+            <h4>{courseType.courseTypeName} ({numberOfCourses})</h4>
+          </div>
+          <div className="d-flex">
+            {buildCourseCards}
+          </div>
         </div>
       </div>
     )
   }
 }
 
-export default SingleCategory;
+export default SingleCategoryCard;
