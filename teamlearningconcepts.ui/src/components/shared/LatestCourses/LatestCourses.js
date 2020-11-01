@@ -8,7 +8,6 @@ class LatestCourses extends React.Component {
   state = { latestCourses: [] }
 
   componentDidMount() {
-    console.log("inside your componentDidMount in LatestCourse.js")
     couseData.getLatestCourses()
     .then(latestCourses => { this.setState({latestCourses})});
   }
@@ -24,8 +23,7 @@ class LatestCourses extends React.Component {
 
 
     return(
-      <div>
-      <h3>This is your Latest Courses Component</h3>
+      <div className="row">
       {buildLatestCoursesCards}
       </div>
     )
