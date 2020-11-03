@@ -11,6 +11,7 @@ import {
 } from 'reactstrap';
 
 import SearchBar from '../SearchBar/SearchBar';
+import courseData from '../../../helpers/data/courseData';
 
 import './MyNavbar.scss';
 
@@ -18,6 +19,7 @@ class MyNavbar extends React.Component {
     state = {
         isOpen: true,
         searchValue: '',
+        filteredCourses: [],
     }
 
     toggle = () => {
@@ -26,7 +28,9 @@ class MyNavbar extends React.Component {
 
     searchFunction = (e) => {
         console.log('hi from onChange', e.target.value);
-        this.setState({ searchValue: e.target.value });
+        const searchVal = this.setState({ searchValue: e.target.value });
+        console.log('search Value:', this.statesearchValue);
+        courseData.search(searchVal).then((response) => { this.setState({ filteredCourses: response }) });
     }
 
     render() {
