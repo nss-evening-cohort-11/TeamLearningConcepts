@@ -63,9 +63,9 @@ class App extends React.Component {
               <div className="row">
               <Switch>
                 <PrivateRoute path='/users/:usersId' component={SingleUser} authed={authed} />
+                <PrivateRoute path='/courses/:courseTypeId' component={SingleCategory} authed={authed} />
                 <PrivateRoute path='/users' component={Users} authed={authed} />
                 <PrivateRoute path='/courses' component={Courses} authed={authed} />
-                <PrivateRoute path='/courses/:courseTypeId' component={SingleCategory} authed={authed} />
                 
                 <Redirect from= "*" to="/users"/>
               </Switch>
