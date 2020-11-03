@@ -25,6 +25,10 @@ class Home extends React.Component {
    <img className ="salesPic" src="https://images.unsplash.com/photo-1520694478166-daaaaec95b69?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80"  width="320" height="213" text="How to Retain Customers - $400"></img>
   <img className = "salesPic" src="https://images.unsplash.com/photo-1527689368864-3a821dbccc34?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80"  width="320" height="213" text="How to Navigate a Purchase Request - $350"></img>
   <button>Shop Now</button><button>Shop Now</button>
+  <div className = "aboutUs">
+    <h2 className = "aboutUs">About Us</h2>
+  <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</p>
+  </div>
 </div>
          );
     }
