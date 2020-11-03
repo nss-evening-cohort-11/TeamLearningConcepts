@@ -16,7 +16,6 @@ import Courses from '../components/pages/Courses/Courses';
 import MyNavbar from '../components/shared/MyNavbar/MyNavbar';
 import Users from '../components/pages/Users/Users';
 import SingleUser from '../components/shared/SingleUser/SingleUser';
-import LatestCourses from '../components/shared/LatestCourses/LatestCourses';
 
 
 const PublicRoute = ({ component: Component, authed, ...rest }) => {
@@ -61,8 +60,6 @@ class App extends React.Component {
             <MyNavbar/>
             <div className="container">
               <div className="row">
-              <Route component={LatestCourses} authed={authed} />
-
               <Switch>
                 <PrivateRoute path='/users/:usersId' component={SingleUser} authed={authed} />
                 <PrivateRoute path='/users' component={Users} authed={authed} />
