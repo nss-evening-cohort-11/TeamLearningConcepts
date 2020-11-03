@@ -18,6 +18,8 @@ import Users from '../components/pages/Users/Users';
 import SingleUser from '../components/shared/SingleUser/SingleUser';
 import SearchResults from '../components/pages/SearchResults/SearchResults';
 
+import courseData from '../helpers/data/courseData';
+
 
 const PublicRoute = ({ component: Component, authed, ...rest }) => {
   const routeChecker = (props) => (authed === false
@@ -38,6 +40,8 @@ const PrivateRoute = ({ component: Component, authed, ...rest }) => {
 class App extends React.Component {
   state = {
     authed: true,
+    searchValue: '',
+    filteredCourses: [],
   }
 
   componentDidMount() {
@@ -49,8 +53,16 @@ class App extends React.Component {
   componentWillUnmount() {
 
   };
-    
-  
+
+  searchValueStateChange = (e) => {
+    this.setState({ searchValue: e.target.value });
+}
+
+searchFunction = () => {
+    const searchVal = this.state.searchValue;
+    courseData.search(searchVal)
+    .then(response => { this.setState({ filteredCourses: response }) });
+  }
 
   render() {
     const { authed } = this.state;
@@ -58,14 +70,14 @@ class App extends React.Component {
       <div className="App">
         <BrowserRouter>
           <React.Fragment>
-            <MyNavbar/>
+            <MyNavbar filteredCourses={this.state.filteredCourses} searchValue={this.state.searchValue} searchValueStateChange={this.searchValueStateChange} searchFunction={this.searchFunction} />
             <div className="container">
               <div className="row">
               <Switch>
                 <PrivateRoute path='/users/:usersId' component={SingleUser} authed={authed} />
                 <PrivateRoute path='/users' component={Users} authed={authed} />
                 <PrivateRoute path='/courses' component={Courses} authed={authed} />
-                <PrivateRoute path='/search-results' component={SearchResults} authed={authed} />
+                <Route path='/search-results' render={() => <SearchResults filteredCourses={this.state.filteredCourses} />} authed={authed} />
                 <Redirect from= "*" to="/users"/>
               </Switch>
               </div>

@@ -9,6 +9,7 @@ import {
     NavItem,
     NavLink,
 } from 'reactstrap';
+import PropTypes from 'prop-types';
 
 import SearchBar from '../SearchBar/SearchBar';
 import courseData from '../../../helpers/data/courseData';
@@ -18,23 +19,31 @@ import './MyNavbar.scss';
 class MyNavbar extends React.Component {
     state = {
         isOpen: true,
-        searchValue: '',
-        filteredCourses: [],
+        // searchValue: '',
+        // filteredCourses: [],
+    }
+
+    static propTypes = {
+        searchValue: PropTypes.string.isRequired,
+        filteredCourses: PropTypes.array.isRequired,
+        searchValueStateChange: PropTypes.func.isRequired,
+        searchFunction: PropTypes.func.isRequired,
     }
 
     toggle = () => {
         this.setState({ isOpen: !this.state.isOpen });
     }
 
-    changeState = (e) => {
-        this.setState({ searchValue: e.target.value });
-    }
+    // searchValueStateChange = (e) => {
+    //     this.setState({ searchValue: e.target.value });
+    // }
 
-    searchFunction = () => {
-        const searchVal = this.state.searchValue;
-        courseData.search(searchVal)
-        .then(response => { this.setState({ filteredCourses: response }) })
-    }
+    // searchFunction = () => {
+    //     const searchVal = this.state.searchValue;
+    //     courseData.search(searchVal)
+    //     .then(response => { this.setState({ filteredCourses: response }) });
+    //     this.props.history.push('/search-results');
+    // }
 
     render() {
         const { isOpen, searchValue } = this.state;
@@ -52,7 +61,7 @@ class MyNavbar extends React.Component {
               <NavLink className="navbar-links" tag={RRNavLink} to='/users'>Users</NavLink>
             </NavItem>
                     <NavItem className="mt-2">
-                        <SearchBar changeState={this.changeState} searchFunction={this.searchFunction} searchValue={searchValue}/>
+                        <SearchBar searchValueStateChange={this.props.searchValueStateChange} searchFunction={this.props.searchFunction} searchValue={this.props.searchValue} />
                     </NavItem>
                 </Nav>
                     </Collapse>
