@@ -1,8 +1,9 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import SingleCourseCard from '../SingleCourseCard/SingleCourseCard';
 import courseTypeShape from '../../../helpers/propz/courseTypeShape';
-import './SingleCategoryCard.scss';
 import courseData from '../../../helpers/data/courseData';
+import './SingleCategoryCard.scss';
 
 class SingleCategoryCard extends React.Component {
   state = {
@@ -25,8 +26,9 @@ class SingleCategoryCard extends React.Component {
   }
 
   render() {
-    const {courseType} = this.props;
-    const {courses, numberOfCourses} = this.state;
+    const { courseType } = this.props;
+    const { courses, numberOfCourses } = this.state;
+    const singleCategoryLink = `/courses/${courseType.courseTypeId}`;
 
     const buildCourseCards = courses.map(course => (
       <SingleCourseCard key={course.courseId} course={course} />
@@ -37,7 +39,7 @@ class SingleCategoryCard extends React.Component {
         <div className="card">
           <div className="card-header">
             <h4 className="d-inline">{courseType.courseTypeName} ({numberOfCourses})</h4>
-            <button className="btn btn-primary btn-sm float-right d-inline">View All</button>
+            <Link className="btn btn-primary btn-sm float-right d-inline" to={singleCategoryLink}>View All</Link>
           </div>
           <div className="d-flex">
             {buildCourseCards}
