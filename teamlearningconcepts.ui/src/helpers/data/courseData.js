@@ -22,4 +22,12 @@ const getNumberOfCoursesByCourseTypeId = (courseTypeId) => new Promise((resolve,
     .catch(reject);
 });
 
-export default {getAllCoursesByCourseTypeId, getFirstThreeCoursesByCourseTypeId, getNumberOfCoursesByCourseTypeId};
+const getLatestCourses = () => new Promise((resolve, reject) => {
+  axios.get(`${baseUrl}/courses/latestCourses`)
+  .then(response => {
+    resolve(response.data)})
+    .catch(reject);
+  }
+);
+
+export default {getAllCoursesByCourseTypeId, getFirstThreeCoursesByCourseTypeId, getNumberOfCoursesByCourseTypeId, getLatestCourses};
