@@ -26,11 +26,14 @@ class MyNavbar extends React.Component {
         this.setState({ isOpen: !this.state.isOpen });
     }
 
-    searchFunction = (e) => {
-        console.log('hi from onChange', e.target.value);
-        const searchVal = this.setState({ searchValue: e.target.value });
-        console.log('search Value:', this.statesearchValue);
-        courseData.search(searchVal).then((response) => { this.setState({ filteredCourses: response }) });
+    changeState = (e) => {
+        this.setState({ searchValue: e.target.value });
+    }
+
+    searchFunction = () => {
+        const searchVal = this.state.searchValue;
+        courseData.search(searchVal)
+        .then(response => { this.setState({ filteredCourses: response }) })
     }
 
     render() {
@@ -49,7 +52,7 @@ class MyNavbar extends React.Component {
               <NavLink className="navbar-links" tag={RRNavLink} to='/users'>Users</NavLink>
             </NavItem>
                     <NavItem className="mt-2">
-                        <SearchBar searchFunction={this.searchFunction} searchValue={searchValue}/>
+                        <SearchBar changeState={this.changeState} searchFunction={this.searchFunction} searchValue={searchValue}/>
                     </NavItem>
                 </Nav>
                     </Collapse>

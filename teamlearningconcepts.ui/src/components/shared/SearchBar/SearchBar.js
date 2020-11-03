@@ -8,15 +8,16 @@ class SearchBar extends React.Component {
     static propTypes = {
         searchValue: PropTypes.string.isRequired,
         searchFunction: PropTypes.func.isRequired,
+        changeState: PropTypes.func.isRequired,
     }
     
     render() {
-        const { searchValue, searchFunction } = this.props;
+        const { searchValue, searchFunction, changeState } = this.props;
         return(
             <div className="SearchBar">
                 <label htmlFor="search" className="label">Search</label>
-                <input type="text" id="search" value={searchValue} onChange={searchFunction} placeholder="  Search..." />
-                <Link className="btn btn-info search-btn" to="/search-results">Search</Link>
+                <input type="text" id="search" value={searchValue} onChange={changeState} placeholder="  Search..." />
+                <Link className="btn btn-info search-btn" to="/search-results" onClick={searchFunction}>Search</Link>
             </div>
         )
     }

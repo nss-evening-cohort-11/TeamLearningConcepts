@@ -22,14 +22,14 @@ const getNumberOfCoursesByCourseTypeId = (courseTypeId) => new Promise((resolve,
     .catch(reject);
 });
 
-const search = (searchValue) =>new Promise((resolve, reject) =>
+const search = (searchVals) => new Promise((resolve, reject) =>
 {
-  axios.get(`${baseUrl}/search/${searchValue}`)
+  axios.get(`${baseUrl}/courses/search/${searchVals}`)
   .then(response => {
     console.log('Response:', response.data)
     resolve(response.data);
   })
-  .catch(reject)
+  .catch(reject);
 });
 
 

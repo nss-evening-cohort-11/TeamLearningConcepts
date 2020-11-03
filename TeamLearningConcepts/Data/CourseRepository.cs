@@ -105,6 +105,7 @@ namespace TeamLearningConcepts.Data
             var query = @"select *
                           from Course
                           Where Title Like '%' + @searchVal + '%'";
+
             var parameters = new { searchVal = searchValue };
 
             var filteredCourses = db.Query<Course>(query, parameters);
