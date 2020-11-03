@@ -14,3 +14,42 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.title {
+  text-align: center;
+}
+
+.tagLine {
+  text-align: center;
+  padding: 50px;
+
+}
+
+.featured {
+  text-align: center;
+  padding: 50px;
+
+}
+.introPic {
+  // display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+  padding: 10px;
+  }
+
+  .salesCourses {
+    text-align: center;
+    padding: 50px;
+  }
+
+  .salesPic {
+   
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+    padding: 10px;
+  }
+  button {
+    width: 50%;
+  }
