@@ -74,6 +74,15 @@ namespace TeamLearningConcepts.Data
             return firstThreeCoursesByType.ToList();
         }
 
+        public List<Course> GetLatestCourses()
+        {
+            using var db = new SqlConnection(_connectionString);
+
+            var courses = db.Query<Course>("SELECT TOP 5 * FROM Course ORDER BY CourseId DESC");
+
+            return courses.ToList();
+        }
+
         public int GetQuantityByCourseTypeId(int courseTypeId)
         {
             using var db = new SqlConnection(_connectionString);

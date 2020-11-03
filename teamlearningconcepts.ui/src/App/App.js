@@ -12,12 +12,12 @@ import {
 } from 'react-router-dom';
 
 
-
 import Courses from '../components/pages/Courses/Courses';
 import MyNavbar from '../components/shared/MyNavbar/MyNavbar';
 import Users from '../components/pages/Users/Users';
 import SingleUser from '../components/shared/SingleUser/SingleUser';
 import SearchResults from '../components/pages/SearchResults/SearchResults';
+
 
 const PublicRoute = ({ component: Component, authed, ...rest }) => {
   const routeChecker = (props) => (authed === false
@@ -66,8 +66,6 @@ class App extends React.Component {
                 <PrivateRoute path='/users' component={Users} authed={authed} />
                 <PrivateRoute path='/courses' component={Courses} authed={authed} />
                 <PrivateRoute path='/search-results' component={SearchResults} authed={authed} />
-
-
                 <Redirect from= "*" to="/users"/>
               </Switch>
               </div>

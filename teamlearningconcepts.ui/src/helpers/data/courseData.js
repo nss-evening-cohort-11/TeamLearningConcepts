@@ -30,6 +30,15 @@ const search = (searchValue) =>new Promise((resolve, reject) =>
     resolve(response.data);
   })
   .catch(reject)
-}) 
+});
 
-export default {getAllCoursesByCourseTypeId, getFirstThreeCoursesByCourseTypeId, getNumberOfCoursesByCourseTypeId, search};
+
+const getLatestCourses = () => new Promise((resolve, reject) => {
+  axios.get(`${baseUrl}/courses/latestCourses`)
+  .then(response => {
+    resolve(response.data)})
+    .catch(reject);
+  }
+);
+
+export default {getAllCoursesByCourseTypeId, getFirstThreeCoursesByCourseTypeId, getNumberOfCoursesByCourseTypeId, getLatestCourses, search};

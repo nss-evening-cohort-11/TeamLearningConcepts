@@ -75,6 +75,7 @@ namespace TeamLearningConcepts.Controllers
             return Ok(numberOfCoursesByType);
         }
 
+<<<<<<< HEAD
         [HttpGet("search/{searchValue}")]
         public IActionResult SearchResults(string searchValue)
         {
@@ -85,6 +86,15 @@ namespace TeamLearningConcepts.Controllers
             return Ok(searchResults);
         }
 
+=======
+        [HttpGet("latestCourses")]
+        public IActionResult GetLatestCourses()
+        {
+            var latestCourses = _repo.GetLatestCourses();
+
+            return Ok(latestCourses);
+        }
+>>>>>>> master
 
         [HttpDelete("{id}")]
         public IActionResult DeleteCourse(int id)
