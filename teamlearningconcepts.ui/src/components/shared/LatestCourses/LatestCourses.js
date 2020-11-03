@@ -16,7 +16,6 @@ class LatestCourses extends React.Component {
   render() {
 
     const {latestCourses} = this.state;
-    console.log(typeof latestCourses);
     const buildLatestCoursesCards = latestCourses.map((course) => {
       return (<SingleCourseCard course={course} />)
     })
