@@ -9,15 +9,23 @@ import {
     NavItem,
     NavLink,
 } from 'reactstrap';
+import PropTypes from 'prop-types';
 
 import SearchBar from '../SearchBar/SearchBar';
+import courseData from '../../../helpers/data/courseData';
 
 import './MyNavbar.scss';
 
 class MyNavbar extends React.Component {
     state = {
         isOpen: true,
-        searchValue: "",
+    }
+
+    static propTypes = {
+        searchValue: PropTypes.string.isRequired,
+        filteredCourses: PropTypes.array.isRequired,
+        searchValueStateChange: PropTypes.func.isRequired,
+        searchFunction: PropTypes.func.isRequired,
     }
 
     toggle = () => {
@@ -26,6 +34,7 @@ class MyNavbar extends React.Component {
 
     render() {
         const { isOpen } = this.state;
+        const { searchValueStateChange, searchFunction, searchValue } = this.props;
         return(
             <div className="MyNavbar">
                 <Navbar color="dark" dark expand="md">
@@ -33,9 +42,6 @@ class MyNavbar extends React.Component {
                     <NavbarToggler onClick={this.toggle} />
                     <Collapse isOpen={isOpen} navbar>
                     <Nav className="ml-auto" navbar>
-                    {/* <NavItem>
-                        <NavLink to="/courses">Courses</NavLink>
-                    </NavItem> */}
                     <NavItem>
               <NavLink className="navbar-links" tag={RRNavLink} to='/home'>Home</NavLink>
             </NavItem>
@@ -45,11 +51,8 @@ class MyNavbar extends React.Component {
             <NavItem>
               <NavLink className="navbar-links" tag={RRNavLink} to='/users'>Users</NavLink>
             </NavItem>
-                    {/* <NavItem>
-                        <NavLink to="/users">Users</NavLink>
-                    </NavItem> */}
                     <NavItem className="mt-2">
-                        <SearchBar />
+                        <SearchBar searchValueStateChange={searchValueStateChange} searchFunction={searchFunction} searchValue={searchValue} />
                     </NavItem>
                 </Nav>
                     </Collapse>

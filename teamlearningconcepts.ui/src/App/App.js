@@ -5,18 +5,26 @@ import './App.scss';
 
 
 import {
- BrowserRouter,
+  BrowserRouter,
   Route,
   Redirect,
   Switch,
 } from 'react-router-dom';
 
 
+
 import Home from '../components/pages/Home/Home';
+
+
 import Courses from '../components/pages/Courses/Courses';
 import MyNavbar from '../components/shared/MyNavbar/MyNavbar';
 import Users from '../components/pages/Users/Users';
 import SingleUser from '../components/shared/SingleUser/SingleUser';
+import SingleCategory from '../components/pages/SingleCategory/SingleCategory';
+import SearchResults from '../components/pages/SearchResults/SearchResults';
+
+import courseData from '../helpers/data/courseData';
+
 
 const PublicRoute = ({ component: Component, authed, ...rest }) => {
   const routeChecker = (props) => (authed === false
@@ -37,6 +45,8 @@ const PrivateRoute = ({ component: Component, authed, ...rest }) => {
 class App extends React.Component {
   state = {
     authed: true,
+    searchValue: '',
+    filteredCourses: [],
   }
 
   componentDidMount() {
@@ -48,8 +58,18 @@ class App extends React.Component {
   componentWillUnmount() {
 
   };
-    
-  
+
+  searchValueStateChange = (e) => {
+    this.setState({ searchValue: e.target.value });
+}
+
+  searchFunction = () => {
+    const searchVal = this.state.searchValue;
+    if (searchVal != '') {
+      courseData.search(searchVal)
+      .then(response => { this.setState({ filteredCourses: response }) });
+    } 
+  }
 
   render() {
     const { authed } = this.state;
@@ -57,16 +77,22 @@ class App extends React.Component {
       <div className="App">
         <BrowserRouter>
           <React.Fragment>
-            <MyNavbar/>
+            <MyNavbar filteredCourses={this.state.filteredCourses} searchValue={this.state.searchValue} searchValueStateChange={this.searchValueStateChange} searchFunction={this.searchFunction} />
             <div className="container">
               <div className="row">
               <Switch>
               <PrivateRoute path='/home' component={Home} authed={authed} />
                 <PrivateRoute path='/users/:usersId' component={SingleUser} authed={authed} />
+                <PrivateRoute path='/courses/:courseTypeId' component={SingleCategory} authed={authed} />
                 <PrivateRoute path='/users' component={Users} authed={authed} />
                 <PrivateRoute path='/courses' component={Courses} authed={authed} />
 
+
                 <Redirect from= "*" to="/home"/>
+
+                <Route path='/search-results' render={() => <SearchResults filteredCourses={this.state.filteredCourses} />} authed={authed} />
+
+
               </Switch>
               </div>
             </div>

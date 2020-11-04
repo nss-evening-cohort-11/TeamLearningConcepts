@@ -7,4 +7,10 @@ const getAllCourseTypes = () => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
-export default {getAllCourseTypes};
+const getSingleCourseType = (courseTypeId) => new Promise((resolve, reject) => {
+  axios.get(`${baseUrl}/CourseTypes/${courseTypeId}`)
+    .then(response => resolve(response.data))
+    .catch(reject);
+});
+
+export default {getAllCourseTypes, getSingleCourseType};
