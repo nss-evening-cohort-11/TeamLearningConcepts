@@ -7,9 +7,65 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: #8F99AE;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.title {
+  text-align: center;
+}
+
+.tagLine {
+  text-align: center;
+  padding: 50px;
+
+}
+
+.featured {
+  text-align: center;
+  padding: 50px;
+
+}
+.introPic {
+  // display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+  padding: 10px;
+  }
+
+  .salesCourses {
+    text-align: center;
+    padding: 50px;
+  }
+
+  .salesPic {
+   
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+    padding: 40px;
+ 
+  }
+  button {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+  }
+
+  .aboutUs {
+
+    padding: 30px;
+    text-align: center;
+    border: black solid 3px;
+  }
+  .carouselItem {
+    width: 1000px;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+  }
