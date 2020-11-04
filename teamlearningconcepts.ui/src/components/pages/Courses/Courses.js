@@ -20,7 +20,7 @@ class Courses extends React.Component {
     })
 
     return (
-      <div className="Courses">
+      <div className="Courses w-100">
         <h2 className="m-3 mb-4">Courses</h2>
         {buildCourseCategories}
       </div>
