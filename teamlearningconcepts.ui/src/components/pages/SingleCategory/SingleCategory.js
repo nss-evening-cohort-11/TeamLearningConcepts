@@ -13,7 +13,7 @@ class SingleCategory extends React.Component {
   componentDidMount() {
     window.scroll(0, 0);
     const { courseTypeId } = this.props.match.params;
-    console.log(courseTypeId);
+
     courseTypeData.getSingleCourseType(courseTypeId)
       .then(courseType => this.setState({ courseType }))
     courseData.getAllCoursesByCourseTypeId(courseTypeId)
@@ -28,9 +28,9 @@ class SingleCategory extends React.Component {
     })
 
     return (
-      <div className="SingleCategory">
+      <div className="SingleCategory w-100">
         <h2 className="m-3 mb-4">{courseType.courseTypeName} Courses</h2>
-        <div className="d-flex flex-wrap">
+        <div className="card d-flex flex-wrap w-100">
           {buildCategoryCourses}
         </div>
       </div>
