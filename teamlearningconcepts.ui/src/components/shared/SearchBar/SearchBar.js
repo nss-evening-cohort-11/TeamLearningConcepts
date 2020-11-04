@@ -12,32 +12,15 @@ class SearchBar extends React.Component {
         searchValue: PropTypes.string.isRequired,
         searchFunction: PropTypes.func.isRequired,
         searchValueStateChange: PropTypes.func.isRequired,
-        filteredCourses: PropTypes.array.isRequired,
     }
-
-    state = {
-        searchValue: '',
-        filteredCourses: [],
-    }
-
-    // searchValueStateChange = (e) => {
-    //     this.setState({ searchValue: e.target.value });
-    // }
-
-    // searchFunction = () => {
-    //     const searchVal = this.state.searchValue;
-    //     courseData.search(searchVal)
-    //     .then(response => { this.setState({ filteredCourses: response }) });
-    //     this.props.history.push('/search-results');
-    // }
     
     render() {
-        const { searchValue, filteredCourses } = this.props;
+        const { searchValueStateChange, searchFunction, searchValue } = this.props;
         return(
             <div className="SearchBar">
                 <label htmlFor="search" className="label">Search</label>
-                <input type="text" id="search" value={searchValue} onChange={this.props.searchValueStateChange} placeholder="  Search..." />
-                <Link className="btn btn-info search-btn" to="/search-results" onClick={this.props.searchFunction}>Search</Link>
+                <input type="text" id="search" value={searchValue} onChange={searchValueStateChange} placeholder="  Search..." />
+                <Link className="btn btn-info search-btn" to="/search-results" onClick={searchFunction}>Search</Link>
             </div>
         )
     }

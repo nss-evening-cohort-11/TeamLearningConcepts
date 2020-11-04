@@ -19,8 +19,6 @@ import './MyNavbar.scss';
 class MyNavbar extends React.Component {
     state = {
         isOpen: true,
-        // searchValue: '',
-        // filteredCourses: [],
     }
 
     static propTypes = {
@@ -34,19 +32,9 @@ class MyNavbar extends React.Component {
         this.setState({ isOpen: !this.state.isOpen });
     }
 
-    // searchValueStateChange = (e) => {
-    //     this.setState({ searchValue: e.target.value });
-    // }
-
-    // searchFunction = () => {
-    //     const searchVal = this.state.searchValue;
-    //     courseData.search(searchVal)
-    //     .then(response => { this.setState({ filteredCourses: response }) });
-    //     this.props.history.push('/search-results');
-    // }
-
     render() {
-        const { isOpen, searchValue } = this.state;
+        const { isOpen } = this.state;
+        const { searchValueStateChange, searchFunction, searchValue } = this.props;
         return(
             <div className="MyNavbar">
                 <Navbar color="dark" dark expand="md">
@@ -61,7 +49,7 @@ class MyNavbar extends React.Component {
               <NavLink className="navbar-links" tag={RRNavLink} to='/users'>Users</NavLink>
             </NavItem>
                     <NavItem className="mt-2">
-                        <SearchBar searchValueStateChange={this.props.searchValueStateChange} searchFunction={this.props.searchFunction} searchValue={this.props.searchValue} />
+                        <SearchBar searchValueStateChange={searchValueStateChange} searchFunction={searchFunction} searchValue={searchValue} />
                     </NavItem>
                 </Nav>
                     </Collapse>
