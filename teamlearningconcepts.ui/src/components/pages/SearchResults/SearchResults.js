@@ -17,7 +17,7 @@ class SearchResults extends React.Component {
 
         return(
             <div className="SearchResults">
-                <h1>Search Results</h1>
+                <h1 id="search-results-title">Search Results</h1>
                 {buildCourseCards}
             </div>
         )
