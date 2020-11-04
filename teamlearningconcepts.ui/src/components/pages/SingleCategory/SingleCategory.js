@@ -30,8 +30,8 @@ class SingleCategory extends React.Component {
     return (
       <div className="SingleCategory w-100">
         <h2 className="m-3 mb-4">{courseType.courseTypeName} Courses</h2>
-        <div className="card w-100">
-          <div className="d-flex flex-wrap">
+        <div className="card m-3">
+          <div className="d-flex flex-wrap w-100">
             {buildCategoryCourses}
           </div>
         </div>
