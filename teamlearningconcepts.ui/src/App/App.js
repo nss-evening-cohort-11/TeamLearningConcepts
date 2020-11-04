@@ -58,10 +58,12 @@ class App extends React.Component {
     this.setState({ searchValue: e.target.value });
 }
 
-searchFunction = () => {
+  searchFunction = () => {
     const searchVal = this.state.searchValue;
-    courseData.search(searchVal)
-    .then(response => { this.setState({ filteredCourses: response }) });
+    if (searchVal != '') {
+      courseData.search(searchVal)
+      .then(response => { this.setState({ filteredCourses: response }) });
+    } 
   }
 
   render() {
