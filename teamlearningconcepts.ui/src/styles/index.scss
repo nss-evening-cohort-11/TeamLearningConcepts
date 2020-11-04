@@ -7,7 +7,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #687274;
+  background-color: #8F99AE;
 }
 
 code {
@@ -39,8 +39,6 @@ code {
   }
 
   .salesCourses {
-    justify-content: center;
-    flex-wrap: wrap;
     text-align: center;
     padding: 50px;
   }
@@ -54,7 +52,7 @@ code {
  
   }
   button {
-    width: 50%;
+    width: 100%;
     padding: 10px;
     margin-bottom: 20px;
   }

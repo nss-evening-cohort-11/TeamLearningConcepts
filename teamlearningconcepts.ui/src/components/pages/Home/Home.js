@@ -35,9 +35,9 @@ class Home extends React.Component {
       <img className ="introPic" src="https://live.staticflickr.com/65535/50559998796_365ce1df31_n.jpg" width="320" height="213" alt="groupLearn"></img>
       <h2 className = "featured">Featured Courses</h2>
       <MyCarousel />
-   <h2 className = "salesCourses d-flex flex wrap">Check out all our Sales Courses</h2>
-{salesCards}
-  <button>Shop Now</button><button>Shop Now</button>
+   <h2 className = "salesCourses">Check out all our Sales Courses</h2>
+<div className = "sales Container d-flex flex wrap">{salesCards}</div>
+ <button>Shop Now</button>
   <div className = "aboutUs">
     <h2 className = "aboutUs">About Us</h2>
   <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</p>
