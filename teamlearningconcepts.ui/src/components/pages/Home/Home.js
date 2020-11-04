@@ -1,17 +1,31 @@
 import React from 'react';
+import courseData from '../../../helpers/data/courseData';
+import MyCarousel from '../../shared/MyCarousel/MyCarousel';
+import SingleCourseCard from '../../shared/SingleCourseCard/SingleCourseCard';
 
-import Example from '../../shared/Example/Example';
 
 import './Home.scss';
 
 class Home extends React.Component {
   state = {
-    Example: [],
+    MyCarousel: [],
+    courses: [],
+
+  }
+
+  componentDidMount() {
+    courseData.getAllCoursesByCourseTypeId(1)
+      .then(courses => { this.setState({courses}) });
   }
 
 
-
   render() {
+    const {courses} = this.state;
+    const salesCards = courses.map((course) => {
+         return (<SingleCourseCard key = {course.courseId} course={course} />)
+    })
+
+    
   
     return (
       <div className="Home container">
@@ -20,10 +34,9 @@ class Home extends React.Component {
       <img className ="introPic"src="https://live.staticflickr.com/65535/50559997591_d589d5a648_n.jpg" width="320" height="213" alt="laptopPic"></img>
       <img className ="introPic" src="https://live.staticflickr.com/65535/50559998796_365ce1df31_n.jpg" width="320" height="213" alt="groupLearn"></img>
       <h2 className = "featured">Featured Courses</h2>
-      <Example />
-   <h2 className = "salesCourses">Check out all our Sales Courses</h2>
-   <img className ="salesPic" src="https://images.unsplash.com/photo-1520694478166-daaaaec95b69?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80"  width="320" height="213" text="How to Retain Customers - $400"></img>
-  <img className = "salesPic" src="https://images.unsplash.com/photo-1527689368864-3a821dbccc34?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80"  width="320" height="213" text="How to Navigate a Purchase Request - $350"></img>
+      <MyCarousel />
+   <h2 className = "salesCourses d-flex flex wrap">Check out all our Sales Courses</h2>
+{salesCards}
   <button>Shop Now</button><button>Shop Now</button>
   <div className = "aboutUs">
     <h2 className = "aboutUs">About Us</h2>

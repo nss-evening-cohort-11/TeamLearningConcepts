@@ -25,7 +25,7 @@ const items = [
     }
 ];
 
-const Example = (props) => {
+const MyCarousel = (props) => {
   const [activeIndex, setActiveIndex] = useState(0);
   const [animating, setAnimating] = useState(false);
 
@@ -53,7 +53,7 @@ const Example = (props) => {
         onExited={() => setAnimating(false)}
         key={item.src}
       >
-        <img src={item.src} alt={item.altText} />
+        <img className = "carouselItem" src={item.src} alt={item.altText} />
         <CarouselCaption captionText={item.caption} captionHeader={item.caption} />
       </CarouselItem>
     );
@@ -73,4 +73,4 @@ const Example = (props) => {
   );
 }
 
-export default Example;
+export default MyCarousel;

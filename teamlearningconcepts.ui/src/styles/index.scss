@@ -39,6 +39,8 @@ code {
   }
 
   .salesCourses {
+    justify-content: center;
+    flex-wrap: wrap;
     text-align: center;
     padding: 50px;
   }
@@ -62,4 +64,10 @@ code {
     padding: 30px;
     text-align: center;
     border: black solid 3px;
+  }
+  .carouselItem {
+    width: 1000px;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
   }
