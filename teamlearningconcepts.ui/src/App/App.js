@@ -81,6 +81,8 @@ class App extends React.Component {
             <div className="container">
               <div className="row">
               <Switch>
+              <Route path='/search-results' render={() => <SearchResults filteredCourses={this.state.filteredCourses} />} authed={authed} />
+
               <PrivateRoute path='/home' component={Home} authed={authed} />
                 <PrivateRoute path='/users/:usersId' component={SingleUser} authed={authed} />
                 <PrivateRoute path='/courses/:courseTypeId' component={SingleCategory} authed={authed} />
@@ -90,7 +92,6 @@ class App extends React.Component {
 
                 <Redirect from= "*" to="/home"/>
 
-                <Route path='/search-results' render={() => <SearchResults filteredCourses={this.state.filteredCourses} />} authed={authed} />
 
 
               </Switch>
