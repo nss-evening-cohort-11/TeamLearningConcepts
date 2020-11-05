@@ -25,6 +25,7 @@ import SearchResults from '../components/pages/SearchResults/SearchResults';
 import ShoppingCart from '../components/pages/ShoppingCart/ShoppingCart';
 
 import courseData from '../helpers/data/courseData';
+import PaymentOptions from '../components/pages/PaymentOptions/PaymentOptions';
 
 
 const PublicRoute = ({ component: Component, authed, ...rest }) => {
@@ -89,6 +90,7 @@ class App extends React.Component {
                 <PrivateRoute path='/courses/:courseTypeId' component={SingleCategory} authed={authed} />
                 <PrivateRoute path='/users' component={Users} authed={authed} />
                 <PrivateRoute path='/courses' component={Courses} authed={authed} />
+                <PrivateRoute path='/payment-options' component={PaymentOptions} authed={authed} />
                 <Route path='/shopping-cart' render={() => <ShoppingCart />} authed={authed} />
                 <Redirect from= "*" to="/home"/>
               </Switch>
