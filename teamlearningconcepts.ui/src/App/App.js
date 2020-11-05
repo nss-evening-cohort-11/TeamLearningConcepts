@@ -86,11 +86,8 @@ class App extends React.Component {
                 <PrivateRoute path='/courses/:courseTypeId' component={SingleCategory} authed={authed} />
                 <PrivateRoute path='/users' component={Users} authed={authed} />
                 <PrivateRoute path='/courses' component={Courses} authed={authed} />
-
-
-                <Redirect from= "*" to="/home"/>
-
                 <Route path='/search-results' render={() => <SearchResults filteredCourses={this.state.filteredCourses} />} authed={authed} />
+                <Redirect from= "*" to="/home"/>
 
 
               </Switch>
