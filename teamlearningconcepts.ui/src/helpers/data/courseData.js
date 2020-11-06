@@ -40,4 +40,10 @@ const getLatestCourses = () => new Promise((resolve, reject) => {
   }
 );
 
-export default {getAllCoursesByCourseTypeId, getFirstThreeCoursesByCourseTypeId, getNumberOfCoursesByCourseTypeId, getLatestCourses, search};
+export default {
+  getAllCoursesByCourseTypeId, 
+  getFirstThreeCoursesByCourseTypeId, 
+  getNumberOfCoursesByCourseTypeId, 
+  getLatestCourses, 
+  search
+};

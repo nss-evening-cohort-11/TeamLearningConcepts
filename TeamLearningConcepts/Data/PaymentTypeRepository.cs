@@ -43,6 +43,20 @@ public List <PaymentType> GetAll()
 
         }
 
+        public List<PaymentType> GetByUserId(int userId)
+        {
+            using var db = new SqlConnection(_connectionString);
+
+            var query = @"select *
+                        from PaymentType
+                        where UserId = @uid";
+            var parameters = new { uid = userId };
+
+            var paymentTypes = db.Query<PaymentType>(query, parameters);
+
+            return paymentTypes.ToList();
+        }
+
         public void Remove(int paymentTypeId)
         {
             using var db = new SqlConnection(_connectionString);

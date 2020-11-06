@@ -1,11 +1,34 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import {
+  CustomInput,
+  Form,
+  FormGroup,
+  Label
+} from 'reactstrap';
+import paymentTypeData from '../../../helpers/data/paymentTypeData';
 
 import './PaymentOptions.scss';
 
 class PaymentOptions extends React.Component {
+  state ={
+    paymentTypes: []
+  }
+
+  componentDidMount() {
+    const userId = 4;
+    console.log(userId);
+    paymentTypeData.getPaymentTypesByUserId(userId)
+      .then(paymentTypes => this.setState({paymentTypes}))
+  }
+
   render() {
+    const {paymentTypes} = this.state;
     const paymentOptionsLink = '/payment-options';
+
+    const buildPaymentTypeList = paymentTypes.map(paymentType => {
+      return (<CustomInput className="m-2" type="radio" id="exampleCustomRadio" name="customRadio" label={paymentType.paymentName + ' x' + paymentType.accountNumber.toString().slice(-4)} />)
+    })
 
     return (
       <div className="PaymentOptions">
@@ -17,7 +40,13 @@ class PaymentOptions extends React.Component {
               <div className="w-75 shopping-cart-items">
                   <p className="cart-title">Choose Your Payment Option</p>
                   <hr />
-                  <p>Payment Type cards here</p>
+                  <Form>
+                    <FormGroup>
+                      <div>
+                        {buildPaymentTypeList}
+                      </div>
+                    </FormGroup>
+                  </Form>
                   <hr />
               </div>
               <div className="w-25 shopping-summary">
