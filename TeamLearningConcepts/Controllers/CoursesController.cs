@@ -93,11 +93,12 @@ namespace TeamLearningConcepts.Controllers
             return Ok(latestCourses);
         }
 
-        [HttpGet("singleCourse/{id}")]
+        [HttpGet("singleCourseView/{courseId}")]
 
-        public IActionResult GetSingleCourseById(int id)
+        public IActionResult GetSingleCourseById(int courseId)
+            
         {
-            var singleCourseById = _repo.GetSingleCourseById(id);
+            var singleCourseById = _repo.GetSingleCourseById(courseId);
 
             if (singleCourseById == null) return NotFound("No course with that Id was found. Please Try again.");
 
