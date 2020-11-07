@@ -23,7 +23,7 @@ import SingleUser from '../components/shared/SingleUser/SingleUser';
 import SingleCategory from '../components/pages/SingleCategory/SingleCategory';
 import SearchResults from '../components/pages/SearchResults/SearchResults';
 import ShoppingCart from '../components/pages/ShoppingCart/ShoppingCart';
-
+import SingleCourseView from '../components/pages/SingleCourseView/SingleCourseView';
 import courseData from '../helpers/data/courseData';
 
 
@@ -84,6 +84,7 @@ class App extends React.Component {
               <Switch>
               <PrivateRoute path='/home' component={Home} authed={authed} />
                 <PrivateRoute path='/users/:usersId' component={SingleUser} authed={authed} />
+                <PrivateRoute path='/courses/singleCourseView/:courseId' component={SingleCourseView} authed={authed} />
                 <PrivateRoute path='/courses/:courseTypeId' component={SingleCategory} authed={authed} />
                 <PrivateRoute path='/users' component={Users} authed={authed} />
                 <PrivateRoute path='/courses' component={Courses} authed={authed} />
