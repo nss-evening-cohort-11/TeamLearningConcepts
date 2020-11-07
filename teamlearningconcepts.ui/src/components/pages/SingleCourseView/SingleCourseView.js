@@ -13,8 +13,7 @@ class SingleCourseView extends React.Component {
   componentDidMount() {
     
     const  courseId  = this.props.match.params.courseId;
-    console.log(courseId);
-    courseData.getSingleCourseView(courseId)
+       courseData.getSingleCourseView(courseId)
       .then(course => this.setState({ course }))  
   }
 
