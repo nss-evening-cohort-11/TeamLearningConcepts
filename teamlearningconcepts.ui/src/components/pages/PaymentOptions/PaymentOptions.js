@@ -6,12 +6,14 @@ import {
   FormGroup
 } from 'reactstrap';
 import paymentTypeData from '../../../helpers/data/paymentTypeData';
+import invoiceData from '../../../helpers/data/invoiceData';
 
 import './PaymentOptions.scss';
 
 class PaymentOptions extends React.Component {
   state ={
-    paymentTypes: []
+    paymentTypes: [],
+    selectedPaymentTypeId: 0
   }
 
   componentDidMount() {
@@ -20,9 +22,23 @@ class PaymentOptions extends React.Component {
       .then(paymentTypes => this.setState({paymentTypes}))
   }
 
+  setInvoiceToCompleted = (e) => {
+    e.preventDefault();
+    const invoiceId = 1;
+    const { selectedPaymentTypeId } = this.state;
+
+    console.log(invoiceId, selectedPaymentTypeId);
+
+    invoiceData.putInvoicePaymentType(invoiceId, selectedPaymentTypeId)
+      .then(/* push to confirmation page */)
+  }
+
+  paymentChange = (e) => {
+    this.setState({selectedPaymentTypeId: e.target.value})
+  }
+
   render() {
     const {paymentTypes} = this.state;
-    const paymentOptionsLink = '/payment-options';
 
     const buildPaymentTypeList = paymentTypes.map(paymentType => {
       return (<CustomInput 
@@ -31,7 +47,9 @@ class PaymentOptions extends React.Component {
         type="radio" 
         id={'Radio' + paymentType.paymentTypeId} 
         name="customRadio" 
-        label={paymentType.paymentName + ' x' + paymentType.accountNumber.toString().slice(-4)} 
+        label={paymentType.paymentName + ' x' + paymentType.accountNumber.toString().slice(-4)}
+        value={paymentType.paymentTypeId}
+        onChange={this.paymentChange}
         />)
     })
 
@@ -61,7 +79,7 @@ class PaymentOptions extends React.Component {
                   <p>Taxes:</p>
                   <hr />
                   <p>Total:</p>
-                  <Link className="btn w-50 btn-light float-right mt-3 mb-0" to={paymentOptionsLink}>Order</Link>
+                  <Link className="btn w-50 btn-light float-right mt-3 mb-0" onClick={this.setInvoiceToCompleted}>Order</Link>
               </div>
           </div>
       </div>

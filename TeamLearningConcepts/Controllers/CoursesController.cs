@@ -93,6 +93,18 @@ namespace TeamLearningConcepts.Controllers
             return Ok(latestCourses);
         }
 
+        [HttpGet("singleCourseView/{courseId}")]
+
+        public IActionResult GetSingleCourseById(int courseId)
+            
+        {
+            var singleCourseById = _repo.GetSingleCourseById(courseId);
+
+            if (singleCourseById == null) return NotFound("No course with that Id was found. Please Try again.");
+
+            return Ok(singleCourseById);
+        }
+
         [HttpDelete("{id}")]
         public IActionResult DeleteCourse(int id)
         {

@@ -40,10 +40,19 @@ const getLatestCourses = () => new Promise((resolve, reject) => {
   }
 );
 
+const getSingleCourseView = (courseId) => new Promise ((resolve, reject) => {
+  axios.get(`${baseUrl}/courses/singleCourseView/${courseId}`)
+  .then(response => {
+    resolve(response.data)})
+    .catch(reject);
+  })
+
+
 export default {
-  getAllCoursesByCourseTypeId, 
-  getFirstThreeCoursesByCourseTypeId, 
-  getNumberOfCoursesByCourseTypeId, 
-  getLatestCourses, 
-  search
+getAllCoursesByCourseTypeId, 
+getFirstThreeCoursesByCourseTypeId, 
+getNumberOfCoursesByCourseTypeId, 
+getLatestCourses, 
+search,
+getSingleCourseView
 };

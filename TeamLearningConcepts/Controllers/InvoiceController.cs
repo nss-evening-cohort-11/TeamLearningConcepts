@@ -42,5 +42,11 @@ namespace TeamLearningConcepts.Controllers
 
             return Ok(invoice);
         }
+
+        //[HttpPut("{invoiceId}")]
+        //public IActionResult UpdateInvoice(int invoiceId, int paymentTypeId)
+        //{
+        //    return;
+        //}
     }
 }
