@@ -3,8 +3,7 @@ import { Link } from 'react-router-dom';
 import {
   CustomInput,
   Form,
-  FormGroup,
-  Label
+  FormGroup
 } from 'reactstrap';
 import paymentTypeData from '../../../helpers/data/paymentTypeData';
 
@@ -16,8 +15,7 @@ class PaymentOptions extends React.Component {
   }
 
   componentDidMount() {
-    const userId = 4;
-    console.log(userId);
+    const userId = 1;
     paymentTypeData.getPaymentTypesByUserId(userId)
       .then(paymentTypes => this.setState({paymentTypes}))
   }
@@ -27,7 +25,14 @@ class PaymentOptions extends React.Component {
     const paymentOptionsLink = '/payment-options';
 
     const buildPaymentTypeList = paymentTypes.map(paymentType => {
-      return (<CustomInput className="m-2" type="radio" id="exampleCustomRadio" name="customRadio" label={paymentType.paymentName + ' x' + paymentType.accountNumber.toString().slice(-4)} />)
+      return (<CustomInput 
+        key={paymentType.paymentTypeId}
+        className="m-2" 
+        type="radio" 
+        id={'Radio' + paymentType.paymentTypeId} 
+        name="customRadio" 
+        label={paymentType.paymentName + ' x' + paymentType.accountNumber.toString().slice(-4)} 
+        />)
     })
 
     return (
