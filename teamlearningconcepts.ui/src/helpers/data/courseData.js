@@ -40,8 +40,8 @@ const getLatestCourses = () => new Promise((resolve, reject) => {
   }
 );
 
-const getSingleCourse = (courseId) => new Promise ((resolve, reject) => {
-  axios.get(`${baseUrl}/courses/singleCourse/${courseId}`)
+const getSingleCourseView = (courseId) => new Promise ((resolve, reject) => {
+  axios.get(`${baseUrl}/courses/singleCourseView/${courseId}`)
   .then(response => {
     resolve(response.data)})
     .catch(reject);
@@ -54,5 +54,5 @@ getFirstThreeCoursesByCourseTypeId,
 getNumberOfCoursesByCourseTypeId, 
 getLatestCourses, 
 search,
-getSingleCourse
+getSingleCourseView
 };

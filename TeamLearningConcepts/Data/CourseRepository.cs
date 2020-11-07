@@ -113,6 +113,22 @@ namespace TeamLearningConcepts.Data
             return filteredCourses.ToList();
         }
 
+        public Course GetSingleCourseById(int courseId)
+        {
+            using var db = new SqlConnection(_connectionString);
+
+            var query = @"SELECT *
+                        FROM Course
+                        WHERE CourseId = @cid";
+
+            var parameters = new { cid = courseId };
+
+            var singleCourseById = db.QueryFirstOrDefault<Course>(query, parameters);
+
+            return singleCourseById;
+        }
+
+
 
         internal void Remove(int courseId)
         {

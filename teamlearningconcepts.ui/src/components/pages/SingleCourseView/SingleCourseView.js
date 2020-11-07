@@ -1,42 +1,37 @@
 import React from 'react';
-import SingleCourseCard from '../../shared/SingleCourseCard/SingleCourseCard';
-import courseData from '../../../helpers/data/courseData';
 
+import courseData from '../../../helpers/data/courseData';
+import courses from '../../pages/Courses/Courses';
 import './SingleCourseView.scss';
 
-class SingleCourse extends React.Component {
+class SingleCourseView extends React.Component {
   state = {
-    course: [],
+    course: {},
     
   }
 
   componentDidMount() {
     
-    const { courseId } = this.props.match.params;
-
-    
-    courseData.getSingleCourseById(courseId)
+    const  courseId  = this.props.match.params.courseId;
+    console.log(courseId);
+    courseData.getSingleCourseView(courseId)
       .then(course => this.setState({ course }))  
   }
 
   render() {
     const { course } = this.state;
-
-    const buildSingleCourse = course.map(course => {
-      return (<SingleCourseCard key={course.courseId} course={course} />)
-    })
+    const { courseId } = this.props.match.params;
+   
 
     return (
-      <div className="SingleCategory w-100">
-        <h2 className="m-3 mb-4">{course.courseId} Courses</h2>
-        <div className="card m-3">
-          <div className="d-flex flex-wrap w-100">
-            {buildSingleCourse}
-          </div>
-        </div>
-      </div>
-    )
+      <div className="SingleCourseView">
+       <h2 className="course-title">{course.title} </h2>
+        <img className="course-Url" src={course.photoUrl} alt="coursePhoto" />
+        <h3 className="course-description">{course.description}</h3>
+          <h3 className="course-price">${course.price}</h3> 
+           </div>
+         )
   }
 };
 
-export default SingleCourse;
+export default SingleCourseView;

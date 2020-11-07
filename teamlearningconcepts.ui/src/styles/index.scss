@@ -1,4 +1,5 @@
 @import '~bootstrap/dist/css/bootstrap.min.css';
+@import "~@fortawesome/fontawesome-free/css/all.min.css";
 
 body {
   margin: 0;
@@ -68,4 +69,8 @@ code {
     text-align: center;
     margin-left: auto;
     margin-right: auto;
+  }
+
+  .course-Url {
+    width: 500px;
   }

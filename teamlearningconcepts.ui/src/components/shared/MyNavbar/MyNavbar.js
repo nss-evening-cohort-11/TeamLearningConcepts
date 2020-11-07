@@ -51,9 +51,12 @@ class MyNavbar extends React.Component {
             <NavItem>
               <NavLink className="navbar-links" tag={RRNavLink} to='/users'>Users</NavLink>
             </NavItem>
-                    <NavItem className="mt-2">
-                        <SearchBar searchValueStateChange={searchValueStateChange} searchFunction={searchFunction} searchValue={searchValue} />
-                    </NavItem>
+            <NavItem className="mt-2">
+              <SearchBar searchValueStateChange={searchValueStateChange} searchFunction={searchFunction} searchValue={searchValue} />
+            </NavItem>
+            <NavItem>
+                <NavLink className="navbar-links" tag={RRNavLink} to='/shopping-cart'><i class="fas fa-shopping-cart"></i></NavLink>
+            </NavItem>
                 </Nav>
                     </Collapse>
                 </Navbar>
