@@ -42,5 +42,13 @@ namespace TeamLearningConcepts.Controllers
 
             return Ok(invoice);
         }
+
+        [HttpPost]
+        public IActionResult CreateInvoice()
+        {
+            var newInvoice = _repo.CreateNewInvoice();
+
+            return Ok(newInvoice);
+        }
     }
 }

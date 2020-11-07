@@ -40,5 +40,29 @@ namespace TeamLearningConcepts.Data
 
             return invoice;
         }
+
+        public int CreateNewInvoice()
+        {
+            using var db = new SqlConnection(_connectionString);
+
+            var query = @"INSERT INTO [dbo].[Invoice]
+                       ([UserId]
+                       ,[InvoiceDate]
+                       ,[InvoiceTotal]
+                       ,[PaymentTypeId]
+                       ,[isCompleted]) 
+                        OUTPUT Inserted.InvoiceId
+                 VALUES
+                       ('1'
+                       ,'2020-10-20 18:51:03.540'
+                       ,'350.00'
+                       ,'3'
+                       ,'0')
+                          ";
+
+            var newId = db.QuerySingle<int>(query);
+
+            return newId;
+        }
     }
 }
