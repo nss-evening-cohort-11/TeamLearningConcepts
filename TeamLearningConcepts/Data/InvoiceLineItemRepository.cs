@@ -39,5 +39,25 @@ namespace TeamLearningConcepts.Data
 
             return invoiceLine.ToList();
         }
+
+
+        public int CreatenewInvoiceLineItem()
+        {
+            using var db = new SqlConnection(_connectionString);
+
+            var query = @"INSERT INTO[dbo].[InvoiceLineItem]
+                        ([CourseId]
+                        ,[InvoiceId]
+                        ,[Quantity])
+                        OUTPUT Inserted.InvoiceLineItemId
+            VALUES
+                       ('6'
+                       ,'5'
+                       ,'1')";
+
+            var newLineItem = db.QuerySingle<int>(query);
+
+            return newLineItem;
+        }
     }
 }
