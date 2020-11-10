@@ -30,7 +30,7 @@ class PaymentOptions extends React.Component {
     console.log(invoiceId, selectedPaymentTypeId);
 
     invoiceData.putInvoicePaymentType(invoiceId, selectedPaymentTypeId)
-      .then(/* push to confirmation page */)
+      .then(invoice => console.log(invoice))
   }
 
   paymentChange = (e) => {
