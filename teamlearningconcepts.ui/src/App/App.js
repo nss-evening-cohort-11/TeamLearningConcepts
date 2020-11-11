@@ -1,6 +1,10 @@
 import React from 'react';
-
+import fbConnection from "../helpers/data/connection";
+import firebase from 'firebase/app';
+// import Login from '../components/pages/Login/Login';
 import './App.scss';
+import 'firebase/auth';
+
 
 
 
@@ -15,7 +19,7 @@ import {
 
 import Home from '../components/pages/Home/Home';
 
-
+import Auth from '../components/pages/Auth/Auth';
 import Courses from '../components/pages/Courses/Courses';
 import MyNavbar from '../components/shared/MyNavbar/MyNavbar';
 import Users from '../components/pages/Users/Users';
@@ -26,6 +30,7 @@ import ShoppingCart from '../components/pages/ShoppingCart/ShoppingCart';
 import SingleCourseView from '../components/pages/SingleCourseView/SingleCourseView';
 import courseData from '../helpers/data/courseData';
 
+fbConnection();
 
 const PublicRoute = ({ component: Component, authed, ...rest }) => {
   const routeChecker = (props) => (authed === false
@@ -51,13 +56,19 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-
+    this.removeListener = firebase.auth().onAuthStateChanged((user) => {
+      if (user) {
+        this.setState({ authed: true });
+      } else {
+        this.setState({ authed: false });
+      }
+    });
   };
     
   
 
   componentWillUnmount() {
-
+    this.removeListener();
   };
 
   searchValueStateChange = (e) => {
@@ -89,7 +100,9 @@ class App extends React.Component {
                 <PrivateRoute path='/users' component={Users} authed={authed} />
                 <PrivateRoute path='/courses' component={Courses} authed={authed} />
                 <Route path='/search-results' render={() => <SearchResults filteredCourses={this.state.filteredCourses} />} authed={authed} />
+               {/* <Route path="/login" component={Login} authed={authed}/> */}
                 <Route path='/shopping-cart' render={() => <ShoppingCart />} authed={authed} />
+                <PublicRoute path='/auth' component={Auth} authed={authed} />
                 <Redirect from= "*" to="/home"/>
               </Switch>
               </div>

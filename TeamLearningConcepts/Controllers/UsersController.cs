@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using TeamLearningConcepts.Data;
 using TeamLearningConcepts.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -12,7 +13,7 @@ namespace TeamLearningConcepts.Controllers
 {
     [Route("api/users")]
     [ApiController]
-    public class UsersController : ControllerBase
+    public class UsersController : FirebaseEnabledController
     {
         UserRepository _repo;
 

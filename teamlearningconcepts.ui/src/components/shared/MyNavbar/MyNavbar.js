@@ -13,7 +13,8 @@ import PropTypes from 'prop-types';
 
 import SearchBar from '../SearchBar/SearchBar';
 import courseData from '../../../helpers/data/courseData';
-
+import firebase from 'firebase/app';
+import 'firebase/auth';
 import './MyNavbar.scss';
 
 class MyNavbar extends React.Component {
@@ -27,6 +28,11 @@ class MyNavbar extends React.Component {
         searchValueStateChange: PropTypes.func.isRequired,
         searchFunction: PropTypes.func.isRequired,
     }
+
+    logMeOut = (e) => {
+        e.preventDefault();
+        firebase.auth().signOut();
+      }
 
     toggle = () => {
         this.setState({ isOpen: !this.state.isOpen });
@@ -51,12 +57,18 @@ class MyNavbar extends React.Component {
             <NavItem>
               <NavLink className="navbar-links" tag={RRNavLink} to='/users'>Users</NavLink>
             </NavItem>
+            <NavItem>
+              <NavLink className="navbar-links" tag={RRNavLink} to='/login'>LogIn</NavLink>
+            </NavItem>
             <NavItem className="mt-2">
               <SearchBar searchValueStateChange={searchValueStateChange} searchFunction={searchFunction} searchValue={searchValue} />
             </NavItem>
             <NavItem>
                 <NavLink className="navbar-links" tag={RRNavLink} to='/shopping-cart'><i class="fas fa-shopping-cart"></i></NavLink>
             </NavItem>
+            <NavItem>
+              <NavLink className="navbar-links" onClick={this.logMeOut}>Log Out</NavLink>
+          </NavItem>
                 </Nav>
                     </Collapse>
                 </Navbar>
