@@ -2,11 +2,10 @@ import React from 'react';
 import courseData from '../../../helpers/data/courseData';
 import MyCarousel from '../../shared/MyCarousel/MyCarousel';
 import SingleCourseCard from '../../shared/SingleCourseCard/SingleCourseCard';
-import latestCourses from '../../shared/LatestCourses/LatestCourses';
+import LatestCourses from '../../shared/LatestCourses/LatestCourses';
 
 
 import './Home.scss';
-import LatestCourses from '../../shared/LatestCourses/LatestCourses';
 
 class Home extends React.Component {
   state = {
