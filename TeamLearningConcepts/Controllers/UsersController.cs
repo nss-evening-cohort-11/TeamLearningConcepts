@@ -11,6 +11,11 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace TeamLearningConcepts.Controllers
 {
+    public abstract class FirebaseEnabledController : ControllerBase
+    {
+        protected string UserId => User.FindFirst(x => x.Type == "user_id").Value;
+    }
+
     [Route("api/users")]
     [ApiController]
     public class UsersController : FirebaseEnabledController
