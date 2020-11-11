@@ -17,7 +17,7 @@ class LatestCourses extends React.Component {
   render() {
     const {latestCourses} = this.state;
     const buildLatestCoursesLinks = latestCourses.map((course) => {
-      return (<Link to={`courses/singleCourseView/${course.courseId}`}>{course.title}</Link>)
+      return (<Link to={`courses/singleCourseView/${course.courseId}`} key={`${course.courseId}`}>{course.title}</Link>)
     })
  
 
