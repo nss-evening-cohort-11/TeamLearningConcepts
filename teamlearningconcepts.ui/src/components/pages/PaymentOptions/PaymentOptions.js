@@ -27,9 +27,7 @@ class PaymentOptions extends React.Component {
     const invoiceId = 1;
     const { selectedPaymentTypeId } = this.state;
 
-    console.log(invoiceId, selectedPaymentTypeId);
-
-    invoiceData.putInvoicePaymentType(invoiceId, selectedPaymentTypeId)
+    invoiceData.putCompletedInvoice(invoiceId, selectedPaymentTypeId, 5000.00)
       .then(invoice => console.log(invoice))
   }
 

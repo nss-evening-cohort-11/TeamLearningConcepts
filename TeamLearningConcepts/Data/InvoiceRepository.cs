@@ -41,21 +41,21 @@ namespace TeamLearningConcepts.Data
             return invoice;
         }
 
-        public Invoice Complete(int invoiceId, int paymentTypeId)
+        public void Complete(Invoice invoice)
         {
             using var db = new SqlConnection(_connectionString);
 
-            var query = @"UPDATE [dbo].[Invoice]
+            var query = @"
+                          UPDATE [dbo].[Invoice]
                              SET [PaymentTypeId] = @ptid
                                 ,[isCompleted] = 1
+                                ,[InvoiceTotal] = @total
                           OUTPUT inserted.*
                            WHERE invoiceId = @id";
 
-            var parameters = new { id = invoiceId, ptid = paymentTypeId };
+            var parameters = new { id = invoice.InvoiceId, ptid = invoice.PaymentTypeId, total = invoice.InvoiceTotal };
 
-            var updatedInvoice = db.QueryFirstOrDefault<Invoice>(query, parameters);
-
-            return updatedInvoice;
+            db.Execute(query, parameters);
         }
     }
 }

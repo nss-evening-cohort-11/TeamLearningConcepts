@@ -43,17 +43,17 @@ namespace TeamLearningConcepts.Controllers
             return Ok(invoice);
         }
 
-        [HttpPut("complete/{invoiceId}")]
-        public IActionResult CompleteInvoice(int invoiceId, int paymentTypeId)
+        [HttpPut("complete")]
+        public IActionResult CompleteInvoice(Invoice invoice)
         {
-            if (_repo.GetById(invoiceId) == null)
+            if (_repo.GetById(invoice.InvoiceId) == null)
             {
                 return NotFound("No invoice with that id found.");
             }
 
-            var completedInvoice = _repo.Complete(invoiceId, paymentTypeId);
+            _repo.Complete(invoice);
 
-            return Ok(completedInvoice);
+            return Ok();
         }
     }
 }
