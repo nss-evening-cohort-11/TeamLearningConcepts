@@ -1,5 +1,14 @@
 .LatestCourses {
+  text-align: center;
+}
+
+.section-header {
+  padding: 50px;
+}
+
+.row {
   display: flex;
+  justify-content: center;
 }
 
 .card {
