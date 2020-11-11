@@ -1,6 +1,7 @@
 import React from 'react';
 import couseData from '../../../helpers/data/courseData';
 import SingleCourseCard from '../SingleCourseCard/SingleCourseCard';
+import './LatestCourses.scss'
 
 
 class LatestCourses extends React.Component {
@@ -22,8 +23,12 @@ class LatestCourses extends React.Component {
 
 
     return(
-      <div className="row">
-      {buildLatestCoursesCards}
+      <div className="LatestCourses">
+      <h2 className="section-header">Latest Courses</h2>
+
+          <div className="row">
+          {buildLatestCoursesCards}
+          </div>
       </div>
     )
   }
