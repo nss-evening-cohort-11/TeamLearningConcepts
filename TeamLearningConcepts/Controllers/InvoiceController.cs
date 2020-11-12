@@ -43,6 +43,7 @@ namespace TeamLearningConcepts.Controllers
             return Ok(invoice);
         }
 
+        // Complete Order
         [HttpPut("complete")]
         public IActionResult CompleteInvoice(Invoice invoice)
         {
@@ -54,6 +55,25 @@ namespace TeamLearningConcepts.Controllers
             _repo.Complete(invoice);
 
             return Ok();
+        }
+
+        [HttpGet("user/{userId}")]
+        public IActionResult GetInvoiceByUserId(int userId)
+        {
+            var userInvoice = _repo.GetUserInvoice(userId);
+
+            if (userInvoice == null) return NotFound("No Invoice Found");
+
+            return Ok(userInvoice);
+
+        }
+
+        [HttpPost]
+        public IActionResult CreateInvoice()
+        {
+            var newInvoice = _repo.CreateNewInvoice();
+
+            return Ok(newInvoice);
         }
     }
 }

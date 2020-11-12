@@ -1,9 +1,9 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import {
   CustomInput,
   Form,
-  FormGroup
+  FormGroup,
+  Button
 } from 'reactstrap';
 import paymentTypeData from '../../../helpers/data/paymentTypeData';
 import invoiceData from '../../../helpers/data/invoiceData';
@@ -34,7 +34,7 @@ class PaymentOptions extends React.Component {
     }
 
     invoiceData.putCompletedInvoice(completedInvoice)
-      .then(invoice => console.log(invoice))
+      .then(/* push to order confirmation page*/)
   }
 
   paymentChange = (e) => {
@@ -54,7 +54,7 @@ class PaymentOptions extends React.Component {
         label={paymentType.paymentName + ' x' + paymentType.accountNumber.toString().slice(-4)}
         value={paymentType.paymentTypeId}
         onChange={this.paymentChange}
-        />)
+      />)
     })
 
     return (
@@ -83,7 +83,7 @@ class PaymentOptions extends React.Component {
                   <p>Taxes:</p>
                   <hr />
                   <p>Total:</p>
-                  <Link className="btn w-50 btn-light float-right mt-3 mb-0" onClick={this.setInvoiceToCompleted}>Order</Link>
+                  <Button className="btn w-50 btn-light float-right mt-3 mb-0" onClick={this.setInvoiceToCompleted}>Order</Button>
               </div>
           </div>
       </div>
