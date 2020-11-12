@@ -17,10 +17,15 @@ class SingleCourseView extends React.Component {
       .then(course => this.setState({ course }))  
   }
 
+ addToCart = () => {
+  console.log("you clicked the Add to Cart button")
+}
+
   render() {
     const { course } = this.state;
     const { courseId } = this.props.match.params;
    
+
 
     return (
       <div className="SingleCourseView">
@@ -28,9 +33,13 @@ class SingleCourseView extends React.Component {
         <img className="course-Url" src={course.photoUrl} alt="coursePhoto" />
         <h3 className="course-description">{course.description}</h3>
           <h3 className="course-price">${course.price}</h3> 
+          <button onClick={this.addToCart} className="btn btn-primary">Add to Cart</button>
            </div>
          )
   }
 };
 
 export default SingleCourseView;
+
+
+//hardcoded userId, paymentTypeId

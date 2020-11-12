@@ -128,6 +128,25 @@ namespace TeamLearningConcepts.Data
             return singleCourseById;
         }
 
+        public List<Course> GetCoursesByInvoiceId(int invoiceId)
+        {
+            using var db = new SqlConnection(_connectionString);
+
+            var query = @"SELECT course.courseId, course.PhotoUrl, course.Price, course.Title, course.CourseTypeId, course.Description, course.IsDeleted
+                        FROM Invoice
+                        join InvoiceLineItem
+                        on Invoice.InvoiceId = InvoiceLineItem.InvoiceId
+                        join Course
+                        on Course.CourseId = InvoiceLineItem.CourseId
+                        WHERE Invoice.InvoiceId = @id
+                        ORDER BY Course.CourseId";
+
+            var parameters = new { id = invoiceId };
+
+            var courses = db.Query<Course>(query, parameters);
+
+            return courses.ToList();
+        }
 
 
         internal void Remove(int courseId)

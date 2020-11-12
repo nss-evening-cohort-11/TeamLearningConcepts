@@ -47,6 +47,13 @@ const getSingleCourseView = (courseId) => new Promise ((resolve, reject) => {
     .catch(reject);
   })
 
+const getCoursesByInvoiceId = (invoiceId) => new Promise ((resolve, reject) => {
+  axios.get(`${baseUrl}/courses/invoice/${invoiceId}`)
+  .then(response => {
+    resolve(response.data)})
+    .catch(reject);
+  })
+
 
 export default {
 getAllCoursesByCourseTypeId, 
@@ -54,5 +61,6 @@ getFirstThreeCoursesByCourseTypeId,
 getNumberOfCoursesByCourseTypeId, 
 getLatestCourses, 
 search,
-getSingleCourseView
+getSingleCourseView,
+getCoursesByInvoiceId
 };
