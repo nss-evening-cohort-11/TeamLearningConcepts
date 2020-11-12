@@ -27,12 +27,18 @@ class PaymentOptions extends React.Component {
     const invoiceId = 1;
     const { selectedPaymentTypeId } = this.state;
 
-    invoiceData.putCompletedInvoice(invoiceId, selectedPaymentTypeId, 5000.00)
+    const completedInvoice = {
+      InvoiceId: invoiceId,
+      PaymentTypeId: selectedPaymentTypeId,
+      InvoiceTotal: 4000.00      
+    }
+
+    invoiceData.putCompletedInvoice(completedInvoice)
       .then(invoice => console.log(invoice))
   }
 
   paymentChange = (e) => {
-    this.setState({selectedPaymentTypeId: e.target.value})
+    this.setState({selectedPaymentTypeId: parseInt(e.target.value)})
   }
 
   render() {
