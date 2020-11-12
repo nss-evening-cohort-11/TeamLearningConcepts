@@ -105,6 +105,16 @@ namespace TeamLearningConcepts.Controllers
             return Ok(singleCourseById);
         }
 
+        [HttpGet("invoice/{id}")]
+        public IActionResult GetCourseByInvoiceId(int id)
+        {
+            var courses = _repo.GetCoursesByInvoiceId(id);
+
+            if (courses == null) return NotFound("No courses.");
+
+            return Ok(courses);
+        }
+
         [HttpDelete("{id}")]
         public IActionResult DeleteCourse(int id)
         {
