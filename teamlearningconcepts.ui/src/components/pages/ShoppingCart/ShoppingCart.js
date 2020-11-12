@@ -1,8 +1,20 @@
 import React from 'react';
+import invoiceData from '../../../helpers/data/invoiceData';
 
 import './ShoppingCart.scss';
 
 class ShoppingCart extends React.Component {
+
+state = {
+    cart: {}
+}
+
+componentDidMount() {
+    const userId = 1;
+    invoiceData.getInvoiceByUserId(userId)
+    .then(cart => this.setState({cart}))
+}
+
     render(){
         return(
             <div className="ShoppingCart">
