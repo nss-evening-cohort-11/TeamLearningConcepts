@@ -1,6 +1,7 @@
 import React from 'react';
+import { Link } from 'react-router-dom'
 import couseData from '../../../helpers/data/courseData';
-import SingleCourseCard from '../SingleCourseCard/SingleCourseCard';
+import './LatestCourses.scss'
 
 
 class LatestCourses extends React.Component {
@@ -14,16 +15,18 @@ class LatestCourses extends React.Component {
 
 
   render() {
-
     const {latestCourses} = this.state;
-    const buildLatestCoursesCards = latestCourses.map((course) => {
-      return (<SingleCourseCard course={course} />)
+    const buildLatestCoursesLinks = latestCourses.map((course) => {
+      return (<Link to={`courses/singleCourseView/${course.courseId}`} key={`${course.courseId}`}>{course.title}</Link>)
     })
-
+ 
 
     return(
-      <div className="row">
-      {buildLatestCoursesCards}
+      <div className="LatestCourses">
+      <h2 className="section-header">Latest Courses</h2>
+        <div className="row">
+          {buildLatestCoursesLinks}
+        </div>
       </div>
     )
   }

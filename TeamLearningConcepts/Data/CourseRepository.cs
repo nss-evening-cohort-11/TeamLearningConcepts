@@ -78,7 +78,7 @@ namespace TeamLearningConcepts.Data
         {
             using var db = new SqlConnection(_connectionString);
 
-            var courses = db.Query<Course>("SELECT TOP 5 * FROM Course ORDER BY CourseId DESC");
+            var courses = db.Query<Course>("SELECT TOP 20 * FROM Course ORDER BY CourseId DESC");
 
             return courses.ToList();
         }

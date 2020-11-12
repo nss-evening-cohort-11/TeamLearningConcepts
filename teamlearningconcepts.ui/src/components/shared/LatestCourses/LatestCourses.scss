@@ -1,7 +1,22 @@
 .LatestCourses {
+  text-align: center;
+    a {
+      color: snow;
+      padding: 25px;
+    }
+}
+
+.section-header {
+  padding: 50px;
+}
+
+.row {
   display: flex;
+  justify-content: center;
 }
 
 .card {
   display: inline-block;
 }
+
+
