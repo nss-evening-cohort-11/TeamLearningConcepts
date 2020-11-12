@@ -6,13 +6,14 @@ import './ShoppingCart.scss';
 class ShoppingCart extends React.Component {
 
 state = {
-    cart: {}
+    invoice: {},
+    cart: []
 }
 
 componentDidMount() {
     const userId = 1;
     invoiceData.getInvoiceByUserId(userId)
-    .then(cart => this.setState({cart}))
+    .then(invoice => this.setState({invoice}))
 }
 
     render(){
