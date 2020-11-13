@@ -7,6 +7,8 @@ import {
   CarouselCaption
 } from 'reactstrap';
 
+import './MyCarousel.scss';
+
 const items = [
     {
       src: 'https://images.unsplash.com/photo-1520694478166-daaaaec95b69?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80',
@@ -60,6 +62,7 @@ const MyCarousel = (props) => {
   });
 
   return (
+    <div className="MyCarousel">
     <Carousel
       activeIndex={activeIndex}
       next={next}
@@ -70,6 +73,7 @@ const MyCarousel = (props) => {
       <CarouselControl direction="prev" directionText="Previous" onClickHandler={previous} />
       <CarouselControl direction="next" directionText="Next" onClickHandler={next} />
     </Carousel>
+    </div>
   );
 }
 

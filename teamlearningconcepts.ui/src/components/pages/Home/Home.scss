@@ -1,4 +1,63 @@
+@import '../../../styles/variables';
+
 .Home {
   display: block;
- 
+  width: 100%;
+
+  .title {
+    margin-top: 1rem;
+    font-family: $Patua;
+    text-align: center;
+  }
+  
+  .tagLine {
+    margin: 0;
+    padding: 1rem;
+    font-size: 1.5em;
+    text-align: center;
+  }
+
+  .featured {
+    text-align: center; 
+    font-weight: 600; 
+  }
+
+  .intro-photos {
+    width: 100%;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .introPic {
+    height: 20em;
+    padding: 10px;
+  }
+  
+  .salesCourses {
+    text-align: center;
+    padding: 50px;
+  }
+  
+  .salesPic { 
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+    padding: 40px;
+  }
+
+  button {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+  }
+  
+  .aboutUs {  
+    padding: 30px;
+    text-align: center;
+    border: black solid 3px;
+  }
+  
+  .course-Url {
+    width: 500px;
+  }
 }
