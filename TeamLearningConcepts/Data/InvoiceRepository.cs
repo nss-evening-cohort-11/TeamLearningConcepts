@@ -41,6 +41,23 @@ namespace TeamLearningConcepts.Data
             return invoice;
         }
 
+        // Set isComplete to true, update PaymentType and InvoiceTotal
+        public void Complete(Invoice invoice)
+        {
+            using var db = new SqlConnection(_connectionString);
+
+            var query = @"
+                          UPDATE [dbo].[Invoice]
+                             SET [PaymentTypeId] = @ptid
+                                ,[isCompleted] = 1
+                                ,[InvoiceTotal] = @total
+                          OUTPUT inserted.*
+                           WHERE invoiceId = @id";
+
+            var parameters = new { id = invoice.InvoiceId, ptid = invoice.PaymentTypeId, total = invoice.InvoiceTotal };
+
+            db.Execute(query, parameters);
+        }
         public int CreateNewInvoice(int userId)
         {
             using var db = new SqlConnection(_connectionString);
@@ -85,6 +102,7 @@ namespace TeamLearningConcepts.Data
             var invoice = db.QueryFirstOrDefault<Invoice>(query, parameters);
 
             return invoice;
+
         }
     }
 }

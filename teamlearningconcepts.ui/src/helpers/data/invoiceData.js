@@ -1,4 +1,5 @@
 import axios from 'axios';
+
 import {baseUrl} from './constants.json';
 
 const getInvoiceByUserId = (userId) => new Promise((resolve, reject) => {
@@ -10,4 +11,7 @@ const getInvoiceByUserId = (userId) => new Promise((resolve, reject) => {
 
 const addInvoice = (userCourse) => axios.post(`${baseUrl}/invoices`, userCourse);
 
-export default { getInvoiceByUserId, addInvoice };
+const putCompletedInvoice = (completedInvoice) => 
+    axios.put(`${baseUrl}/invoices/complete`, completedInvoice);
+
+export default { getInvoiceByUserId, addInvoice, putCompletedInvoice };
