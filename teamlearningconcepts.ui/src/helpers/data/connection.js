@@ -5,7 +5,7 @@ import firebaseConfig from '../apiKeys.json';
 import constants from '../data/constants.json';
 
 const firebaseApp = () => {
-  firebase.initializeApp(firebaseConfig.firebaseKeys);
+  firebase.initializeApp(constants.firebaseConfig);
 };
 
 export default firebaseApp;

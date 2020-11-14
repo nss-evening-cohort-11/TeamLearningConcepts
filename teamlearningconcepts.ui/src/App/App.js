@@ -1,7 +1,7 @@
 import React from 'react';
 import fbConnection from "../helpers/data/connection";
 import firebase from 'firebase/app';
-// import Login from '../components/pages/Login/Login';
+import Login from '../components/pages/Login/Login';
 import './App.scss';
 import 'firebase/auth';
 
@@ -68,7 +68,7 @@ class App extends React.Component {
   
 
   componentWillUnmount() {
-    this.removeListener();
+    // this.removeListener();
   };
 
   searchValueStateChange = (e) => {
@@ -100,7 +100,7 @@ class App extends React.Component {
                 <PrivateRoute path='/users' component={Users} authed={authed} />
                 <PrivateRoute path='/courses' component={Courses} authed={authed} />
                 <Route path='/search-results' render={() => <SearchResults filteredCourses={this.state.filteredCourses} />} authed={authed} />
-               {/* <Route path="/login" component={Login} authed={authed}/> */}
+               <Route path="/login" component={Login} authed={authed}/>
                 <Route path='/shopping-cart' render={() => <ShoppingCart />} authed={authed} />
                 <PublicRoute path='/auth' component={Auth} authed={authed} />
                 <Redirect from= "*" to="/home"/>
