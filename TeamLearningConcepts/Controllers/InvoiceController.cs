@@ -50,7 +50,7 @@ namespace TeamLearningConcepts.Controllers
         {
             var userInvoice = _repo.GetUserInvoice(userId);
 
-            if (userInvoice == null) return NotFound("No Invoice Found");
+            if (userInvoice == null) return NoContent();
 
             return Ok(userInvoice);
 
