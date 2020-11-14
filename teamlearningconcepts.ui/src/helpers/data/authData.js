@@ -51,4 +51,10 @@ const getUid = () => {
   return firebase.auth().currentUser.uid;
 };
 
-export default {getUid, loginUser, logoutUser, registerUser};
+// eslint-disable-next-line import/no-anonymous-default-export
+export default {
+getUid, 
+loginUser, 
+logoutUser, 
+registerUser
+};

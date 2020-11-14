@@ -19,7 +19,7 @@ import {
 
 import Home from '../components/pages/Home/Home';
 
-import Auth from '../components/pages/Auth/Auth';
+// import Auth from '../components/pages/Auth/Auth';
 import Courses from '../components/pages/Courses/Courses';
 import MyNavbar from '../components/shared/MyNavbar/MyNavbar';
 import Users from '../components/pages/Users/Users';
@@ -32,12 +32,12 @@ import courseData from '../helpers/data/courseData';
 
 fbConnection();
 
-const PublicRoute = ({ component: Component, authed, ...rest }) => {
-  const routeChecker = (props) => (authed === false
-    ? (<Component {...props} />)
-    : (<Redirect to={{ pathname: '/home', state: { from: props.location } }} />));
-  return <Route {...rest} render={(props) => routeChecker(props)} />;
-};
+// const PublicRoute = ({ component: Component, authed, ...rest }) => {
+//   const routeChecker = (props) => (authed === false
+//     ? (<Component {...props} />)
+//     : (<Redirect to={{ pathname: '/home', state: { from: props.location } }} />));
+//   return <Route {...rest} render={(props) => routeChecker(props)} />;
+// };
 
 const PrivateRoute = ({ component: Component, authed, ...rest }) => {
   const routeChecker = (props) => (authed === true
@@ -68,7 +68,7 @@ class App extends React.Component {
   
 
   componentWillUnmount() {
-    // this.removeListener();
+    this.removeListener();
   };
 
   searchValueStateChange = (e) => {
@@ -77,7 +77,7 @@ class App extends React.Component {
 
   searchFunction = () => {
     const searchVal = this.state.searchValue;
-    if (searchVal != '') {
+    if (searchVal !== '') {
       courseData.search(searchVal)
       .then(response => { this.setState({ filteredCourses: response }) });
     } 
@@ -102,7 +102,7 @@ class App extends React.Component {
                 <Route path='/search-results' render={() => <SearchResults filteredCourses={this.state.filteredCourses} />} authed={authed} />
                <Route path="/login" component={Login} authed={authed}/>
                 <Route path='/shopping-cart' render={() => <ShoppingCart />} authed={authed} />
-                <PublicRoute path='/auth' component={Auth} authed={authed} />
+                {/* <PublicRoute path='/auth' component={Auth} authed={authed} /> */}
                 <Redirect from= "*" to="/home"/>
               </Switch>
               </div>

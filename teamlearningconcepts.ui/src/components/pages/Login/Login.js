@@ -1,21 +1,24 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
+
+
+
 import authRequests from '../../../helpers/data/authData';
 
 class Login extends React.Component {
   state = {
-    users: {
+    user: {
       email: '',
       password: '',
     },
   };
 
   loginClickEvent = (e) => {
-    const { users } = this.state;
+    const { user } = this.state;
     e.preventDefault();
     authRequests
-      .loginUser(users)
+      .loginUser(user)
       .then(() => {
         this.props.history.push('/users');
       })
@@ -37,7 +40,7 @@ class Login extends React.Component {
   };
 
   render () {
-    const { users } = this.state;
+    const { user } = this.state;
     return (
       <div className="Login">
         <div id="login-form">
@@ -53,7 +56,7 @@ class Login extends React.Component {
                   className="form-control"
                   id="inputEmail"
                   placeholder="Email"
-                  value={users.email}
+                  value={user.email}
                   onChange={this.emailChange}
                 />
               </div>
@@ -68,7 +71,7 @@ class Login extends React.Component {
                   className="form-control"
                   id="inputPassword"
                   placeholder="Password"
-                  value={users.password}
+                  value={user.password}
                   onChange={this.passwordChange}
                 />
               </div>
