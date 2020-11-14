@@ -47,7 +47,7 @@ namespace TeamLearningConcepts.Data
 
             var query = @"
                         alter table InvoiceLineItem
-                        nocheck constraint FK_InvoiceLineItem_Course
+                        nocheck constraint FK_InvoiceLineItem_Course, FK_InvoiceLineItem_Invoice
 
                         INSERT INTO[dbo].[InvoiceLineItem]
                         ([CourseId]
@@ -60,7 +60,7 @@ namespace TeamLearningConcepts.Data
                        ,'1')
 
                         alter table InvoiceLineItem
-                        check constraint FK_InvoiceLineItem_Course";
+                        check constraint FK_InvoiceLineItem_Course, FK_InvoiceLineItem_Invoice";
 
             var parameters = new { course = courseId, invoice = invoiceId };
 

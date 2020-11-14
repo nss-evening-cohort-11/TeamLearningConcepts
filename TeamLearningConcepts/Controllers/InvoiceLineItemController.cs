@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using TeamLearningConcepts.Data;
 using TeamLearningConcepts.Models;
 
@@ -45,9 +40,9 @@ namespace TeamLearningConcepts.Controllers
         }
 
         [HttpPost]
-        public IActionResult CreateNewInvoiceLineItem(int invoiceId, int courseId)
+        public IActionResult CreateNewInvoiceLineItem(InvoiceLineItem newLineItem)
         {
-            var newInvoiceLineItem = _repo.CreateNewInvoiceLineItem(invoiceId, courseId);
+            var newInvoiceLineItem = _repo.CreateNewInvoiceLineItem(newLineItem.InvoiceId, newLineItem.CourseId);
 
             return Ok(newInvoiceLineItem);
         }

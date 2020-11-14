@@ -2,6 +2,7 @@ import React from 'react';
 
 import courseData from '../../../helpers/data/courseData';
 import invoiceData from '../../../helpers/data/invoiceData';
+import invoiceLineItemData from '../../../helpers/data/invoiceLineItemData';
 import './SingleCourseView.scss';
 
 class SingleCourseView extends React.Component {
@@ -24,11 +25,14 @@ class SingleCourseView extends React.Component {
     CourseId: course.courseId,
     UserId: userId,
   }
-  invoiceData.getInvoiceByUserId(userId).then((response) => {
-    if (response) {
-      console.log('in the if!');
-      // create invoice line item
-      // take invoice id
+  invoiceData.getInvoiceByUserId(userId).then((invoice) => {
+    if (invoice) {
+      console.log('in the if!', invoice.invoiceId);
+      const newInvoiceLine = {
+        CourseId: course.courseId,
+        InvoiceId: invoice.invoiceId,
+      }
+      invoiceLineItemData.addInvoiceLineItem(newInvoiceLine);
     } else {
       console.log('in the else!');
       invoiceData.addInvoice(newUserCourse);
