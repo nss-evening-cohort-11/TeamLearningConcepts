@@ -25,6 +25,7 @@ namespace TeamLearningConcepts.Data
             return invoiceLine.ToList();
         }
 
+        // GET BY INVOICE ID METHOD
         public List<InvoiceLineItem> GetByInvoiceId(int invoiceId)
         {
             var db = new SqlConnection(_connectionString);
@@ -67,6 +68,16 @@ namespace TeamLearningConcepts.Data
             var newLineItem = db.QuerySingle<int>(query, parameters);
 
             return newLineItem;
+        }
+
+        public void DeleteLineItem()
+        {
+            using var db = new SqlConnection(_connectionString);
+
+            var query = @"Delete from InvoiceLineItem
+                        Where InvoiceId = @invoice AND CourseId = @course";
+
+
         }
     }
 }
