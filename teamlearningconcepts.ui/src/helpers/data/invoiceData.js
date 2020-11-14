@@ -8,4 +8,6 @@ const getInvoiceByUserId = (userId) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
-export default { getInvoiceByUserId };
+const addInvoice = (userCourse) => axios.post(`${baseUrl}/invoices`, userCourse);
+
+export default { getInvoiceByUserId, addInvoice };
