@@ -7,14 +7,12 @@ import './SingleCourseView.scss';
 
 class SingleCourseView extends React.Component {
   state = {
-    course: {},
-    
+    course: {},    
   }
 
-  componentDidMount() {
-    
-    const  courseId  = this.props.match.params.courseId;
-       courseData.getSingleCourseView(courseId)
+  componentDidMount() {    
+    const courseId = this.props.match.params.courseId;
+    courseData.getSingleCourseView(courseId)
       .then(course => this.setState({ course }))  
   }
 

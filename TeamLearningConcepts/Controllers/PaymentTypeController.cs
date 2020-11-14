@@ -37,6 +37,16 @@ namespace TeamLearningConcepts.Controllers
             return Ok(paymentType);
         }
 
+        [HttpGet("user/{userId}")]
+        public IActionResult GetByUserId(int userId)
+        {
+            var paymentTypes = _repo.GetByUserId(userId);
+
+            if (paymentTypes == null) return NotFound("No payment type");
+
+            return Ok(paymentTypes);
+        }
+
         [HttpDelete("{id}")]
         public IActionResult DeletePaymentType(int id)
         {
