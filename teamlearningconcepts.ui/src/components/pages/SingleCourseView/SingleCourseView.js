@@ -27,14 +27,12 @@ class SingleCourseView extends React.Component {
   }
   invoiceData.getInvoiceByUserId(userId).then((invoice) => {
     if (invoice) {
-      console.log('in the if!', invoice.invoiceId);
       const newInvoiceLine = {
         CourseId: course.courseId,
         InvoiceId: invoice.invoiceId,
       }
       invoiceLineItemData.addInvoiceLineItem(newInvoiceLine);
     } else {
-      console.log('in the else!');
       invoiceData.addInvoice(newUserCourse);
     }
   });
