@@ -14,11 +14,10 @@ state = {
 }
 
 componentDidMount() {
-    const userId = 1;
+    const userId = 3;
     invoiceData.getInvoiceByUserId(userId)
     .then(invoice => {
         this.setState({invoice})
-        console.error(invoice)
         courseData.getCoursesByInvoiceId(this.state.invoice.invoiceId)
         .then(courses => this.setState({cart: courses}))
     }) 
