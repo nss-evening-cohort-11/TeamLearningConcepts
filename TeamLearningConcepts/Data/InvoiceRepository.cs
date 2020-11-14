@@ -41,11 +41,14 @@ namespace TeamLearningConcepts.Data
             return invoice;
         }
 
-        public int CreateNewInvoice()
+        public int CreateNewInvoice(int userId)
         {
             using var db = new SqlConnection(_connectionString);
 
-            var query = @"INSERT INTO [dbo].[Invoice]
+            var query = @"
+                        alter table Invoice
+                        nocheck constraint FK_Invoice_User
+                        INSERT INTO [dbo].[Invoice]
                        ([UserId]
                        ,[InvoiceDate]
                        ,[InvoiceTotal]
@@ -53,14 +56,18 @@ namespace TeamLearningConcepts.Data
                        ,[isCompleted]) 
                         OUTPUT Inserted.InvoiceId
                  VALUES
-                       ('1'
+                       (@user
                        ,'2020-11-20 18:51:03.540'
                        ,'350.00'
-                       ,'3'
+                       ,'0'
                        ,'0')
-                          ";
+                          
+                        alter table Invoice
+                        check constraint FK_Invoice_User";
 
-            var newId = db.QuerySingle<int>(query);
+            var parameters = new { user = userId };
+
+            var newId = db.QuerySingle<int>(query, parameters);
 
             return newId;
         }
