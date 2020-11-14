@@ -13,24 +13,28 @@ import './PaymentOptions.scss';
 class PaymentOptions extends React.Component {
   state ={
     paymentTypes: [],
+    invoice: {},
     selectedPaymentTypeId: 0
   }
 
   componentDidMount() {
-    const userId = 1;
+    const userId = 3;
     paymentTypeData.getPaymentTypesByUserId(userId)
       .then(paymentTypes => this.setState({paymentTypes}))
+    invoiceData.getInvoiceByUserId(userId)
+      .then(invoice => {
+        this.setState({invoice})
+      })       
   }
 
   setInvoiceToCompleted = (e) => {
     e.preventDefault();
-    const invoiceId = 1;
-    const { selectedPaymentTypeId } = this.state;
+    const { selectedPaymentTypeId, invoice } = this.state;
 
     const completedInvoice = {
-      InvoiceId: invoiceId,
+      InvoiceId: invoice.invoiceId,
       PaymentTypeId: selectedPaymentTypeId,
-      InvoiceTotal: 4000.00      
+      InvoiceTotal: 5000.00      
     }
 
     invoiceData.putCompletedInvoice(completedInvoice)
