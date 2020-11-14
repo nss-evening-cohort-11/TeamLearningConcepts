@@ -15,11 +15,13 @@ namespace TeamLearningConcepts.Controllers
     {
         // fields
         InvoiceRepository _repo;
+        InvoiceLineItemRepository _lineItemRepository;
 
         // constructor
         public InvoiceController()
         {
             _repo = new InvoiceRepository();
+            _lineItemRepository = new InvoiceLineItemRepository();
         }
 
         // methods
@@ -55,11 +57,13 @@ namespace TeamLearningConcepts.Controllers
         }
 
         [HttpPost]
-        public IActionResult CreateInvoice()
+        public IActionResult CreateInvoice(UserCourse userCourse)
         {
-            var newInvoice = _repo.CreateNewInvoice();
+            var invoiceId = _repo.CreateNewInvoice(userCourse.UserId);
 
-            return Ok(newInvoice);
+            _lineItemRepository.CreateNewInvoiceLineItem(invoiceId, userCourse.CourseId);
+            
+            return Ok(invoiceId);
         }
     }
 }

@@ -45,9 +45,9 @@ namespace TeamLearningConcepts.Controllers
         }
 
         [HttpPost]
-        public IActionResult CreateNewInvoiceLineItem()
+        public IActionResult CreateNewInvoiceLineItem(int invoiceId, int courseId)
         {
-            var newInvoiceLineItem = _repo.CreatenewInvoiceLineItem();
+            var newInvoiceLineItem = _repo.CreateNewInvoiceLineItem(invoiceId, courseId);
 
             return Ok(newInvoiceLineItem);
         }
