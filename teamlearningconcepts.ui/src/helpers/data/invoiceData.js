@@ -2,10 +2,6 @@ import axios from 'axios';
 
 import {baseUrl} from './constants.json';
 
-const putCompletedInvoice = (completedInvoice) => 
-    axios.put(`${baseUrl}/invoices/complete`, completedInvoice);
-
-
 const getInvoiceByUserId = (userId) => new Promise((resolve, reject) => {
   axios.get(`${baseUrl}/invoices/user/${userId}`)
     .then(response => {
@@ -13,4 +9,9 @@ const getInvoiceByUserId = (userId) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
-export default { getInvoiceByUserId, putCompletedInvoice };
+const addInvoice = (userCourse) => axios.post(`${baseUrl}/invoices`, userCourse);
+
+const putCompletedInvoice = (completedInvoice) => 
+    axios.put(`${baseUrl}/invoices/complete`, completedInvoice);
+
+export default { getInvoiceByUserId, addInvoice, putCompletedInvoice };

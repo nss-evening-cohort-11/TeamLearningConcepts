@@ -41,21 +41,30 @@ namespace TeamLearningConcepts.Data
         }
 
 
-        public int CreatenewInvoiceLineItem()
+        public int CreateNewInvoiceLineItem(int invoiceId, int courseId)
         {
             using var db = new SqlConnection(_connectionString);
 
-            var query = @"INSERT INTO[dbo].[InvoiceLineItem]
+            var query = @"
+                        alter table InvoiceLineItem
+                        nocheck constraint FK_InvoiceLineItem_Course, FK_InvoiceLineItem_Invoice
+
+                        INSERT INTO[dbo].[InvoiceLineItem]
                         ([CourseId]
                         ,[InvoiceId]
                         ,[Quantity])
                         OUTPUT Inserted.InvoiceLineItemId
             VALUES
-                       ('6'
-                       ,'5'
-                       ,'1')";
+                       (@course
+                       ,@invoice
+                       ,'1')
 
-            var newLineItem = db.QuerySingle<int>(query);
+                        alter table InvoiceLineItem
+                        check constraint FK_InvoiceLineItem_Course, FK_InvoiceLineItem_Invoice";
+
+            var parameters = new { course = courseId, invoice = invoiceId };
+
+            var newLineItem = db.QuerySingle<int>(query, parameters);
 
             return newLineItem;
         }

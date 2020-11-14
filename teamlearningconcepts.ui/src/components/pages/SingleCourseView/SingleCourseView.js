@@ -1,6 +1,8 @@
 import React from 'react';
 
 import courseData from '../../../helpers/data/courseData';
+import invoiceData from '../../../helpers/data/invoiceData';
+import invoiceLineItemData from '../../../helpers/data/invoiceLineItemData';
 import './SingleCourseView.scss';
 
 class SingleCourseView extends React.Component {
@@ -15,12 +17,27 @@ class SingleCourseView extends React.Component {
   }
 
  addToCart = () => {
-  console.log("you clicked the Add to Cart button")
+  const { course } = this.state;
+  const userId = 3;
+  const newUserCourse = {
+    CourseId: course.courseId,
+    UserId: userId,
+  }
+  invoiceData.getInvoiceByUserId(userId).then((invoice) => {
+    if (invoice) {
+      const newInvoiceLine = {
+        CourseId: course.courseId,
+        InvoiceId: invoice.invoiceId,
+      }
+      invoiceLineItemData.addInvoiceLineItem(newInvoiceLine);
+    } else {
+      invoiceData.addInvoice(newUserCourse);
+    }
+  });
 }
 
   render() {
-    const { course } = this.state;
-
+    const { course } = this.state;   
 
     return (
       <div className="SingleCourseView">
