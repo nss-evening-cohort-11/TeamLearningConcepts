@@ -16,6 +16,7 @@ class Login extends React.Component {
 
   loginClickEvent = (e) => {
     const { user } = this.state;
+    console.log(this.state, 'hello')
     e.preventDefault();
     authRequests
       .loginUser(user)
