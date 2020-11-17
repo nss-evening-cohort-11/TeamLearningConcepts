@@ -43,6 +43,14 @@ namespace TeamLearningConcepts.Controllers
             return Ok(singleUser);
         }
 
+        [HttpPost]
+        public IActionResult CreateUser(User user)
+        {
+            _repo.Add(user);
+
+            return Created($"/api/users/{user.UserId}", user);
+        }
+
         [HttpDelete("{id}")]
         public IActionResult DeleteUser(int id)
         {
