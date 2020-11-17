@@ -1,6 +1,6 @@
 import React from 'react';
 import fbConnection from "../helpers/data/connection";
-import firebase from 'firebase/app';
+// import firebase from 'firebase/app';
 import Login from '../components/pages/Login/Login';
 import './App.scss';
 import 'firebase/auth';
@@ -29,6 +29,7 @@ import SearchResults from '../components/pages/SearchResults/SearchResults';
 import ShoppingCart from '../components/pages/ShoppingCart/ShoppingCart';
 import SingleCourseView from '../components/pages/SingleCourseView/SingleCourseView';
 import courseData from '../helpers/data/courseData';
+import NewUser from '../components/pages/NewUser/NewUser';
 
 fbConnection();
 
@@ -56,19 +57,19 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    this.removeListener = firebase.auth().onAuthStateChanged((user) => {
-      if (user) {
-        this.setState({ authed: true });
-      } else {
-        this.setState({ authed: false });
-      }
-    });
+    // this.removeListener = firebase.auth().onAuthStateChanged((user) => {
+    //   if (user) {
+    //     this.setState({ authed: true });
+    //   } else {
+    //     this.setState({ authed: false });
+    //   }
+    // });
   };
     
   
 
   componentWillUnmount() {
-    this.removeListener();
+   
   };
 
   searchValueStateChange = (e) => {
@@ -94,6 +95,7 @@ class App extends React.Component {
               <div className="row">
               <Switch>
               <PrivateRoute path='/home' component={Home} authed={authed} />
+                <PrivateRoute path='/users/new' component={NewUser} authed={authed} />
                 <PrivateRoute path='/users/:usersId' component={SingleUser} authed={authed} />
                 <PrivateRoute path='/courses/singleCourseView/:courseId' component={SingleCourseView} authed={authed} />
                 <PrivateRoute path='/courses/:courseTypeId' component={SingleCategory} authed={authed} />

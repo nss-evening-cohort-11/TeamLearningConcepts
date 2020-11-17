@@ -12,7 +12,7 @@ import {
 import PropTypes from 'prop-types';
 
 import SearchBar from '../SearchBar/SearchBar';
-import courseData from '../../../helpers/data/courseData';
+// import courseData from '../../../helpers/data/courseData';
 import firebase from 'firebase/app';
 import 'firebase/auth';
 import './MyNavbar.scss';

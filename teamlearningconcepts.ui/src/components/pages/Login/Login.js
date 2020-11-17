@@ -23,7 +23,7 @@ class Login extends React.Component {
         this.props.history.push('/users');
       })
       .catch(error => {
-        console.error('there was an error in registering', error);
+        console.error('there was an error logging in', error);
       });
   };
 
@@ -78,7 +78,7 @@ class Login extends React.Component {
             </div>
             <div className="form-group">
               <div className="col-sm-12 text-center">
-                <Link to="/register">Need to Register?</Link>
+                <Link to="users/new">Need to Register?</Link>
               </div>
             </div>
             <div className="form-group">
