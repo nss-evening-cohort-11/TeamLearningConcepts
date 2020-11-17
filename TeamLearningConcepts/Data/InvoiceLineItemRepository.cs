@@ -1,10 +1,8 @@
-﻿using System;
+﻿using Dapper;
+using Microsoft.Data.SqlClient;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.Data.SqlClient;
 using TeamLearningConcepts.Models;
-using Dapper;
 
 namespace TeamLearningConcepts.Data
 {
@@ -28,7 +26,7 @@ namespace TeamLearningConcepts.Data
         // GET BY INVOICE ID METHOD
         public List<InvoiceLineItem> GetByInvoiceId(int invoiceId)
         {
-            var db = new SqlConnection(_connectionString);
+            using var db = new SqlConnection(_connectionString);
 
             var query = @"select *
                           from InvoiceLineItem
@@ -40,6 +38,22 @@ namespace TeamLearningConcepts.Data
 
             return invoiceLine.ToList();
         }
+
+        // GET BY INVOICEID AND COURSEID
+        public InvoiceLineItem GetByInvoiceAndCourse(int invoiceId, int courseId)
+        {
+            using var db = new SqlConnection(_connectionString);
+
+            var query = @"select * 
+                          from InvoiceLineItem
+                          Where InvoiceId = @invoice AND CourseId = @course";
+
+            var parameters = new { invoice = invoiceId, course = courseId };
+
+            var invoiceLine = db.QueryFirstOrDefault<InvoiceLineItem>(query, parameters);
+
+            return invoiceLine;
+        } 
 
 
         public int CreateNewInvoiceLineItem(int invoiceId, int courseId)
@@ -70,14 +84,16 @@ namespace TeamLearningConcepts.Data
             return newLineItem;
         }
 
-        public void DeleteLineItem()
+        public void DeleteLineItem(int invoiceId, int courseId)
         {
             using var db = new SqlConnection(_connectionString);
 
             var query = @"Delete from InvoiceLineItem
                         Where InvoiceId = @invoice AND CourseId = @course";
 
+            var parameters = new { invoice = invoiceId, course = courseId };
 
+            db.Execute(query, parameters);
         }
     }
 }

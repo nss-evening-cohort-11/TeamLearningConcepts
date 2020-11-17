@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import invoiceData from '../../../helpers/data/invoiceData';
+import invoiceLineItemData from '../../../helpers/data/invoiceLineItemData';
 import courseData from '../../../helpers/data/courseData';
 
 import CartCourseCard from '../../shared/CartCourseCard/CartCourseCard';
@@ -13,14 +14,25 @@ class ShoppingCart extends React.Component {
       cart: []
   }
 
+  getCartData = () => {
+    const userId = 3;
+    invoiceData.getInvoiceByUserId(userId)
+      .then(invoice => {
+        this.setState({invoice})
+        courseData.getCoursesByInvoiceId(this.state.invoice.invoiceId)
+          .then(courses => this.setState({cart: courses}))
+      })  
+  }
+
   componentDidMount() {
-      const userId = 3;
-      invoiceData.getInvoiceByUserId(userId)
-        .then(invoice => {
-          this.setState({invoice})
-          courseData.getCoursesByInvoiceId(this.state.invoice.invoiceId)
-            .then(courses => this.setState({cart: courses}))
-        })    
+    this.getCartData();
+  }
+
+  removeCourseFromCart = (courseId) => {
+    const invoiceId = this.state.invoice.invoiceId;
+    invoiceLineItemData.deleteCourseFromCart(invoiceId, courseId)
+    .then(() => this.getCartData())
+    .catch((err) => console.log("could not delete", err));
   }
 
   render(){
@@ -28,7 +40,7 @@ class ShoppingCart extends React.Component {
     const { cart, invoice } = this.state;
 
     const buildCards = cart.map((course) => (
-        <CartCourseCard course={course} key={course.courseId} />
+        <CartCourseCard course={course} key={course.courseId} removeCourseFromCart={this.removeCourseFromCart} />
     ))
 
       return(
@@ -41,7 +53,7 @@ class ShoppingCart extends React.Component {
                   <div className="w-75 shopping-cart-items">
                       <p className="cart-title">Shopping Cart</p>
                       <hr />
-                      <div className="courses-in-cart d-flex">
+                      <div className="courses-in-cart d-flex flex-wrap">
                         {buildCards}
                       </div>
                       <hr />

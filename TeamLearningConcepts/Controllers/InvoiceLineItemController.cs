@@ -46,5 +46,17 @@ namespace TeamLearningConcepts.Controllers
 
             return Ok(newInvoiceLineItem);
         }
+
+        [HttpDelete("{invoiceId}-{courseId}")] 
+        public IActionResult DeleteInvoiceLineItem(int invoiceId, int courseId)
+        {
+            if (_repo.GetByInvoiceAndCourse(invoiceId, courseId) == null)
+            {
+                return NotFound("No InvoiceLine matches your criteria");
+            }
+            _repo.DeleteLineItem(invoiceId, courseId);
+
+            return Ok();
+        }
     }
 }
