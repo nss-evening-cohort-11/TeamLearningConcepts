@@ -1,15 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using TeamLearningConcepts.Models;
-using Microsoft.AspNetCore.Builder;
+﻿using Dapper;
 using Microsoft.Data.SqlClient;
-using Dapper;
+using System.Collections.Generic;
+using System.Linq;
+using TeamLearningConcepts.Models;
 
 
 namespace TeamLearningConcepts.Data
@@ -18,12 +11,12 @@ namespace TeamLearningConcepts.Data
     {
         const string _connectionString = "Server=localhost;Database=TLC;Trusted_Connection=True;";
 
-public List <PaymentType> GetAll()
+        public List<PaymentType> GetAll()
         {
             using var db = new SqlConnection(_connectionString);
-            
+
             var paymentTypes = db.Query<PaymentType>("select * from paymentType");
-            
+
             return paymentTypes.ToList();
 
         }
@@ -69,11 +62,5 @@ public List <PaymentType> GetAll()
 
             db.Execute(sql, new { id = paymentTypeId });
         }
-
-
-
-
-
-
-           }
+    }
 }

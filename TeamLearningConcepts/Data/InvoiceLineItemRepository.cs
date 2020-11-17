@@ -40,6 +40,37 @@ namespace TeamLearningConcepts.Data
             return invoiceLine.ToList();
         }
 
+        public void CalculateInvoiceTotal(int invoiceId, int courseId)
+        {
+            using var db = new SqlConnection(_connectionString);
+
+            var query = @"DECLARE @NewSubtotal as numeric(10, 2)
+                          DECLARE @CoursePrice as numeric(10, 2)
+                          DECLARE @TaxPercent as numeric(10, 2)
+                          DECLARE @Taxes as numeric(10, 2)
+                          DECLARE @NewTotal as numeric(10, 2)
+
+                          SET @TaxPercent = 0.07
+
+                          SET @CoursePrice = (select Price from Course WHERE courseId = @courseId)
+
+                          SET @NewSubtotal = (select Subtotal from Invoice WHERE invoiceId = @invoiceId) + @CoursePrice
+
+                          SET @Taxes = @NewSubtotal * @TaxPercent
+                          
+                          SET @NewTotal = @NewSubtotal + @Taxes
+
+                          UPDATE [dbo].[Invoice]
+                             SET [Subtotal] = @NewSubtotal
+                                ,[Taxes] = @Taxes
+                                ,[InvoiceTotal] = @NewTotal
+                          OUTPUT inserted.*
+                           WHERE invoiceId = @invoiceId";
+
+            var parameters = new { invoiceId, courseId };
+
+            db.Execute(query, parameters);
+        }
 
         public int CreateNewInvoiceLineItem(int invoiceId, int courseId)
         {
@@ -65,6 +96,8 @@ namespace TeamLearningConcepts.Data
             var parameters = new { course = courseId, invoice = invoiceId };
 
             var newLineItem = db.QuerySingle<int>(query, parameters);
+
+            CalculateInvoiceTotal(invoiceId, courseId);
 
             return newLineItem;
         }

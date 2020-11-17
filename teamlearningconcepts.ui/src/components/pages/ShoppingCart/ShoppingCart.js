@@ -14,7 +14,7 @@ class ShoppingCart extends React.Component {
   }
 
   componentDidMount() {
-      const userId = 3;
+      const userId = 1;
       invoiceData.getInvoiceByUserId(userId)
         .then(invoice => {
           this.setState({invoice})
@@ -41,7 +41,7 @@ class ShoppingCart extends React.Component {
                   <div className="w-75 shopping-cart-items">
                       <p className="cart-title">Shopping Cart</p>
                       <hr />
-                      <div className="courses-in-cart d-flex">
+                      <div className="courses-in-cart d-flex align-content-around flex-wrap">
                         {buildCards}
                       </div>
                       <hr />
@@ -49,10 +49,10 @@ class ShoppingCart extends React.Component {
                   <div className="w-25 shopping-summary">
                       <p className="cart-title">Summary</p>
                       <hr />
-                      <p>Subtotal: ${invoice.invoiceTotal}.00</p>
-                      <p>Taxes:</p>
+                      <p>Subtotal: <span className="float-right">${invoice.subtotal}</span></p>
+                      <p>Taxes: <span className="float-right">${invoice.taxes}</span></p>
                       <hr />
-                      <p>Total:</p>
+                      <p>Total: <span className="float-right">${invoice.invoiceTotal}</span></p>
                       <Link className="btn w-50 btn-light float-right mt-3 mb-0" to={paymentOptionsLink}>Next</Link>
                   </div>
               </div>

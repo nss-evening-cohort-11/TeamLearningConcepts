@@ -74,10 +74,10 @@ namespace TeamLearningConcepts.Data
                         OUTPUT Inserted.InvoiceId
                  VALUES
                        (@user
-                       ,'2020-11-20 18:51:03.540'
-                       ,'350.00'
-                       ,'0'
-                       ,'0')
+                       ,getdate()
+                       ,0
+                       ,0
+                       ,0)
                           
                         alter table Invoice
                         check constraint FK_Invoice_User";

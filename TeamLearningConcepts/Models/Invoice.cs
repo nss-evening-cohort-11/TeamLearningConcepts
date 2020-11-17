@@ -12,6 +12,8 @@ namespace TeamLearningConcepts.Models
         public int UserId { get; set; }
         public DateTime InvoiceDate { get; set; }
         public decimal InvoiceTotal { get; set; }
+        public decimal Subtotal { get; set; }
+        public decimal Taxes { get; set; }
         public bool IsCompleted { get; set; } 
     }
 }

@@ -14,7 +14,7 @@ namespace TeamLearningConcepts.Controllers
     public class CoursesController : ControllerBase
     {
 
-        CourseRepository _repo;
+        readonly CourseRepository _repo;
 
 
 
