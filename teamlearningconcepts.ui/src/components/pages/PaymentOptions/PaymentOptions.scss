@@ -31,6 +31,10 @@
       border-radius: 1rem;
       .shopping-cart-items {
           padding: 1rem;
+
+          .validation-alert {
+            color: rgb(255, 92, 92);
+          }
       }
       .shopping-summary {
           padding: 1rem;
