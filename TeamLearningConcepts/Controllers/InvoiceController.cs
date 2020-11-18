@@ -14,8 +14,8 @@ namespace TeamLearningConcepts.Controllers
     public class InvoiceController : ControllerBase
     {
         // fields
-        InvoiceRepository _repo;
-        InvoiceLineItemRepository _lineItemRepository;
+        readonly InvoiceRepository _repo;
+        readonly InvoiceLineItemRepository _lineItemRepository;
 
         // constructor
         public InvoiceController()
