@@ -43,6 +43,7 @@ console.log(cred.user.email)
 
 const loginUser = (user) => {
   //sub out whatever auth method firebase provides that you want to use.
+  
   return firebase.auth().signInWithEmailAndPassword(user.email, user.password).then(cred => {
     //get token from firebase
     cred.user.getIdToken()

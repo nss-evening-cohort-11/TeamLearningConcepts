@@ -1,6 +1,6 @@
 import React from 'react';
 import fbConnection from "../helpers/data/connection";
-// import firebase from 'firebase/app';
+//  import firebase from 'firebase/app';
 import Login from '../components/pages/Login/Login';
 import './App.scss';
 import 'firebase/auth';

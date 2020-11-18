@@ -29,13 +29,13 @@ class Login extends React.Component {
   };
 
   emailChange = e => {
-    const tempUser = { ...this.state.users };
+    const tempUser = { ...this.state.user };
     tempUser.email = e.target.value;
     this.setState({ user: tempUser });
   };
 
   passwordChange = e => {
-    const tempUser = { ...this.state.users };
+    const tempUser = { ...this.state.user };
     tempUser.password = e.target.value;
     this.setState({ user: tempUser });
   };

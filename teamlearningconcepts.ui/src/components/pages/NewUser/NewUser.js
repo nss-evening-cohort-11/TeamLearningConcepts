@@ -69,7 +69,7 @@ const newUser = {
 };
 
 authData.registerUser(newUser)
-.then(() => this.props.history.push('/users'))
+.then(() => this.props.history.push('/login'))
 .catch((err) => console.error('unable to add new User'))
 }
 
