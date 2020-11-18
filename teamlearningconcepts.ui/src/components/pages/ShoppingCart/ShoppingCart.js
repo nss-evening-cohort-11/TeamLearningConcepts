@@ -14,7 +14,7 @@ class ShoppingCart extends React.Component {
   }
 
   componentDidMount() {
-      const userId = 3;
+      const userId = 1;
       invoiceData.getInvoiceByUserId(userId)
         .then(invoice => {
           this.setState({invoice})
@@ -41,19 +41,22 @@ class ShoppingCart extends React.Component {
                   <div className="w-75 shopping-cart-items">
                       <p className="cart-title">Shopping Cart</p>
                       <hr />
-                      <div className="courses-in-cart d-flex">
-                        {buildCards}
+                      <div className="courses-in-cart d-flex align-content-around flex-wrap">
+                        {invoice ? buildCards : 'Your cart is empty'}
                       </div>
                       <hr />
                   </div>
                   <div className="w-25 shopping-summary">
                       <p className="cart-title">Summary</p>
                       <hr />
-                      <p>Subtotal: ${invoice.invoiceTotal}.00</p>
-                      <p>Taxes:</p>
+                      <p>Subtotal: <span className="float-right">${invoice ? invoice.subtotal : '0.00'}</span></p>
+                      <p>Taxes: <span className="float-right">${invoice ? invoice.taxes : '0.00'}</span></p>
                       <hr />
-                      <p>Total:</p>
-                      <Link className="btn w-50 btn-light float-right mt-3 mb-0" to={paymentOptionsLink}>Next</Link>
+                      <p>Total: <span className="float-right">${invoice ? invoice.invoiceTotal : '0.00'}</span></p>
+                      {invoice 
+                      ? <Link className="btn w-50 btn-light float-right mt-3 mb-0" to={paymentOptionsLink}>Next</Link>
+                      : <button className="btn w-50 btn-light float-right mt-3 mb-0" disabled>Next</button>
+                      }
                   </div>
               </div>
           </div>
