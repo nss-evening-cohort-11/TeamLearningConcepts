@@ -32,12 +32,12 @@ import NewUser from '../components/pages/NewUser/NewUser';
 
 fbConnection();
 
-// const PublicRoute = ({ component: Component, authed, ...rest }) => {
-//   const routeChecker = (props) => (authed === false
-//     ? (<Component {...props} />)
-//     : (<Redirect to={{ pathname: '/home', state: { from: props.location } }} />));
-//   return <Route {...rest} render={(props) => routeChecker(props)} />;
-// };
+const PublicRoute = ({ component: Component, authed, ...rest }) => {
+  const routeChecker = (props) => (authed === false
+    ? (<Component {...props} />)
+    : (<Redirect to={{ pathname: '/home', state: { from: props.location } }} />));
+  return <Route {...rest} render={(props) => routeChecker(props)} />;
+};
 
 const PrivateRoute = ({ component: Component, authed, ...rest }) => {
   const routeChecker = (props) => (authed === true
@@ -95,13 +95,13 @@ class App extends React.Component {
             <div className="container">
               <div className="row">
               <Switch>
-              <PrivateRoute path='/home' component={Home} authed={authed} />
+              <PublicRoute path='/home' component={Home} authed={authed} />
                 <PrivateRoute path='/users/new' component={NewUser} authed={authed} />
                 <PrivateRoute path='/users/:usersId' component={SingleUser} authed={authed} />
-                <PrivateRoute path='/courses/singleCourseView/:courseId' component={SingleCourseView} authed={authed} />
-                <PrivateRoute path='/courses/:courseTypeId' component={SingleCategory} authed={authed} />
+                <PublicRoute path='/courses/singleCourseView/:courseId' component={SingleCourseView} authed={authed} />
+                <PublicRoute path='/courses/:courseTypeId' component={SingleCategory} authed={authed} />
                 <PrivateRoute path='/users' component={Users} authed={authed} />
-                <PrivateRoute path='/courses' component={Courses} authed={authed} />
+                <PublicRoute path='/courses' component={Courses} authed={authed} />
                 <Route path='/search-results' render={() => <SearchResults filteredCourses={this.state.filteredCourses} />} authed={authed} />
                <Route path="/login" component={Login} authed={authed}/>
                 <Route path='/shopping-cart' render={() => <ShoppingCart />} authed={authed} />
