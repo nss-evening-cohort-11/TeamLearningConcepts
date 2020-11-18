@@ -14,8 +14,8 @@ namespace TeamLearningConcepts.Controllers
     public class InvoiceController : ControllerBase
     {
         // fields
-        InvoiceRepository _repo;
-        InvoiceLineItemRepository _lineItemRepository;
+        readonly InvoiceRepository _repo;
+        readonly InvoiceLineItemRepository _lineItemRepository;
 
         // constructor
         public InvoiceController()
@@ -45,8 +45,22 @@ namespace TeamLearningConcepts.Controllers
             return Ok(invoice);
         }
 
+        // Complete Order
+        [HttpPut("complete")]
+        public IActionResult CompleteInvoice(Invoice invoice)
+        {
+            if (_repo.GetById(invoice.InvoiceId) == null)
+            {
+                return NotFound("No invoice with that id found.");
+            }
+
+            _repo.Complete(invoice);
+
+            return Ok();
+        }
+
         [HttpGet("user/{userId}")]
-            public IActionResult GetInvoiceByUserId(int userId)
+        public IActionResult GetInvoiceByUserId(int userId)
         {
             var userInvoice = _repo.GetUserInvoice(userId);
 

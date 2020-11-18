@@ -29,6 +29,8 @@ import ShoppingCart from '../components/pages/ShoppingCart/ShoppingCart';
 import SingleCourseView from '../components/pages/SingleCourseView/SingleCourseView';
 import courseData from '../helpers/data/courseData';
 import NewUser from '../components/pages/NewUser/NewUser';
+import PaymentOptions from '../components/pages/PaymentOptions/PaymentOptions';
+
 
 fbConnection();
 
@@ -103,7 +105,8 @@ class App extends React.Component {
                 <PrivateRoute path='/users' component={Users} authed={authed} />
                 <PublicRoute path='/courses' component={Courses} authed={authed} />
                 <Route path='/search-results' render={() => <SearchResults filteredCourses={this.state.filteredCourses} />} authed={authed} />
-               <Route path="/login" component={Login} authed={authed}/>
+                <Route path="/login" component={Login} authed={authed}/>
+                <PrivateRoute path='/payment-options' component={PaymentOptions} authed={authed} />
                 <Route path='/shopping-cart' render={() => <ShoppingCart />} authed={authed} />
                 <Redirect from= "*" to="/home"/>
               </Switch>
