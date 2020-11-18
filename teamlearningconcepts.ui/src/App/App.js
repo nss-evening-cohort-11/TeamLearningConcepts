@@ -1,10 +1,9 @@
 import React from 'react';
 import fbConnection from "../helpers/data/connection";
-//  import firebase from 'firebase/app';
 import Login from '../components/pages/Login/Login';
 import './App.scss';
 import 'firebase/auth';
-
+import firebase from 'firebase/app';
 
 
 
@@ -19,7 +18,7 @@ import {
 
 import Home from '../components/pages/Home/Home';
 
-// import Auth from '../components/pages/Auth/Auth';
+
 import Courses from '../components/pages/Courses/Courses';
 import MyNavbar from '../components/shared/MyNavbar/MyNavbar';
 import Users from '../components/pages/Users/Users';
@@ -43,7 +42,7 @@ fbConnection();
 const PrivateRoute = ({ component: Component, authed, ...rest }) => {
   const routeChecker = (props) => (authed === true
     ? (<Component {...props} />)
-    : (<Redirect to={{ pathname: '/auth', state: { from: props.location } }} />));
+    : (<Redirect to={{ pathname: '/login', state: { from: props.location } }} />));
   return <Route {...rest} render={(props) => routeChecker(props)} />;
 };
 
@@ -51,25 +50,27 @@ const PrivateRoute = ({ component: Component, authed, ...rest }) => {
 
 class App extends React.Component {
   state = {
-    authed: true,
+    authed: false,
     searchValue: '',
     filteredCourses: [],
   }
 
   componentDidMount() {
-    // this.removeListener = firebase.auth().onAuthStateChanged((user) => {
-    //   if (user) {
-    //     this.setState({ authed: true });
-    //   } else {
-    //     this.setState({ authed: false });
-    //   }
-    // });
+    this.removeListener = firebase.auth().onAuthStateChanged((user) => {
+      if (user) {
+        this.setState({ authed: true });
+      } else {
+        this.setState({ authed: false });
+      }
+      
+    });
   };
     
   
 
   componentWillUnmount() {
-   
+
+    this.removeListener();
   };
 
   searchValueStateChange = (e) => {
@@ -90,7 +91,7 @@ class App extends React.Component {
       <div className="App">
         <BrowserRouter>
           <React.Fragment>
-            <MyNavbar filteredCourses={this.state.filteredCourses} searchValue={this.state.searchValue} searchValueStateChange={this.searchValueStateChange} searchFunction={this.searchFunction} />
+            <MyNavbar authed={authed} filteredCourses={this.state.filteredCourses} searchValue={this.state.searchValue} searchValueStateChange={this.searchValueStateChange} searchFunction={this.searchFunction} />
             <div className="container">
               <div className="row">
               <Switch>
@@ -104,7 +105,6 @@ class App extends React.Component {
                 <Route path='/search-results' render={() => <SearchResults filteredCourses={this.state.filteredCourses} />} authed={authed} />
                <Route path="/login" component={Login} authed={authed}/>
                 <Route path='/shopping-cart' render={() => <ShoppingCart />} authed={authed} />
-                {/* <PublicRoute path='/auth' component={Auth} authed={authed} /> */}
                 <Redirect from= "*" to="/home"/>
               </Switch>
               </div>

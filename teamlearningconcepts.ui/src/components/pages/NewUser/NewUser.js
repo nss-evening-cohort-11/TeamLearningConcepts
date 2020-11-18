@@ -2,7 +2,7 @@ import React from 'react';
 
 import authData from '../../../helpers/data/authData';
 
-// import userData from '../../../helpers/data/userData';
+
 
 class NewUser extends React.Component {
   state = {
