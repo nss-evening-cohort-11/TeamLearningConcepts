@@ -50,7 +50,6 @@ namespace TeamLearningConcepts.Data
                           UPDATE [dbo].[Invoice]
                              SET [PaymentTypeId] = @ptid
                                 ,[isCompleted] = 1
-                                ,[InvoiceTotal] = @total
                           OUTPUT inserted.*
                            WHERE invoiceId = @id";
 

@@ -33,8 +33,7 @@ class PaymentOptions extends React.Component {
 
     const completedInvoice = {
       InvoiceId: invoice.invoiceId,
-      PaymentTypeId: selectedPaymentTypeId,
-      InvoiceTotal: 5000.00      
+      PaymentTypeId: selectedPaymentTypeId,    
     }
 
     invoiceData.putCompletedInvoice(completedInvoice)
@@ -46,7 +45,7 @@ class PaymentOptions extends React.Component {
   }
 
   render() {
-    const {paymentTypes} = this.state;
+    const {paymentTypes, invoice} = this.state;
 
     const buildPaymentTypeList = paymentTypes.map(paymentType => {
       return (<CustomInput 
@@ -83,10 +82,10 @@ class PaymentOptions extends React.Component {
               <div className="w-25 shopping-summary">
                   <p className="cart-title">Summary</p>
                   <hr />
-                  <p>Subtotal:</p>
-                  <p>Taxes:</p>
+                  <p>Subtotal: <span className="float-right">${invoice.subtotal}</span></p>
+                  <p>Taxes: <span className="float-right">${invoice.taxes}</span></p>
                   <hr />
-                  <p>Total:</p>
+                  <p>Total: <span className="float-right">${invoice.invoiceTotal}</span></p>
                   <Button className="btn w-50 btn-light float-right mt-3 mb-0" onClick={this.setInvoiceToCompleted}>Order</Button>
               </div>
           </div>

@@ -139,7 +139,7 @@ namespace TeamLearningConcepts.Data
                         join Course
                         on Course.CourseId = InvoiceLineItem.CourseId
                         WHERE Invoice.InvoiceId = @id
-                        ORDER BY Course.CourseId";
+                        ORDER BY InvoiceLineItem.InvoiceLineItemId";
 
             var parameters = new { id = invoiceId };
 
