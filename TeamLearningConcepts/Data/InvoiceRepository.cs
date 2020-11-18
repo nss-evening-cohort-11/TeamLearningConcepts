@@ -50,7 +50,6 @@ namespace TeamLearningConcepts.Data
                           UPDATE [dbo].[Invoice]
                              SET [PaymentTypeId] = @ptid
                                 ,[isCompleted] = 1
-                                ,[InvoiceTotal] = @total
                           OUTPUT inserted.*
                            WHERE invoiceId = @id";
 
@@ -63,8 +62,6 @@ namespace TeamLearningConcepts.Data
             using var db = new SqlConnection(_connectionString);
 
             var query = @"
-                        alter table Invoice
-                        nocheck constraint FK_Invoice_User
                         INSERT INTO [dbo].[Invoice]
                        ([UserId]
                        ,[InvoiceDate]
@@ -74,13 +71,10 @@ namespace TeamLearningConcepts.Data
                         OUTPUT Inserted.InvoiceId
                  VALUES
                        (@user
-                       ,'2020-11-20 18:51:03.540'
-                       ,'350.00'
-                       ,'0'
-                       ,'0')
-                          
-                        alter table Invoice
-                        check constraint FK_Invoice_User";
+                       ,getdate()
+                       ,0
+                       ,0
+                       ,0)";
 
             var parameters = new { user = userId };
 

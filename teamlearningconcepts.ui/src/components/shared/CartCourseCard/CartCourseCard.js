@@ -12,7 +12,7 @@ class CartCourseCard extends React.Component {
         const { course } = this.props;
 
         return(
-            <div className="CartCourseCard d-flex flex-wrap">
+            <div className="CartCourseCard d-flex flex-wrap m-2">
                 <img className="cart-course-img" src={course.photoUrl} alt={course.description}/>
                 <div className="cart-course-details">
                 <p className="cart-course-title">{course.title}</p>
