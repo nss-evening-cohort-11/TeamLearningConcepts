@@ -62,8 +62,6 @@ namespace TeamLearningConcepts.Data
             using var db = new SqlConnection(_connectionString);
 
             var query = @"
-                        alter table Invoice
-                        nocheck constraint FK_Invoice_User
                         INSERT INTO [dbo].[Invoice]
                        ([UserId]
                        ,[InvoiceDate]
@@ -76,10 +74,7 @@ namespace TeamLearningConcepts.Data
                        ,getdate()
                        ,0
                        ,0
-                       ,0)
-                          
-                        alter table Invoice
-                        check constraint FK_Invoice_User";
+                       ,0)";
 
             var parameters = new { user = userId };
 

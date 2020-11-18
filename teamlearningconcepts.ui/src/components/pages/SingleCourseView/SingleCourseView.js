@@ -18,7 +18,7 @@ class SingleCourseView extends React.Component {
 
  addToCart = () => {
   const { course } = this.state;
-  const userId = 3;
+  const userId = 1;
   const newUserCourse = {
     CourseId: course.courseId,
     UserId: userId,

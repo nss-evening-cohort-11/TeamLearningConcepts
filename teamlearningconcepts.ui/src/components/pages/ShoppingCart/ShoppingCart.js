@@ -14,7 +14,7 @@ class ShoppingCart extends React.Component {
   }
 
   componentDidMount() {
-      const userId = 3;
+      const userId = 1;
       invoiceData.getInvoiceByUserId(userId)
         .then(invoice => {
           this.setState({invoice})

@@ -18,7 +18,7 @@ class PaymentOptions extends React.Component {
   }
 
   componentDidMount() {
-    const userId = 3;
+    const userId = 1;
     paymentTypeData.getPaymentTypesByUserId(userId)
       .then(paymentTypes => this.setState({paymentTypes}))
     invoiceData.getInvoiceByUserId(userId)
