@@ -79,5 +79,20 @@ namespace TeamLearningConcepts.Controllers
             
             return Ok(invoiceId);
         }
+
+
+        [HttpGet("user/{userId}")]
+        public IActionResult GetAllInvoicesByUserId(int userId)
+        {
+            var userInvoices = _repo.GetAllUserInvoices(userId);
+
+            if (userInvoices == null) return NoContent();
+
+            return Ok(userInvoices);
+
+        }
+
+
+
     }
 }

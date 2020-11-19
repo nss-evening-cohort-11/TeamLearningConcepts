@@ -98,5 +98,21 @@ namespace TeamLearningConcepts.Data
             return invoice;
 
         }
+
+
+        public List<Invoice> GetAllUserInvoices(int userId)
+        {
+            using var db = new SqlConnection(_connectionString);
+
+           var query = @"SELECT *
+                        FROM Invoice
+                       WHERE UserId = @uid AND isCompleted = 1";
+
+           var parameters = new { uid = userId };
+
+            var invoices = db.Query<Invoice>(query);
+
+           return invoices.ToList();
+        }
     }
 }
