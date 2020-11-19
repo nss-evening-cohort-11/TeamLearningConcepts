@@ -108,7 +108,7 @@ class App extends React.Component {
                 <Route path='/search-results' render={() => <SearchResults filteredCourses={this.state.filteredCourses} />} authed={authed} />
                 <Route path="/login" component={Login} authed={authed}/>
                 <PrivateRoute path='/payment-options' component={PaymentOptions} authed={authed} />
-                <Route path='/order-confirmation' component={OrderConfirmation} authed={authed} />
+                <Route path='/order-confirmation/:invoiceId' component={OrderConfirmation} authed={authed} />
                 <Route path='/shopping-cart' render={() => <ShoppingCart />} authed={authed} />
                 <Redirect from= "*" to="/home"/>
               </Switch>
