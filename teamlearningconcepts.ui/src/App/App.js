@@ -98,7 +98,7 @@ class App extends React.Component {
               <div className="row">
               <Switch>
               <Route path='/home' component={Home} authed={authed} />
-                <PrivateRoute path='/users/new' component={NewUser} authed={authed} />
+                <Route path='/users/new' component={NewUser} authed={authed} />
                 <PrivateRoute path='/users/:usersId' component={SingleUser} authed={authed} />
                 <Route path='/courses/singleCourseView/:courseId' component={SingleCourseView} authed={authed} />
                 <Route path='/courses/:courseTypeId' component={SingleCategory} authed={authed} />
