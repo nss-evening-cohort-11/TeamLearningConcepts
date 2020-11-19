@@ -50,6 +50,23 @@ namespace TeamLearningConcepts.Data
             return user;
         }
 
+
+        internal User GetAuthedUserByEmail(string email)
+        {
+            using var db = new SqlConnection(_connectionString);
+
+            var query = @"SELECT *
+                          FROM [User]
+                          WHERE email = @userEmail";
+
+            var parameters = new { userEmail = email };
+
+            var authedUser = db.QueryFirstOrDefault<User>(query, parameters);
+
+            return authedUser;
+        }
+
+
         public void Add(User userToAdd)
         {
             using var db = new SqlConnection(_connectionString);

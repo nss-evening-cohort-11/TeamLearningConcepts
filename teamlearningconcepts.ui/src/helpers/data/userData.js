@@ -9,11 +9,11 @@ const getAllUsers = () => new Promise((resolve, reject) => {
 
 
 // change to ${userId}
-const getSingleUser = () => new Promise((resolve, reject) => {
-  axios.get(`${baseUrl}/Users/2`)
+const getUserByEmail = (email) => new Promise((resolve, reject) => {
+  axios.get(`${baseUrl}/Users/${email}/authedUser`)
   .then(response => resolve(response.data))
   .catch(reject)
 })
 
-export default {getAllUsers, getSingleUser};
+export default {getAllUsers, getUserByEmail};
 

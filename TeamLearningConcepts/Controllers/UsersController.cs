@@ -43,6 +43,14 @@ namespace TeamLearningConcepts.Controllers
             return Ok(singleUser);
         }
 
+        [HttpGet("{email}/authedUser")]
+        public IActionResult GetAuthenticatedUser(string email)
+        {
+            var authenticatedUser = _repo.GetAuthedUserByEmail(email);
+
+            return Ok(authenticatedUser);
+        }
+
         [HttpPost]
         public IActionResult CreateUser(User user)
         {
