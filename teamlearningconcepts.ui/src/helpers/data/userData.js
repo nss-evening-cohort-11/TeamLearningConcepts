@@ -7,6 +7,7 @@ const getAllUsers = () => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
+
 // change to ${userId}
 const getSingleUser = () => new Promise((resolve, reject) => {
   axios.get(`${baseUrl}/Users/2`)
@@ -15,3 +16,4 @@ const getSingleUser = () => new Promise((resolve, reject) => {
 })
 
 export default {getAllUsers, getSingleUser};
+

@@ -55,6 +55,7 @@ const getCoursesByInvoiceId = (invoiceId) => new Promise ((resolve, reject) => {
   })
 
 
+// eslint-disable-next-line import/no-anonymous-default-export
 export default {
 getAllCoursesByCourseTypeId, 
 getFirstThreeCoursesByCourseTypeId, 

@@ -18,12 +18,24 @@ namespace TeamLearningConcepts.Data
         {
             using var db = new SqlConnection(_connectionString);
 
-            var users = db.Query<User>("SELECT * FROM [User]");
+            try
+            {
+                var users = db.Query<User>("select * from [User]");
 
-            return users.ToList();
+                return users.ToList();
+
+                //    var users = db.Query<User>("SELECT * FROM [User]");
+
+                //return users.ToList();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
         }
 
-        internal User GetUserById(int userId)
+            internal User GetUserById(int userId)
         {
             using var db = new SqlConnection(_connectionString);
 
@@ -36,6 +48,29 @@ namespace TeamLearningConcepts.Data
             var user = db.QueryFirstOrDefault<User>(query, parameters);
 
             return user;
+        }
+
+        public void Add(User userToAdd)
+        {
+            using var db = new SqlConnection(_connectionString);
+
+           
+            var sql = @"INSERT INTO [dbo].[User]
+                               ([FirstName]
+                               ,[LastName]
+                               ,[UserName]
+                               ,[PhotoUrl]
+                               ,[Email])
+
+                               Output inserted.userid
+                        VALUES
+                               (@firstName,@lastName,@username,@photoUrl, @email)";
+
+            var parameters = new { firstName = userToAdd.FirstName, lastName = userToAdd.LastName, username = userToAdd.Username, photoUrl = userToAdd.PhotoUrl, email = userToAdd.Email };
+
+            var newId = db.ExecuteScalar<int>(sql, parameters);
+
+            userToAdd.UserId = newId;
         }
 
         internal void Remove(int userId)

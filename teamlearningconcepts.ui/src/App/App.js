@@ -1,6 +1,9 @@
 import React from 'react';
-
+import fbConnection from "../helpers/data/connection";
+import Login from '../components/pages/Login/Login';
 import './App.scss';
+import 'firebase/auth';
+import firebase from 'firebase/app';
 
 
 
@@ -25,21 +28,24 @@ import SearchResults from '../components/pages/SearchResults/SearchResults';
 import ShoppingCart from '../components/pages/ShoppingCart/ShoppingCart';
 import SingleCourseView from '../components/pages/SingleCourseView/SingleCourseView';
 import courseData from '../helpers/data/courseData';
+import NewUser from '../components/pages/NewUser/NewUser';
 import PaymentOptions from '../components/pages/PaymentOptions/PaymentOptions';
 import UserProfile from '../components/pages/UserProfile/UserProfile';
 
 
-const PublicRoute = ({ component: Component, authed, ...rest }) => {
-  const routeChecker = (props) => (authed === false
-    ? (<Component {...props} />)
-    : (<Redirect to={{ pathname: '/home', state: { from: props.location } }} />));
-  return <Route {...rest} render={(props) => routeChecker(props)} />;
-};
+fbConnection();
+
+// const PublicRoute = ({ component: Component, authed, ...rest }) => {
+//   const routeChecker = (props) => (authed === false
+//     ? (<Component {...props} />)
+//     : (<Redirect to={{ pathname: '/home', state: { from: props.location } }} />));
+//   return <Route {...rest} render={(props) => routeChecker(props)} />;
+// };
 
 const PrivateRoute = ({ component: Component, authed, ...rest }) => {
   const routeChecker = (props) => (authed === true
     ? (<Component {...props} />)
-    : (<Redirect to={{ pathname: '/auth', state: { from: props.location } }} />));
+    : (<Redirect to={{ pathname: '/login', state: { from: props.location } }} />));
   return <Route {...rest} render={(props) => routeChecker(props)} />;
 };
 
@@ -47,19 +53,27 @@ const PrivateRoute = ({ component: Component, authed, ...rest }) => {
 
 class App extends React.Component {
   state = {
-    authed: true,
+    authed: false,
     searchValue: '',
     filteredCourses: [],
   }
 
   componentDidMount() {
-
+    this.removeListener = firebase.auth().onAuthStateChanged((user) => {
+      if (user) {
+        this.setState({ authed: true });
+      } else {
+        this.setState({ authed: false });
+      }
+      
+    });
   };
     
   
 
   componentWillUnmount() {
 
+    this.removeListener();
   };
 
   searchValueStateChange = (e) => {
@@ -68,7 +82,7 @@ class App extends React.Component {
 
   searchFunction = () => {
     const searchVal = this.state.searchValue;
-    if (searchVal != '') {
+    if (searchVal !== '') {
       courseData.search(searchVal)
       .then(response => { this.setState({ filteredCourses: response }) });
     } 
@@ -80,19 +94,21 @@ class App extends React.Component {
       <div className="App">
         <BrowserRouter>
           <React.Fragment>
-            <MyNavbar filteredCourses={this.state.filteredCourses} searchValue={this.state.searchValue} searchValueStateChange={this.searchValueStateChange} searchFunction={this.searchFunction} />
+            <MyNavbar authed={authed} filteredCourses={this.state.filteredCourses} searchValue={this.state.searchValue} searchValueStateChange={this.searchValueStateChange} searchFunction={this.searchFunction} />
             <div className="container">
               <div className="row">
               <Switch>
-              <Route path='/search-results' render={() => <SearchResults filteredCourses={this.state.filteredCourses} />} authed={authed} />
-
-              <PrivateRoute path='/home' component={Home} authed={authed} />
+              <Route path='/home' component={Home} authed={authed} />
+                <Route path='/users/new' component={NewUser} authed={authed} />
                 <PrivateRoute path='/users/:usersId' component={SingleUser} authed={authed} />
-                <PrivateRoute path='/courses/singleCourseView/:courseId' component={SingleCourseView} authed={authed} />
-                <PrivateRoute path='/courses/:courseTypeId' component={SingleCategory} authed={authed} />
+                <Route path='/courses/singleCourseView/:courseId' component={SingleCourseView} authed={authed} />
+                <Route path='/courses/:courseTypeId' component={SingleCategory} authed={authed} />
                 <PrivateRoute path='/users' component={Users} authed={authed} />
                 <PrivateRoute path='/userProfile' component={UserProfile} authed={authed} />
-                <PrivateRoute path='/courses' component={Courses} authed={authed} />
+                <Route path='/courses' component={Courses} authed={authed} />
+                <Route path='/search-results' render={() => <SearchResults filteredCourses={this.state.filteredCourses} />} authed={authed} />
+                <Route path="/login" component={Login} authed={authed}/>
+
                 <PrivateRoute path='/payment-options' component={PaymentOptions} authed={authed} />
                 <Route path='/shopping-cart' render={() => <ShoppingCart />} authed={authed} />
                 <Redirect from= "*" to="/home"/>
