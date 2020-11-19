@@ -39,7 +39,6 @@ namespace TeamLearningConcepts.Data
             return invoiceLine.ToList();
         }
 
-<<<<<<< HEAD
         // GET BY INVOICEID AND COURSEID
         public InvoiceLineItem GetByInvoiceAndCourse(int invoiceId, int courseId)
         {
@@ -56,7 +55,6 @@ namespace TeamLearningConcepts.Data
             return invoiceLine;
         } 
 
-=======
         public void CalculateInvoiceTotal(int invoiceId, int courseId)
         {
             using var db = new SqlConnection(_connectionString);
@@ -88,7 +86,6 @@ namespace TeamLearningConcepts.Data
 
             db.Execute(query, parameters);
         }
->>>>>>> master
 
         public int CreateNewInvoiceLineItem(int invoiceId, int courseId)
         {
