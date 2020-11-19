@@ -4,15 +4,21 @@ using System.Linq;
 using System.Threading.Tasks;
 using TeamLearningConcepts.Data;
 using TeamLearningConcepts.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 
 namespace TeamLearningConcepts.Controllers
 {
+    public abstract class FirebaseEnabledController : ControllerBase
+    {
+        protected string UserId => User.FindFirst(x => x.Type == "user_id").Value;
+    }
+
     [Route("api/users")]
     [ApiController]
-    public class UsersController : ControllerBase
+    public class UsersController : FirebaseEnabledController
     {
         UserRepository _repo;
 
@@ -35,6 +41,14 @@ namespace TeamLearningConcepts.Controllers
             var singleUser = _repo.GetUserById(id);
 
             return Ok(singleUser);
+        }
+
+        [HttpPost]
+        public IActionResult CreateUser(User user)
+        {
+            _repo.Add(user);
+
+            return Created($"/api/users/{user.UserId}", user);
         }
 
         [HttpDelete("{id}")]
