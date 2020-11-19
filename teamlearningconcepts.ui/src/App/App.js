@@ -26,6 +26,7 @@ import ShoppingCart from '../components/pages/ShoppingCart/ShoppingCart';
 import SingleCourseView from '../components/pages/SingleCourseView/SingleCourseView';
 import courseData from '../helpers/data/courseData';
 import PaymentOptions from '../components/pages/PaymentOptions/PaymentOptions';
+import OrderConfirmation from '../components/pages/OrderConfirmation/OrderConfirmation';
 
 
 const PublicRoute = ({ component: Component, authed, ...rest }) => {
@@ -67,7 +68,7 @@ class App extends React.Component {
 
   searchFunction = () => {
     const searchVal = this.state.searchValue;
-    if (searchVal != '') {
+    if (searchVal !== '') {
       courseData.search(searchVal)
       .then(response => { this.setState({ filteredCourses: response }) });
     } 
@@ -92,6 +93,7 @@ class App extends React.Component {
                 <PrivateRoute path='/users' component={Users} authed={authed} />
                 <PrivateRoute path='/courses' component={Courses} authed={authed} />
                 <PrivateRoute path='/payment-options' component={PaymentOptions} authed={authed} />
+                <Route path='/order-confirmation' component={OrderConfirmation} authed={authed} />
                 <Route path='/shopping-cart' render={() => <ShoppingCart />} authed={authed} />
                 <Redirect from= "*" to="/home"/>
               </Switch>

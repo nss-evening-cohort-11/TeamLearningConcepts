@@ -41,7 +41,7 @@ class PaymentOptions extends React.Component {
       }
   
       invoiceData.putCompletedInvoice(completedInvoice)
-        .then(/* push to order confirmation page*/)
+        .then(() => this.props.history.push(`/order-confirmation`))
     }
   }
 
