@@ -6,6 +6,7 @@ apiKeys.json
 /node_modules
 /.pnp
 .pnp.js
+src/helpers/apiKeys.json
 
 # testing
 /coverage

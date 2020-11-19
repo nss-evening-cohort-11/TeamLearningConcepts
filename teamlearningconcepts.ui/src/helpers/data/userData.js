@@ -7,4 +7,5 @@ const getAllUsers = () => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
-export default {getAllUsers};
+// eslint-disable-next-line import/no-anonymous-default-export
+export default { getAllUsers };
