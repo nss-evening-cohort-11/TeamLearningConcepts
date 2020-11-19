@@ -14,7 +14,8 @@ class PaymentOptions extends React.Component {
   state ={
     paymentTypes: [],
     invoice: {},
-    selectedPaymentTypeId: 0
+    selectedPaymentTypeId: 0,
+    showValidationAlert: false
   }
 
   componentDidMount() {
@@ -31,21 +32,25 @@ class PaymentOptions extends React.Component {
     e.preventDefault();
     const { selectedPaymentTypeId, invoice } = this.state;
 
-    const completedInvoice = {
-      InvoiceId: invoice.invoiceId,
-      PaymentTypeId: selectedPaymentTypeId,    
+    if (selectedPaymentTypeId === 0) {
+      this.setState({showValidationAlert: true});
+    } else {
+      const completedInvoice = {
+        InvoiceId: invoice.invoiceId,
+        PaymentTypeId: selectedPaymentTypeId,    
+      }
+  
+      invoiceData.putCompletedInvoice(completedInvoice)
+        .then(/* push to order confirmation page*/)
     }
-
-    invoiceData.putCompletedInvoice(completedInvoice)
-      .then(/* push to order confirmation page*/)
   }
 
   paymentChange = (e) => {
-    this.setState({selectedPaymentTypeId: parseInt(e.target.value)})
+    this.setState({selectedPaymentTypeId: parseInt(e.target.value), showValidationAlert: false})
   }
 
   render() {
-    const {paymentTypes, invoice} = this.state;
+    const {paymentTypes, invoice, showValidationAlert} = this.state;
 
     const buildPaymentTypeList = paymentTypes.map(paymentType => {
       return (<CustomInput 
@@ -78,6 +83,10 @@ class PaymentOptions extends React.Component {
                     </FormGroup>
                   </Form>
                   <hr />
+                  {showValidationAlert
+                  ? <p className="validation-alert">Please select a payment option before subitting your order.</p>
+                  : ""
+                  }
               </div>
               <div className="w-25 shopping-summary">
                   <p className="cart-title">Summary</p>
