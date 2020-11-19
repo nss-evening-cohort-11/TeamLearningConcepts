@@ -32,7 +32,7 @@ class MyNavbar extends React.Component {
     logMeOut = (e) => {
         e.preventDefault();
         firebase.auth().signOut();
-        // this.removeListener();
+        <NavLink className="navbar-links" tag={RRNavLink} to='/login'>LogIn</NavLink>
       }
 
     toggle = () => {
@@ -67,7 +67,7 @@ class MyNavbar extends React.Component {
             <NavItem>
                 <NavLink className="navbar-links" tag={RRNavLink} to='/shopping-cart'><i class="fas fa-shopping-cart"></i></NavLink>
             </NavItem>
-            <NavItem>
+          <NavItem>
               <NavLink className="navbar-links" onClick={this.logMeOut}>Log Out</NavLink>
           </NavItem>
                 </Nav>
