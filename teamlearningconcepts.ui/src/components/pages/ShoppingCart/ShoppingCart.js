@@ -69,6 +69,7 @@ class ShoppingCart extends React.Component {
                       ? <Link className="btn w-50 btn-light float-right mt-3 mb-0" to={paymentOptionsLink}>Next</Link>
                       : <button className="btn w-50 btn-light float-right mt-3 mb-0" disabled>Next</button>
                       }
+                      <button className="btn w-50 btn-light mt-3 mb-0">Cancel</button>
                   </div>
               </div>
           </div>
