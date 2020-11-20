@@ -1,6 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+
+import authData from '../../../helpers/data/authData';
 import invoiceData from '../../../helpers/data/invoiceData';
+import invoiceLineItemData from '../../../helpers/data/invoiceLineItemData';
 import courseData from '../../../helpers/data/courseData';
 
 import CartCourseCard from '../../shared/CartCourseCard/CartCourseCard';
@@ -13,14 +16,32 @@ class ShoppingCart extends React.Component {
       cart: []
   }
 
+  getCartData = () => {
+    const userId = 1;
+    invoiceData.getInvoiceByUserId(userId)
+      .then(invoice => {
+        this.setState({invoice})
+        courseData.getCoursesByInvoiceId(this.state.invoice.invoiceId)
+          .then(courses => this.setState({cart: courses}))
+      })  
+  }
+
   componentDidMount() {
-      const userId = 1;
-      invoiceData.getInvoiceByUserId(userId)
-        .then(invoice => {
-          this.setState({invoice})
-          courseData.getCoursesByInvoiceId(this.state.invoice.invoiceId)
-            .then(courses => this.setState({cart: courses}))
-        })    
+    this.getCartData();
+  }
+
+  removeCourseFromCart = (courseId) => {
+    const invoiceId = this.state.invoice.invoiceId;
+    invoiceLineItemData.deleteCourseFromCart(invoiceId, courseId)
+    .then(() => this.getCartData())
+    .catch((err) => console.log('could not delete', err));
+  }
+
+  cancelOrder = () => {
+    const invoiceId = this.state.invoice.invoiceId;
+    invoiceData.deleteInvoiceAndLineItems(invoiceId)
+    .then(() => this.getCartData())
+    .catch((err) => console.log('could not cancel order', err));
   }
 
   render(){
@@ -28,7 +49,7 @@ class ShoppingCart extends React.Component {
     const { cart, invoice } = this.state;
 
     const buildCards = cart.map((course) => (
-        <CartCourseCard course={course} key={course.courseId} />
+        <CartCourseCard course={course} key={course.courseId} removeCourseFromCart={this.removeCourseFromCart} />
     ))
 
       return(
@@ -57,6 +78,7 @@ class ShoppingCart extends React.Component {
                       ? <Link className="btn w-50 btn-light float-right mt-3 mb-0" to={paymentOptionsLink}>Next</Link>
                       : <button className="btn w-50 btn-light float-right mt-3 mb-0" disabled>Next</button>
                       }
+                      <button className="btn w-50 btn-light mt-3 mb-0" onClick={this.cancelOrder}>Cancel</button>
                   </div>
               </div>
           </div>

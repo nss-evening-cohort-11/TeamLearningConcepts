@@ -79,5 +79,18 @@ namespace TeamLearningConcepts.Controllers
             
             return Ok(invoiceId);
         }
+
+        [HttpDelete("delete/{invoiceId}")]
+        public IActionResult DeleteInvoiceAndLineItems(int invoiceId)
+        {
+            if (_lineItemRepository.GetByInvoiceId(invoiceId) == null)
+            {
+                return NotFound("No invoice found with that id");
+            }
+
+            _repo.DeleteInvoiceWithLineItems(invoiceId);
+
+            return Ok();
+        }
     }
 }
