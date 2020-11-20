@@ -14,9 +14,12 @@ const getInvoiceByUserId = (userId) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
+const deleteInvoiceandLineItems = (invoiceId) => axios.delete(`${baseUrl}/invoices/delete/${invoiceId}`);
+
 const addInvoice = (userCourse) => axios.post(`${baseUrl}/invoices`, userCourse);
 
 const putCompletedInvoice = (completedInvoice) => 
     axios.put(`${baseUrl}/invoices/complete`, completedInvoice);
 
-export default { getInvoiceByUserId, addInvoice, putCompletedInvoice };
+
+export default { getInvoiceByUserId, addInvoice, putCompletedInvoice, deleteInvoiceandLineItems };

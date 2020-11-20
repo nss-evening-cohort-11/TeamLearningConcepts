@@ -32,7 +32,14 @@ class ShoppingCart extends React.Component {
     const invoiceId = this.state.invoice.invoiceId;
     invoiceLineItemData.deleteCourseFromCart(invoiceId, courseId)
     .then(() => this.getCartData())
-    .catch((err) => console.log("could not delete", err));
+    .catch((err) => console.log('could not delete', err));
+  }
+
+  cancelOrder = () => {
+    const invoiceId = this.state.invoice.invoiceId;
+    invoiceData.deleteInvoiceandLineItems(invoiceId)
+    .then(() => this.getCartData())
+    .catch((err) => console.log('could not cancel order', err));
   }
 
   render(){
@@ -69,7 +76,7 @@ class ShoppingCart extends React.Component {
                       ? <Link className="btn w-50 btn-light float-right mt-3 mb-0" to={paymentOptionsLink}>Next</Link>
                       : <button className="btn w-50 btn-light float-right mt-3 mb-0" disabled>Next</button>
                       }
-                      <button className="btn w-50 btn-light mt-3 mb-0">Cancel</button>
+                      <button className="btn w-50 btn-light mt-3 mb-0" onClick={this.cancelOrder}>Cancel</button>
                   </div>
               </div>
           </div>
