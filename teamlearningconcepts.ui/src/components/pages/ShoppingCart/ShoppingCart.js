@@ -39,7 +39,7 @@ class ShoppingCart extends React.Component {
 
   cancelOrder = () => {
     const invoiceId = this.state.invoice.invoiceId;
-    invoiceData.deleteInvoiceandLineItems(invoiceId)
+    invoiceData.deleteInvoiceAndLineItems(invoiceId)
     .then(() => this.getCartData())
     .catch((err) => console.log('could not cancel order', err));
   }
