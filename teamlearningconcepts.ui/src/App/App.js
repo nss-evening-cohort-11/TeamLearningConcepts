@@ -31,6 +31,7 @@ import courseData from '../helpers/data/courseData';
 import NewUser from '../components/pages/NewUser/NewUser';
 import PaymentOptions from '../components/pages/PaymentOptions/PaymentOptions';
 import UserProfile from '../components/pages/UserProfile/UserProfile';
+import OrderConfirmation from '../components/pages/OrderConfirmation/OrderConfirmation';
 
 
 fbConnection();
@@ -110,6 +111,7 @@ class App extends React.Component {
                 <Route path="/login" component={Login} authed={authed}/>
 
                 <PrivateRoute path='/payment-options' component={PaymentOptions} authed={authed} />
+                <Route path='/order-confirmation/:invoiceId' component={OrderConfirmation} authed={authed} />
                 <Route path='/shopping-cart' render={() => <ShoppingCart />} authed={authed} />
                 <Redirect from= "*" to="/home"/>
               </Switch>
