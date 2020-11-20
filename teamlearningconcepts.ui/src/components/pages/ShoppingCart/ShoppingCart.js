@@ -1,5 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+
+import authData from '../../../helpers/data/authData';
 import invoiceData from '../../../helpers/data/invoiceData';
 import invoiceLineItemData from '../../../helpers/data/invoiceLineItemData';
 import courseData from '../../../helpers/data/courseData';

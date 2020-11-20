@@ -1,5 +1,6 @@
 import React from 'react';
 
+import authData from '../../../helpers/data/authData';
 import courseData from '../../../helpers/data/courseData';
 import invoiceData from '../../../helpers/data/invoiceData';
 import invoiceLineItemData from '../../../helpers/data/invoiceLineItemData';
