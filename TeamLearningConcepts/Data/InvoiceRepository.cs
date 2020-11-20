@@ -98,5 +98,21 @@ namespace TeamLearningConcepts.Data
             return invoice;
 
         }
+
+        // DELETE INVOICE WITH LINE ITEMS
+        public void DeleteInvoiceWithLineItems(int invoiceId)
+        {
+            using var db = new SqlConnection(_connectionString);
+
+            var query = @"Delete from InvoiceLineItem
+                          Where InvoiceId = @invoice
+
+                          Delete from Invoice
+                          Where InvoiceId = @invoice";
+
+            var parameters = new { invoice = invoiceId };
+
+            db.Execute(query, parameters);
+        }
     }
 }
