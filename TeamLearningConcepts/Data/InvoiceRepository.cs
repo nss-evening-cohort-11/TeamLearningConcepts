@@ -41,13 +41,27 @@ namespace TeamLearningConcepts.Data
             return invoice;
         }
 
+        // Set isComplete to true, update PaymentType and InvoiceTotal
+        public void Complete(Invoice invoice)
+        {
+            using var db = new SqlConnection(_connectionString);
+
+            var query = @"
+                          UPDATE [dbo].[Invoice]
+                             SET [PaymentTypeId] = @ptid
+                                ,[isCompleted] = 1
+                          OUTPUT inserted.*
+                           WHERE invoiceId = @id";
+
+            var parameters = new { id = invoice.InvoiceId, ptid = invoice.PaymentTypeId, total = invoice.InvoiceTotal };
+
+            db.Execute(query, parameters);
+        }
         public int CreateNewInvoice(int userId)
         {
             using var db = new SqlConnection(_connectionString);
 
             var query = @"
-                        alter table Invoice
-                        nocheck constraint FK_Invoice_User
                         INSERT INTO [dbo].[Invoice]
                        ([UserId]
                        ,[InvoiceDate]
@@ -57,13 +71,10 @@ namespace TeamLearningConcepts.Data
                         OUTPUT Inserted.InvoiceId
                  VALUES
                        (@user
-                       ,'2020-11-20 18:51:03.540'
-                       ,'350.00'
-                       ,'0'
-                       ,'0')
-                          
-                        alter table Invoice
-                        check constraint FK_Invoice_User";
+                       ,getdate()
+                       ,0
+                       ,0
+                       ,0)";
 
             var parameters = new { user = userId };
 
@@ -85,6 +96,23 @@ namespace TeamLearningConcepts.Data
             var invoice = db.QueryFirstOrDefault<Invoice>(query, parameters);
 
             return invoice;
+
+        }
+
+        // DELETE INVOICE WITH LINE ITEMS
+        public void DeleteInvoiceWithLineItems(int invoiceId)
+        {
+            using var db = new SqlConnection(_connectionString);
+
+            var query = @"Delete from InvoiceLineItem
+                          Where InvoiceId = @invoice
+
+                          Delete from Invoice
+                          Where InvoiceId = @invoice";
+
+            var parameters = new { invoice = invoiceId };
+
+            db.Execute(query, parameters);
         }
     }
 }
