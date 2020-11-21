@@ -1,6 +1,8 @@
 @import '../../../styles/variables';
 
 .Home {
+  margin: 0;
+  padding: 0;
   display: block;
   width: 100%;
 
@@ -17,11 +19,6 @@
     text-align: center;
   }
 
-  .featured {
-    text-align: center; 
-    font-weight: 600; 
-  }
-
   .intro-photos {
     width: 100%;
     margin: 0 auto;
@@ -31,6 +28,13 @@
   .introPic {
     height: 20em;
     padding: 10px;
+  }
+
+  .featured {
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    text-align: center; 
+    font-weight: 500;
   }
   
   .salesCourses {
@@ -45,19 +49,23 @@
     padding: 40px;
   }
 
-  button {
+  .sales {
     width: 100%;
-    padding: 10px;
-    margin-bottom: 20px;
+    justify-content: center;
   }
-  
+
+  .btn-shop-now {
+    justify-items: center;
+    width: 50%;
+    padding: 10px;
+    margin: 2rem;
+  }
+
   .aboutUs {  
+    background-color: $medium-blue;
+    color: $cream;
     padding: 30px;
     text-align: center;
     border: black solid 3px;
-  }
-  
-  .course-Url {
-    width: 500px;
   }
 }

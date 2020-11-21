@@ -1,6 +1,7 @@
 @import '~bootstrap/dist/css/bootstrap.min.css';
 @import "~@fortawesome/fontawesome-free/css/all.min.css";
 @import './variables';
+@import './events';
 
 body {
   margin: 0;
@@ -13,39 +14,7 @@ body {
     background-color: $cream;
     margin: 1rem;
   }
-<<<<<<< HEAD
+  .btn-dark-blue {
+    @include dark-button;
+  }
 }
-=======
-
-  .salesPic {
-   
-    margin-left: auto;
-    margin-right: auto;
-    width: 50%;
-    padding: 40px;
- 
-  }
-  button {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 20px;
-  }
-
-  .aboutUs {
-
-    padding: 30px;
-    text-align: center;
-    border: black solid 3px;
-  }
-  .carouselItem {
-    width: 1000px;
-    text-align: center;
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-  .course-Url {
-    width: 500px;
-  }
- 
->>>>>>> master

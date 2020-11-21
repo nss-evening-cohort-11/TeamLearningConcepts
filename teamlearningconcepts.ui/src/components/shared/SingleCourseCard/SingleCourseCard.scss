@@ -1,7 +1,15 @@
+@import '../../../styles/variables';
+@import '../../../styles//events';
+
 .SingleCourseCard {
-  display: block;
+  margin-bottom: 1rem;
 
   .card {
     width: 18rem;
+    height: 100%;
+  }
+
+  .btn-dark-blue {
+    @include dark-button;
   }
 }
