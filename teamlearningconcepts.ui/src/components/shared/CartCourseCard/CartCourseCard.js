@@ -19,9 +19,8 @@ class CartCourseCard extends React.Component {
                 <div className="cart-course-details">
                 <p className="cart-course-title">{course.title}</p>
                 <p className="cart-course-price">${course.price}.00</p>
-                <button className="btn btn-primary btn-sm" onClick={() => removeCourseFromCart(course.courseId)}>X</button>
                 </div>
-
+                <button className="btn btn-dark-blue btn-sm ml-auto" onClick={() => removeCourseFromCart(course.courseId)}>X</button>
             </div>
         )
     }

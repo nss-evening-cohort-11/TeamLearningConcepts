@@ -1,0 +1,27 @@
+@mixin light-blue-button {
+    margin: .5em;
+    background-color: #aebddb;
+    &:hover {
+      background-color: #a1b0cc;   
+    }
+  }
+
+@mixin cream-button {
+    margin: .5em;
+    background-color: $cream;
+    color: $dark-gray;
+    &:hover {
+        background-color: #fdfff5;
+        color: $dark-gray;
+    }
+}
+
+  @mixin dark-button {
+    margin: .5em;
+    background-color: $dark-blue;
+    color: $cream;
+    &:hover {
+      background-color: $med-dark-blue;  
+      color: white; 
+    }
+  }

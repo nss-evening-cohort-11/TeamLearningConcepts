@@ -21,7 +21,6 @@ import Home from '../components/pages/Home/Home';
 
 import Courses from '../components/pages/Courses/Courses';
 import MyNavbar from '../components/shared/MyNavbar/MyNavbar';
-import Users from '../components/pages/Users/Users';
 import SingleUser from '../components/shared/SingleUser/SingleUser';
 import SingleCategory from '../components/pages/SingleCategory/SingleCategory';
 import SearchResults from '../components/pages/SearchResults/SearchResults';
@@ -32,6 +31,7 @@ import NewUser from '../components/pages/NewUser/NewUser';
 import PaymentOptions from '../components/pages/PaymentOptions/PaymentOptions';
 import UserProfile from '../components/pages/UserProfile/UserProfile';
 import OrderConfirmation from '../components/pages/OrderConfirmation/OrderConfirmation';
+import MyFooter from '../components/shared/MyFooter/MyFooter';
 
 
 fbConnection();
@@ -104,7 +104,6 @@ class App extends React.Component {
                 <PrivateRoute path='/users/:usersId' component={SingleUser} authed={authed} />
                 <Route path='/courses/singleCourseView/:courseId' component={SingleCourseView} authed={authed} />
                 <Route path='/courses/:courseTypeId' component={SingleCategory} authed={authed} />
-                <PrivateRoute path='/users' component={Users} authed={authed} />
                 <PrivateRoute path='/userProfile' component={UserProfile} authed={authed} />
                 <Route path='/courses' component={Courses} authed={authed} />
                 <Route path='/search-results' render={() => <SearchResults filteredCourses={this.state.filteredCourses} />} authed={authed} />
@@ -119,6 +118,7 @@ class App extends React.Component {
             </div>
           </React.Fragment>
         </BrowserRouter>
+        <MyFooter />
       </div>
     );
   }

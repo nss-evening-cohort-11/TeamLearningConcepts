@@ -28,7 +28,7 @@ class SingleCourseCard extends React.Component {
           <div className="card-body">
             <h5 className="card-title">{course.title}</h5>
             <p className="card-text">{course.description}</p>
-            <Link className="btn btn-primary" to={singleCourseView}>View Course</Link>
+            <Link className="btn btn-dark-blue" to={singleCourseView}>View Course</Link>
           </div>
          </div>        
       </div>

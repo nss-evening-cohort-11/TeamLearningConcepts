@@ -24,7 +24,7 @@ class UserProfile extends React.Component {
 render() {
 const {userProfile} = this.state;
   return(
-    <div className="UserProfile col-md-12">
+    <div className="UserProfile col-md-12 text-center">
       <h2>{`${userProfile.firstName} ${userProfile.lastName}'s Profile`}</h2>
 
         <div className="profile-container">
@@ -38,7 +38,7 @@ const {userProfile} = this.state;
           </div>
         </div>
         <div>
-          <button className="previous-orders-btn btn btn-warning">Previous Orders</button>
+          <button className="btn btn-dark-blue previous-orders-btn">Previous Orders</button>
         </div>
     </div>
   )

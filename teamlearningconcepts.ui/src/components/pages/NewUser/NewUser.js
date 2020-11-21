@@ -1,5 +1,7 @@
 import React from 'react';
 
+import './NewUser.scss';
+
 import authData from '../../../helpers/data/authData';
 
 
@@ -86,7 +88,7 @@ render() {
 
   return (
     <div className="New col-12">
-      <h1>New User</h1>
+      <h1 className="text-center">New User</h1>
       <form className="col-6 offset-3 text-left">
         <div className="form-group">
         <label htmlFor="new-first-name">First Name</label>
@@ -148,7 +150,7 @@ render() {
         onChange={this.newPassword}
         />
         </div>
-        <button className="btn btn-secondary" onClick={this.saveNewUser}>Save New User</button>
+        <button className="btn btn-dark-blue" onClick={this.saveNewUser}>Save New User</button>
       </form>
     </div>
   )

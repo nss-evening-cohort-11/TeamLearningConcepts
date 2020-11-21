@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 
-
+import './Login.scss';
 
 import authRequests from '../../../helpers/data/authData';
 
@@ -21,7 +21,7 @@ class Login extends React.Component {
     authRequests
       .loginUser(user)
       .then(() => {
-        this.props.history.push('/users');
+        this.props.history.push('/home');
       })
       .catch(error => {
         console.error('there was an error logging in', error);
@@ -44,14 +44,14 @@ class Login extends React.Component {
     const { user } = this.state;
     return (
       <div className="Login">
-        <div id="login-form">
+        <div id="login-form" className="d-flex flex-wrap text-center justify-content-center">
           <h1 className="text-center">Login</h1>
-          <form className="form-horizontal col-sm-6 col-sm-offset-3">
+          <form className="form-horizontal justify-content-center">
             <div className="form-group">
-              <label htmlFor="inputEmail" className="col-sm-8 control-label">
+              <label htmlFor="inputEmail" className="control-label">
                 Email:
               </label>
-              <div className="col-sm-20">
+              <div className="">
                 <input
                   type="email"
                   className="form-control"
@@ -63,10 +63,10 @@ class Login extends React.Component {
               </div>
             </div>
             <div className="form-group">
-              <label htmlFor="inputPassword" className="col-sm-8 control-label">
+              <label htmlFor="inputPassword" className="control-label">
                 Password:
               </label>
-              <div className="col-sm-20">
+              <div className="">
                 <input
                   type="password"
                   className="form-control"
@@ -78,15 +78,15 @@ class Login extends React.Component {
               </div>
             </div>
             <div className="form-group">
-              <div className="col-sm-12 text-center">
+              <div className="text-center">
                 <Link to="users/new">Register</Link>
               </div>
             </div>
             <div className="form-group">
-              <div className="col-sm-12">
+              <div className="">
                 <button
                   type="submit"
-                  className="btn btn-default col-xs-12"
+                  className="btn btn-lg btn-dark-blue"
                   onClick={this.loginClickEvent}
                 >
                   Login
