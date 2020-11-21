@@ -1,0 +1,13 @@
+@import '../../../styles/variables';
+
+.MyFooter {
+    margin: 0;
+    padding: .5rem;
+    width: 100%;
+    display: block;
+    background-color: $med-dark-blue;
+    color: $cream;
+    .tlc-title {
+        margin-top: 1rem;
+    }
+}

@@ -31,6 +31,7 @@ import courseData from '../helpers/data/courseData';
 import NewUser from '../components/pages/NewUser/NewUser';
 import PaymentOptions from '../components/pages/PaymentOptions/PaymentOptions';
 import OrderConfirmation from '../components/pages/OrderConfirmation/OrderConfirmation';
+import MyFooter from '../components/shared/MyFooter/MyFooter';
 
 
 fbConnection();
@@ -116,6 +117,7 @@ class App extends React.Component {
             </div>
           </React.Fragment>
         </BrowserRouter>
+        <MyFooter />
       </div>
     );
   }
