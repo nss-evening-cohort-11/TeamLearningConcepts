@@ -1,6 +1,8 @@
 .ShoppingCart {
     display: block;
     width: 100%;
+    height: 100vh;
+    flex: 1 0 auto;
     .shopping-cart-progress {
         width: 80%;
         margin: 0 auto;
@@ -13,13 +15,16 @@
             margin: 0;
             margin-bottom: 2rem;
         }
+
         .shopping-cart-border {
             border-bottom: .125rem solid #2b4570;
         }
+
         .payment-options-border {
             border-bottom: .125rem solid #fcffeb;
         }
     }
+
     .shopping-cart-summary-area {
         width: 80%;
         margin: 0 auto;
@@ -28,12 +33,15 @@
         background-color: #2b4570;
         color: #fcffeb;
         border-radius: 1rem;
+
         .shopping-cart-items {
             padding: 1rem;
         }
+
         .shopping-summary {
             padding: 1rem;
         }
+
         .cart-title {
             font-weight: 300;
             font-size: 1.5rem;

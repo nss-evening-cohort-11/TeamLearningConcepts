@@ -75,10 +75,10 @@ class ShoppingCart extends React.Component {
                       <hr />
                       <p>Total: <span className="float-right">${invoice ? invoice.invoiceTotal : '0.00'}</span></p>
                       {invoice 
-                      ? <Link className="btn w-50 btn-light float-right mt-3 mb-0" to={paymentOptionsLink}>Next</Link>
-                      : <button className="btn w-50 btn-light float-right mt-3 mb-0" disabled>Next</button>
+                      ? <Link className="btn w-100 btn-cream" to={paymentOptionsLink}>Next</Link>
+                      : <button className="btn w-100 btn-cream" disabled>Next</button>
                       }
-                      <button className="btn w-50 btn-light mt-3 mb-0" onClick={this.cancelOrder}>Cancel</button>
+                      <button className="btn w-100 btn-light-blue mt-3 mb-0" onClick={this.cancelOrder}>Cancel</button>
                   </div>
               </div>
           </div>

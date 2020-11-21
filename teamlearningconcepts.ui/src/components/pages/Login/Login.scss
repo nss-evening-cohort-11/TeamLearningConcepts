@@ -1,7 +1,11 @@
 @import '../../../styles//variables';
 
 .Login {
+    margin: 0;
+    padding: 0;
     width: 100%;
+    height: 100vh;
+    flex: 1 0 auto;
     color: $dark-gray;
     h1 {
         width: 100%;

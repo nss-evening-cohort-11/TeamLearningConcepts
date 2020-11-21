@@ -2,14 +2,18 @@
 
 .MyFooter {
     margin: 0;
-    padding: .5rem;
+    margin-bottom: -4rem;
     width: 100%;
-    display: block;
-    background-color: $med-dark-blue;
-    color: $cream;
-    position: absolute;
-    bottom: 0;
-  line-height: 60px;
+    flex-shrink: 0;
+    .footer {
+      margin:0;
+      padding: 0;
+      width: 100%;
+      height: 4rem;
+      background-color: $med-dark-blue;
+      color: $cream;
+
+    }
     .tlc-title {
         margin-top: 1rem;
     }

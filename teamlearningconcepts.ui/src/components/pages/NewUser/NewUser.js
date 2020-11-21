@@ -1,5 +1,7 @@
 import React from 'react';
 
+import './NewUser.scss';
+
 import authData from '../../../helpers/data/authData';
 
 

@@ -42,11 +42,17 @@ class SingleCourseView extends React.Component {
 
     return (
       <div className="SingleCourseView">
-       <h2 className="course-title">{course.title} </h2>
+        <main className="d-flex flex-wrap">
+        <figure className="course-image">
         <img className="course-Url" src={course.photoUrl} alt="coursePhoto" />
-        <h3 className="course-description">{course.description}</h3>
+        </figure>
+       <div className="course-info">
+       <h2 className="course-title">{course.title} </h2>
+       <p className="course-description">{course.description}</p>
           <h3 className="course-price">${course.price}</h3> 
-          <button onClick={this.addToCart} className="btn btn-primary">Add to Cart</button>
+          <button onClick={this.addToCart} className="btn btn-cream">Add to Cart</button>
+       </div>
+        </main>
            </div>
          )
   }

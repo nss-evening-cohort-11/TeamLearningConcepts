@@ -39,7 +39,7 @@ class SingleCategoryCard extends React.Component {
         <div className="card w-100">
           <div className="card-header">
             <h4 className="d-inline">{courseType.courseTypeName} ({numberOfCourses})</h4>
-            <Link className="btn btn-primary btn-sm float-right d-inline" to={singleCategoryLink}>View All</Link>
+            <Link className="btn btn-dark-blue btn-custom btn-sm float-right d-inline" to={singleCategoryLink}>View All</Link>
           </div>
           <div className="d-flex flex-wrap">
             {buildCourseCards}

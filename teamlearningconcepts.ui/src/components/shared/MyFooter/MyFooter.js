@@ -6,7 +6,9 @@ class MyFooter extends React.Component {
     render() {
         return(
             <div className="MyFooter d-flex flex-column">
-                <p className="text-center tlc-title">Team Learning Concepts | Copyright 2020</p>
+                <footer className="footer">
+                    <p className="text-center tlc-title">Team Learning Concepts | Copyright 2020</p>
+                </footer>
             </div>
         )
     }
