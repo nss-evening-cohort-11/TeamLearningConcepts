@@ -23,6 +23,7 @@ class MyNavbar extends React.Component {
     }
 
     static propTypes = {
+        authed: PropTypes.string.isRequired,
         searchValue: PropTypes.string.isRequired,
         filteredCourses: PropTypes.array.isRequired,
         searchValueStateChange: PropTypes.func.isRequired,
@@ -41,7 +42,7 @@ class MyNavbar extends React.Component {
 
     render() {
         const { isOpen } = this.state;
-        const { searchValueStateChange, searchFunction, searchValue } = this.props;
+        const { searchValueStateChange, searchFunction, searchValue, authed } = this.props;
         return(
             <div className="MyNavbar">
                 <Navbar color="dark" dark expand="md">
@@ -58,18 +59,22 @@ class MyNavbar extends React.Component {
             <NavItem>
               <NavLink className="navbar-links" tag={RRNavLink} to='/users'>Users</NavLink>
             </NavItem>
-            <NavItem>
-              <NavLink className="navbar-links" tag={RRNavLink} to='/login'>LogIn</NavLink>
-            </NavItem>
             <NavItem className="mt-2">
               <SearchBar searchValueStateChange={searchValueStateChange} searchFunction={searchFunction} searchValue={searchValue} />
             </NavItem>
             <NavItem>
                 <NavLink className="navbar-links" tag={RRNavLink} to='/shopping-cart'><i class="fas fa-shopping-cart"></i></NavLink>
             </NavItem>
-          <NavItem>
-              <NavLink className="navbar-links" onClick={this.logMeOut}>Log Out</NavLink>
-          </NavItem>
+            {
+                authed ?
+                 <NavItem>
+                    <NavLink className="navbar-links" onClick={this.logMeOut}>Log Out</NavLink>
+                 </NavItem>
+              :
+                <NavItem>
+                    <NavLink className="navbar-links" tag={RRNavLink} to='/login'>LogIn</NavLink>
+                </NavItem>
+            }
                 </Nav>
                     </Collapse>
                 </Navbar>
