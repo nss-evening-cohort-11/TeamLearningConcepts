@@ -7,5 +7,13 @@ const getAllUsers = () => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
-// eslint-disable-next-line import/no-anonymous-default-export
-export default { getAllUsers };
+
+// change to ${userId}
+const getUserByEmail = (email) => new Promise((resolve, reject) => {
+  axios.get(`${baseUrl}/Users/${email}/authedUser`)
+  .then(response => resolve(response.data))
+  .catch(reject)
+})
+
+export default {getAllUsers, getUserByEmail};
+

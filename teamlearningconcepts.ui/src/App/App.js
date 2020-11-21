@@ -30,6 +30,7 @@ import SingleCourseView from '../components/pages/SingleCourseView/SingleCourseV
 import courseData from '../helpers/data/courseData';
 import NewUser from '../components/pages/NewUser/NewUser';
 import PaymentOptions from '../components/pages/PaymentOptions/PaymentOptions';
+import UserProfile from '../components/pages/UserProfile/UserProfile';
 import OrderConfirmation from '../components/pages/OrderConfirmation/OrderConfirmation';
 import MyFooter from '../components/shared/MyFooter/MyFooter';
 
@@ -105,9 +106,11 @@ class App extends React.Component {
                 <Route path='/courses/singleCourseView/:courseId' component={SingleCourseView} authed={authed} />
                 <Route path='/courses/:courseTypeId' component={SingleCategory} authed={authed} />
                 <PrivateRoute path='/users' component={Users} authed={authed} />
+                <PrivateRoute path='/userProfile' component={UserProfile} authed={authed} />
                 <Route path='/courses' component={Courses} authed={authed} />
                 <Route path='/search-results' render={() => <SearchResults filteredCourses={this.state.filteredCourses} />} authed={authed} />
                 <Route path="/login" component={Login} authed={authed}/>
+
                 <PrivateRoute path='/payment-options' component={PaymentOptions} authed={authed} />
                 <Route path='/order-confirmation/:invoiceId' component={OrderConfirmation} authed={authed} />
                 <Route path='/shopping-cart' render={() => <ShoppingCart />} authed={authed} />
