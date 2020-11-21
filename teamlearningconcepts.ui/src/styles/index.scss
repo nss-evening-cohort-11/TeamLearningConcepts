@@ -14,7 +14,12 @@ body {
     background-color: $cream;
     margin: 1rem;
   }
+
   .btn-dark-blue {
     @include dark-button;
+  }
+
+  .btn-light-blue {
+    @include light-button;
   }
 }

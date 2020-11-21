@@ -1,8 +1,8 @@
 @mixin light-button {
     margin: .5em;
-    background-color: $light-blue;
+    background-color: $medium-blue;
     &:hover {
-      background-color: $cream;   
+      background-color: $light-blue;   
     }
   }
 
@@ -11,6 +11,7 @@
     background-color: $dark-blue;
     color: $cream;
     &:hover {
-      background-color: $med-dark-blue;   
+      background-color: $med-dark-blue;  
+      color: white; 
     }
   }

@@ -1,0 +1,19 @@
+@import '../../../styles//variables';
+
+.Login {
+    width: 100%;
+    color: $dark-gray;
+    h1 {
+        width: 100%;
+    }
+    #login-form {
+        margin-top: 2rem;
+        padding: 1rem;
+    }
+    form {
+        margin: 2rem;
+    }
+    a {
+        color: $cream;
+    }
+}

@@ -42,7 +42,7 @@ class Home extends React.Component {
       <MyCarousel />
    <h2 className="salesCourses">Check out all our Sales Courses</h2>
 <div className="sales d-flex flex-wrap">{salesCards}</div>
- <div className="text-center"><button className="btn btn-dark-blue btn-shop-now text-center">Shop Now</button></div>
+ <div className="text-center"><button className="btn btn-dark-blue btn-shop-now">Shop Now</button></div>
   <div className="aboutUs">
     <h2 className="aboutUs">About Us</h2>
   <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</p>
