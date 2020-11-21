@@ -10,9 +10,20 @@ body {
   -moz-osx-font-smoothing: grayscale;
   background-color: #8F99AE;
 
+  h1 {
+    font-family: $Patua;
+    margin-top: 1rem;
+  }
+
   hr {
     background-color: $cream;
     margin: 1rem;
+  }
+
+  form {
+    label {
+      font-size: 1.125rem;
+    }
   }
 
   .btn-dark-blue {
